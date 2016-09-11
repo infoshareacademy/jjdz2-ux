@@ -13,16 +13,25 @@ public class ReadFiles {
 
     }
 
-    public List<String> readFileToList( String filename) throws IOException {
-        List<String> plik1 = new ArrayList<>();
+    public List<String> readFileToList( String filename){
+        List<String> plik = new ArrayList<>();
         try(BufferedReader in =new BufferedReader(new FileReader(filename))){
             String c;
             while((c = in.readLine()) !=null){
-                plik1.add(c);
+                plik.add(c);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return plik1;
+        return plik;
+    }
+
+    public static void main(String[] args) {
+
+
+        ReadFiles readFiles = new ReadFiles();
+        System.out.println(readFiles.readFileToList("src/main/resources/testowy.html"));
     }
 }
