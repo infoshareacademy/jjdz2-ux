@@ -9,11 +9,7 @@ import java.util.List;
 
 public class ReadFiles {
 
-    public ReadFiles(){
-
-    }
-
-    public List<String> readFileToList( String filename){
+    public String readFileToString( String filename){
         List<String> plik = new ArrayList<>();
         try(BufferedReader in =new BufferedReader(new FileReader(filename))){
             String c;
@@ -25,13 +21,7 @@ public class ReadFiles {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return plik;
-    }
-
-    public static void main(String[] args) {
-
-
-        ReadFiles readFiles = new ReadFiles();
-        System.out.println(readFiles.readFileToList("src/main/resources/testowy.html"));
+        String result = String.join(" ", plik);
+        return result;
     }
 }
