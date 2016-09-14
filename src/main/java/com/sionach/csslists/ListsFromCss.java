@@ -60,6 +60,9 @@ public class ListsFromCss {
 
         return valuesList;
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> readingCssFile
 }
