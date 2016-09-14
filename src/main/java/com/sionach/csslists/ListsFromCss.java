@@ -25,4 +25,19 @@ public class ListsFromCss {
 
         return bracesList;
     }
+
+    public List<String> getPropertiesList(List<String> bracesList){
+        String patternToSplit = ";";
+        Pattern pattern = Pattern.compile(patternToSplit);
+        for(String item : bracesList){
+            String[] propertiesParts = pattern.split(item);
+
+            for(String element : propertiesParts){
+
+                propertiesList.add(element);
+
+            }
+        }
+        return propertiesList;
+    }
 }
