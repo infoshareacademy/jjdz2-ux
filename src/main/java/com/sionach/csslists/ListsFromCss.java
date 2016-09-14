@@ -40,4 +40,24 @@ public class ListsFromCss {
         }
         return propertiesList;
     }
+
+    public List<String> getValuesList(List<String> propertiesList){
+        String patternToSplit = ":";
+        Pattern pattern = Pattern.compile(patternToSplit);
+
+        for(String item : propertiesList){
+            String[] valuesParts = pattern.split(item);
+            int i = 2;
+            for(String element : valuesParts){
+                if((i%2)!=0){
+                    valuesList.add(element);
+                }
+                i++;
+            }
+
+
+        }
+
+        return valuesList;
+    }
 }
