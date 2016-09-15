@@ -9,18 +9,33 @@ import java.util.regex.Pattern;
  * Created by webownia on 15.09.16.
  */
 public class CssListFromHtml {
-    private List<String> codeList = new ArrayList<String>();
+    private List<String> codeInlineList = new ArrayList<String>();
+    private List<String> codeHeadList = new ArrayList<>();
 
-    public List<String> getCodeList(String htmlCode){
+    public List<String> getCodeInlineList(String htmlCode){
         String patternStyle = "(?i)style\\=\"[^\"]*\""; //wzór do pobrania kodu css w tagach html
 
         Pattern p = Pattern.compile(patternStyle);
         Matcher m = p.matcher(htmlCode);
         while(m.find()){
             //codeList.add(m.group());
-            codeList.add(m.group().replaceAll("style\\=\"","").replaceAll("\"",""));
+            codeInlineList.add(m.group().replaceAll("style\\=\"","").replaceAll("\"",""));
         }
 
-        return codeList;
+        return codeInlineList;
+    }
+
+    public List<String> getCodeHeadList(String htmlCode){
+
+        String patternStyle = "(?i)<style[^<]*</style>"; //wzór do pobrania kodu css w tagach style
+
+        Pattern p = Pattern.compile(patternStyle);
+        Matcher m = p.matcher(htmlCode);
+        while(m.find()){
+            //codeList.add(m.group());
+            codeHeadList.add(m.group().replaceAll("<style[^>]*>","").replaceAll("</style>",""));
+        }
+
+        return codeHeadList;
     }
 }
