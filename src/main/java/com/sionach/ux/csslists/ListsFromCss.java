@@ -54,11 +54,7 @@ public class ListsFromCss {
                 }
                 i++;
             }
-
-
         }
-
         return valuesList;
     }
-
 }
