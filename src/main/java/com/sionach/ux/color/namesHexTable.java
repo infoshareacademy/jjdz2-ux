@@ -9,6 +9,11 @@ public class namesHexTable {
     private String colorName;
     private String colorHex;
 
+    namesHexTable(){
+        this.setColorName("White");
+        this.setColorHex("ffffff");
+    }
+
     namesHexTable(String colorName, String colorHex){
         this.setColorName(colorName);
         this.setColorHex(colorHex);
