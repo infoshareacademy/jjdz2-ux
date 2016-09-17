@@ -9,10 +9,9 @@ import java.util.regex.Pattern;
  * Created by webownia on 15.09.16.
  */
 public class CssListFromHtml {
-    private List<String> codeInlineList = new ArrayList<String>();
-    private List<String> codeHeadList = new ArrayList<>();
 
     public List<String> getCodeInlineList(String htmlCode){
+        List<String> codeInlineList = new ArrayList<String>();
         String patternStyle = "(?i)style\\=\"[^\"]*\""; //wzór do pobrania kodu css w tagach html
 
         Pattern p = Pattern.compile(patternStyle);
@@ -26,7 +25,7 @@ public class CssListFromHtml {
     }
 
     public List<String> getCodeHeadList(String htmlCode){
-
+        List<String> codeHeadList = new ArrayList<>();
         String patternStyle = "(?i)<style[^<]*</style>"; //wzór do pobrania kodu css w tagach style
 
         Pattern p = Pattern.compile(patternStyle);
