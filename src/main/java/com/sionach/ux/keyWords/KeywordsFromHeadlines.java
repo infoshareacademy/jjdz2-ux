@@ -27,4 +27,14 @@ public class KeywordsFromHeadlines {
 
         return headlineKeywords;
     }
+
+    public static void main(String[] args) {
+        String html = "";
+        KeywordsFromHeadlines keywordsResult = new KeywordsFromHeadlines();
+        List<String> test = keywordsResult.getHeadlineKeywords(html);
+
+        for(String item : test){
+            System.out.println(item);
+        }
+    }
 }
