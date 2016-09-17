@@ -9,12 +9,12 @@ public class namesHexTable {
     private String colorName;
     private String colorHex;
 
-    namesHexTable(){
+    namesHexTable() {
         this.setColorName("White");
         this.setColorHex("ffffff");
     }
 
-    namesHexTable(String colorName, String colorHex){
+    namesHexTable(String colorName, String colorHex) {
         this.setColorName(colorName);
         this.setColorHex(colorHex);
     }
@@ -35,17 +35,15 @@ public class namesHexTable {
         return colorHex;
     }
 
-    public void method1(String line){
+    public void method1(String line) {
         String patternString = " ";
         Pattern pattern = Pattern.compile(patternString);
         String[] split = pattern.split(line);
-        if (split.length == 2){
+        if (split.length == 2) {
             this.colorName = split[0];
             this.colorHex = split[1];
-        }
-        else {
+        } else {
             System.out.println("Wrong line input");
         }
-
     }
 }
