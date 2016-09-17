@@ -5,16 +5,16 @@ import java.util.regex.Pattern;
 /**
  * Created by Alice on 17.09.2016.
  */
-public class namesHexTable {
+public class NamesHexTable {
     private String colorName;
     private String colorHex;
 
-    namesHexTable() {
+    NamesHexTable() {
         this.setColorName("White");
         this.setColorHex("ffffff");
     }
 
-    namesHexTable(String colorName, String colorHex) {
+    NamesHexTable(String colorName, String colorHex) {
         this.setColorName(colorName);
         this.setColorHex(colorHex);
     }
@@ -45,5 +45,10 @@ public class namesHexTable {
         } else {
             System.out.println("Wrong line input");
         }
+    }
+
+    public String toString() {
+
+        return "{color:" + this.colorHex + ", colorName:" + this.colorName  + "}";
     }
 }

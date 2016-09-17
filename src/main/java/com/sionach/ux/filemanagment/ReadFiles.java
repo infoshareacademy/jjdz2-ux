@@ -11,7 +11,7 @@ public class ReadFiles {
 
     public String readFileToString( String filename){
         List<String> plik = new ArrayList<>();
-        try(BufferedReader in =new BufferedReader(new FileReader(filename))){
+        try(BufferedReader in =new BufferedReader(new FileReader("src/main/resources/" + filename))){
             String c;
             while((c = in.readLine()) !=null){
                 plik.add(c);
@@ -23,5 +23,11 @@ public class ReadFiles {
         }
         String result = String.join(" ", plik);
         return result;
+    }
+
+    public static void main(String[] args) {
+
+        ReadFiles readFiles = new ReadFiles();
+        System.out.println(readFiles.readFileToString("testowy.html"));
     }
 }
