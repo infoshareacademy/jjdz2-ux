@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
  * Created by webownia on 15.09.16.
  */
 public class KeywordsFromHeadlines {
-    private List<String> headlineKeywords = new ArrayList<String>();
 
     public List<String> getHeadlineKeywords(String htmlCode) {
+        List<String> headlineKeywords = new ArrayList<String>();
         String patternHeadline = "<h[1,2,3]{1}[^>]*>[^</]*</h"; //wzór do wyszukiwania headlinów h1,h2,h3
         String splitSentence = " ";
         Pattern p = Pattern.compile(patternHeadline);
