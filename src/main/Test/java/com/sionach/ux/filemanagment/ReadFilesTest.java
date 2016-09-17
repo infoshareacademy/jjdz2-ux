@@ -18,7 +18,7 @@ public class ReadFilesTest {
         ReadFiles readFiles = new ReadFiles();
         assertNotNull(readFiles);
     }
-
+    //todo test na pliku z resources
     @Test
     public void openFile() throws Exception {
         ReadFiles readFiles = new ReadFiles();

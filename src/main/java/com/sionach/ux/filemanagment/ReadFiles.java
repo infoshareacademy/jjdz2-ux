@@ -24,10 +24,4 @@ public class ReadFiles {
         String result = String.join(" ", plik);
         return result;
     }
-
-    public static void main(String[] args) {
-
-        ReadFiles readFiles = new ReadFiles();
-        System.out.println(readFiles.readFileToString("testowy.html"));
-    }
 }
