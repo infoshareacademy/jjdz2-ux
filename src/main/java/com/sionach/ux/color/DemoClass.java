@@ -10,37 +10,42 @@ import java.util.List;
 public class DemoClass {
 
     public static void main(String[] args) throws IOException {
-        List<namesHexTable> namesHexTableList = new ArrayList<>(); //Lista z tabelą kolorow nazwa-hex
+        List<NamesHexTable> namesHexTableList = new ArrayList<>(); //Lista z tabelą kolorow nazwa-hex
 
         readFileByLines readFileByLines = new readFileByLines(); //instancja klasy readFileByLines
         List<String> stringList = new ArrayList<>(); //lista String potrzebna do wywołania metody klasy readFileBy Lines
-        stringList = readFileByLines.readFileToList("tableNamesHex.txt");
+        stringList = readFileByLines.readFileToList("src/main/resources/tableNamesHex.txt");
         System.out.println(stringList);
         int count = stringList.size();
         System.out.println(count);
         //mamy zczytany plik, należy go sparsowac
         // po " " i wczytać d namesHexTableList. Każdy element stringList parsujemy i zapisujemy do elementu namesHexTableList
-        namesHexTable namesHexTable = new namesHexTable();
+
+        NamesHexTable namesHexTable = new NamesHexTable();
+//        for (String element:stringList) {
+//
+//        }
+
         for (int i=0; i < count; i++){
             System.out.println(stringList.get(i));
             namesHexTable.method1(stringList.get(i));
-            namesHexTableList.add(new namesHexTable(namesHexTable.getColorName(),namesHexTable.getColorHex()));
+            namesHexTableList.add(new NamesHexTable(namesHexTable.getColorName(),namesHexTable.getColorHex()));
         }
         System.out.println(namesHexTableList);
 
 
-        //namesHexTable namesHexTable = new namesHexTable();
+        //NamesHexTable NamesHexTable = new NamesHexTable();
         //String string1;
         //String string2;
         //for (String line: stringList){
-        //    namesHexTable.method1(line); // to nie dziala
-        //    string1 = namesHexTable.getColorName();
-        //    string2 = namesHexTable.getColorHex();
-        //    namesHexTableList.add(new namesHexTable(string1,string2));
+        //    NamesHexTable.method1(line); // to nie dziala
+        //    string1 = NamesHexTable.getColorName();
+        //    string2 = NamesHexTable.getColorHex();
+        //    namesHexTableList.add(new NamesHexTable(string1,string2));
         //}
         //System.out.println(namesHexTableList);
 
-       // namesHexTable newTable = new namesHexTable("Black","000000");
+       // NamesHexTable newTable = new NamesHexTable("Black","000000");
        // String string1=newTable.getColorName();
        // String string2=newTable.getColorHex();
        // System.out.println(string1 + " and " + string2 + " are the same colors");
