@@ -11,17 +11,22 @@ import java.util.List;
  * Created by Alice on 17.09.2016.
  */
 public class readFileByLines {
+    List<String> lines = new ArrayList<>();
+
+    public List<String> getLines() {
+        return lines;
+    }
+
     public List<String> readFileToList(String filename) throws IOException {
-        List<String> lines = new ArrayList<String>();
         try (BufferedReader in = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = in.readLine()) != null) {
-                lines.add(line);
+                this.lines.add(line);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return lines;
+        return this.lines;
     }
 
 }
