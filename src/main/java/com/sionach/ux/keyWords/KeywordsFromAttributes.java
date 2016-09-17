@@ -13,14 +13,19 @@ public class KeywordsFromAttributes {
 
     public List<String> getAttributesKeywords(String htmlCode){
 
-        String pattern = "(?i)(title=\"[^\"]*\")|(alt=\"[^\"]*\")"; //wyciagnie wszystkich atryutow alt i title z tagow html
-
+        String pattern = "(?i)title=\"[^\"]*\"|alt=\"[^\"]*\""; //wyciagnie wszystkich atryutow alt i title z tagow html
+        String splitSentence = " ";
         Pattern p  = Pattern.compile(pattern);
         Matcher m =  p.matcher(htmlCode);
 
         while(m.find()){
+            String results = m.group().replaceAll("(?i)title=\"|alt=\"","").replaceAll("\"","");
+            String[] splitWords = results.split(splitSentence);
+            if(splitWords.length <= 8){
+                attributesKeywords.add(results);
 
-            attributesKeywords.add(m.group().replaceAll("(?i)(title=\")|(alt=\")","").replaceAll("\"",""));
+            }
+
         }
 
         return attributesKeywords;
