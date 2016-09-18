@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class KeywordsFromAttributes {
 
-    public List<String> getAttributesKeywords(String htmlCode){
+    public List<String> AttributesKeywords(String htmlCode){
         List<String> attributesKeywords = new ArrayList<String>();
         String pattern = "(?i)title=\"[^\"]*\"|alt=\"[^\"]*\""; //wyciagnie wszystkich atryutow alt i title z tagow html
         String splitSentence = " ";

@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class ListsFromCss {
 
-    public List<String> getBracesList(String cssString) {
+    public List<String> BracesList(String cssString) {
         List<String> bracesList = new ArrayList<String>();
         String patternBraces = "(?i)\\{[^}]*\\}"; //wzór do pobrania kodu pomiędzy klamrami {} i umieszczenie w elementach tablicy
 
@@ -23,7 +23,7 @@ public class ListsFromCss {
         return bracesList;
     }
 
-    public List<String> getPropertiesList(List<String> bracesList){
+    public List<String> PropertiesList(List<String> bracesList){
         List<String> propertiesList = new ArrayList<String>();
         String patternToSplit = ";";
 
@@ -40,7 +40,7 @@ public class ListsFromCss {
         return propertiesList;
     }
 
-    public List<String> getValuesList(List<String> propertiesList){
+    public List<String> ValuesList(List<String> propertiesList){
         List<String> valuesList = new ArrayList<String>();
         String patternToSplit = ":";
         Pattern pattern = Pattern.compile(patternToSplit);
