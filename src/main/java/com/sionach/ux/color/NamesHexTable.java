@@ -35,7 +35,7 @@ public class NamesHexTable {
         return colorHex;
     }
 
-    public void method1(String line) {
+    public void splitLineBySpace(String line) {
         String patternString = " ";
         Pattern pattern = Pattern.compile(patternString);
         String[] split = pattern.split(line);
