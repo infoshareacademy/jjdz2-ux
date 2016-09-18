@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class CssListFromHtml {
 
-    public List<String> CodeInlineList(String htmlCode){
+    public List<String> codeInlineList(String htmlCode){
         List<String> codeInlineList = new ArrayList<String>();
         String patternStyle = "(?i)style\\=\"[^\"]*\""; //wzór do pobrania kodu css w tagach html
 
@@ -24,7 +24,7 @@ public class CssListFromHtml {
         return codeInlineList;
     }
 
-    public List<String> CodeHeadList(String htmlCode){
+    public List<String> codeHeadList(String htmlCode){
         List<String> codeHeadList = new ArrayList<>();
         String patternStyle = "(?i)<style[^<]*</style>"; //wzór do pobrania kodu css w tagach style
 
