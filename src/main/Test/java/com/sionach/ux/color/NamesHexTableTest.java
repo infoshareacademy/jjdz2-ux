@@ -20,7 +20,8 @@ public class NamesHexTableTest{
     }
 
     @Test
-    public void should_convert_list() {
+    public void should_convert_list() { //nie wykorzystuje klasy ConvertStringToNamesHexTableList bo dzialanie tej
+        //klasy sprawdza test odpowiedni tej klasie
         List<NamesHexTable> namesHexTableList = new ArrayList<>(); //Lista z tabelą kolorow nazwa-hex
         ReadFileByLines readFileByLines = new ReadFileByLines(); //instancja klasy ReadFileByLines
         List<String> stringList = new ArrayList<>();
@@ -33,7 +34,7 @@ public class NamesHexTableTest{
 
             for (int i=0; i < count; i++){
                 System.out.println(stringList.get(i));
-                namesHexTable.method1(stringList.get(i));
+                namesHexTable.splitLineBySpace(stringList.get(i));
                 namesHexTableList.add(new NamesHexTable(namesHexTable.getColorName(),namesHexTable.getColorHex()));
             }
             System.out.println(namesHexTableList);
