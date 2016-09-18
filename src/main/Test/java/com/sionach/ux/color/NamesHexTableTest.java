@@ -22,7 +22,7 @@ public class NamesHexTableTest{
     @Test
     public void should_convert_list() {
         List<NamesHexTable> namesHexTableList = new ArrayList<>(); //Lista z tabelą kolorow nazwa-hex
-        readFileByLines readFileByLines = new readFileByLines(); //instancja klasy readFileByLines
+        ReadFileByLines readFileByLines = new ReadFileByLines(); //instancja klasy ReadFileByLines
         List<String> stringList = new ArrayList<>();
         try{
             stringList = readFileByLines.readFileToList("src/main/resources/tableNamesHex.txt");
