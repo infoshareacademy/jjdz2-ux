@@ -26,23 +26,15 @@ public class ConvertColorToHex {
         return this.colorHex;
     }
 
-    //WAZNE: napisać jeszcze konwersję z rgb(255,255,255) na r,g,b
+
     //metoda konwertująca RGB na HEX - przeciazona
     public void rgbToHex(int r, int g, int b){
         Color color = new Color(r,g,b);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
+        if (hex.length() < 6)
+        {
             hex = "0" + hex;
-        }while (hex.length() < 6);
-        this.colorHex = "#" + hex;
-    }
-    //opcjonalna
-    public void rgbToHex(int rgb){
-        Color color = new Color(rgb);
-        String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
-            hex = "0" + hex;
-        }while (hex.length() < 6);
+        }
         this.colorHex = "#" + hex;
     }
 
@@ -51,25 +43,21 @@ public class ConvertColorToHex {
     public void rgbaToHex(int r, int g, int b, int a){
         Color color = new Color(r,g,b,a);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
+        if (hex.length() < 6)
+        {
             hex = "0" + hex;
-        }while (hex.length() < 6);
-        this.colorHex = "#" + hex;
-    }
-    //opcjonalna
-    public void rgbaToHex(int rgba){
-        Color color = new Color(rgba);
-        String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
-            hex = "0" + hex;
-        }while (hex.length() < 6);
+        }
         this.colorHex = "#" + hex;
     }
 
+
     //metoda przepisujaca short_HEX na HEX
     public void shortHexToHex(String shortHex){
-        char[] charArray = new char[3];
-        shortHex.getChars(0,2,charArray,0);
+        char[] charArray = new char[4];
+        shortHex.getChars(0,3,charArray,0);
+        System.out.println(charArray[0]);
+        System.out.println(charArray[1]);
+        System.out.println(charArray[2]);
         String rhex = Character.toString(charArray[0]);
         String ghex = Character.toString(charArray[1]);
         String bhex = Character.toString(charArray[2]);
@@ -98,11 +86,11 @@ public class ConvertColorToHex {
         String hex = "brak szukanego koloru";
         int count = namesHexTableList.size();
         for (int i = 0; i < count; i++){
-            if(namesHexTableList.get(i).getColorName()==name) {
+            if(namesHexTableList.get(i).getColorName().equals(name)) {
                 hex = namesHexTableList.get(i).getColorHex();
                 this.colorHex = "#" + hex;
             }
         }
-        System.out.println("#" + hex);
+        System.out.println("The HEX of color: " + name + " is: " + this.colorHex);
     }
 }
