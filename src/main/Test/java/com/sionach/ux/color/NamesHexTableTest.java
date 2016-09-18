@@ -33,7 +33,7 @@ public class NamesHexTableTest{
 
             for (int i=0; i < count; i++){
                 System.out.println(stringList.get(i));
-                namesHexTable.method1(stringList.get(i));
+                namesHexTable.splitLineBySpace(stringList.get(i));
                 namesHexTableList.add(new NamesHexTable(namesHexTable.getColorName(),namesHexTable.getColorHex()));
             }
             System.out.println(namesHexTableList);
