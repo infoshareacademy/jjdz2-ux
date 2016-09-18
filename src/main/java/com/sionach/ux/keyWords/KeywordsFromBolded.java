@@ -19,7 +19,8 @@ public class KeywordsFromBolded {
         List<String> keywords = new ArrayList<>();
 
         while(m.find()){
-            keywords.add(m.group().replaceAll("<b[^>]*>|<strong[^>]*>", "").replaceAll("</b|</strong", ""));
+            keywords.add(m.group().replaceAll("<b[^>]*>|<strong[^>]*>", "").replaceAll("</b|</strong", "").replaceAll("[^A-Za-z0-9]", " "));
+
         }
 
         return keywords;
