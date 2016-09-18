@@ -20,7 +20,8 @@ public class NamesHexTableTest{
     }
 
     @Test
-    public void should_convert_list() {
+    public void should_convert_list() { //nie wykorzystuje klasy ConvertStringToNamesHexTableList bo dzialanie tej
+        //klasy sprawdza test odpowiedni tej klasie
         List<NamesHexTable> namesHexTableList = new ArrayList<>(); //Lista z tabelą kolorow nazwa-hex
         ReadFileByLines readFileByLines = new ReadFileByLines(); //instancja klasy ReadFileByLines
         List<String> stringList = new ArrayList<>();
