@@ -18,4 +18,9 @@ public class ReadFilesTest {
         readFiles.setDefaultPatch("src/main/Test/resources/");
         assertTrue("Return String as expected", readFiles.readFileToString("testowy.html").equals("testowy     testowy             testowy"));
     }
+
+    @Test
+    public void shouldReturnEmptyWhenFileNotFound() throws Exception{
+        ReadFiles readFiles = new ReadFiles();
+    }
 }
