@@ -2,6 +2,9 @@ package com.sionach.ux.csslists;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -9,18 +12,10 @@ import static org.junit.Assert.*;
  */
 public class ListsFromCssTest {
     @Test
-    public void bracesList() throws Exception {
-
+    public void bracesListIsNotNull() throws Exception {
+        ListsFromCss listBraces = new ListsFromCss();
+        assertNotNull(listBraces);
     }
 
-    @Test
-    public void propertiesList() throws Exception {
-
-    }
-
-    @Test
-    public void valuesList() throws Exception {
-
-    }
 
 }
