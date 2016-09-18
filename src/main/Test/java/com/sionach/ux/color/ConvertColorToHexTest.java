@@ -12,8 +12,8 @@ public class ConvertColorToHexTest {
     public void rgbToHex() throws Exception {
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
         String colorHex;
-        int r = 255;
-        int g = 255;
+        int r = 0;
+        int g = 0;
         int b = 255;
         convertColorToHex.rgbToHex(r,g,b);
         colorHex = convertColorToHex.getColorHex();
@@ -25,9 +25,9 @@ public class ConvertColorToHexTest {
     public void rgbaToHex() throws Exception {
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
         String colorHex;
-        int r = 255;
-        int g = 255;
-        int b = 255;
+        int r = 0;
+        int g = 0;
+        int b = 100;
         int a = 1;
         convertColorToHex.rgbToHex(r,g,b);
         colorHex = convertColorToHex.getColorHex();
