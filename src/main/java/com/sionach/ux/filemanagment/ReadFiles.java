@@ -9,9 +9,12 @@ import java.util.List;
 
 public class ReadFiles {
 
-    public String readFileToString( String filename){
+    private String defaultPatch = "src/main/resources/";
+
+    public String readFileToString(String filename){
+
         List<String> plik = new ArrayList<>();
-        try(BufferedReader in =new BufferedReader(new FileReader("src/main/resources/" + filename))){
+        try(BufferedReader in =new BufferedReader(new FileReader(defaultPatch + filename))){
             String c;
             while((c = in.readLine()) !=null){
                 plik.add(c);
@@ -23,5 +26,9 @@ public class ReadFiles {
         }
         String result = String.join(" ", plik);
         return result;
+    }
+
+    public void setDefaultPatch(String defaultPatch) {
+        this.defaultPatch = defaultPatch;
     }
 }
