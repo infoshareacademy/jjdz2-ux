@@ -9,12 +9,9 @@ import java.util.regex.Pattern;
  * Created by webownia on 14.09.16.
  */
 public class ListsFromCss {
-    private List<String> bracesList = new ArrayList<String>(); //lista do przechowywania elementów w klamrach
-    private List<String> propertiesList = new ArrayList<String>(); //lista z elementami własciwosci pliku css w parach własciwosc: wartosc
-    private List<String> valuesList = new ArrayList<String>();//Lista przechowująca wartosci z pliku css
 
-    public List<String> getBracesList(String cssString) {
-
+    public List<String> BracesList(String cssString) {
+        List<String> bracesList = new ArrayList<String>();
         String patternBraces = "(?i)\\{[^}]*\\}"; //wzór do pobrania kodu pomiędzy klamrami {} i umieszczenie w elementach tablicy
 
         Pattern p = Pattern.compile(patternBraces);
@@ -26,8 +23,10 @@ public class ListsFromCss {
         return bracesList;
     }
 
-    public List<String> getPropertiesList(List<String> bracesList){
+    public List<String> PropertiesList(List<String> bracesList){
+        List<String> propertiesList = new ArrayList<String>();
         String patternToSplit = ";";
+
         Pattern pattern = Pattern.compile(patternToSplit);
         for(String item : bracesList){
             String[] propertiesParts = pattern.split(item);
@@ -41,7 +40,8 @@ public class ListsFromCss {
         return propertiesList;
     }
 
-    public List<String> getValuesList(List<String> propertiesList){
+    public List<String> ValuesList(List<String> propertiesList){
+        List<String> valuesList = new ArrayList<String>();
         String patternToSplit = ":";
         Pattern pattern = Pattern.compile(patternToSplit);
 
@@ -57,4 +57,5 @@ public class ListsFromCss {
         }
         return valuesList;
     }
+
 }

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Alice on 17.09.2016.
  */
-public class readFileByLines {
+public class ReadFileByLines {
     List<String> lines = new ArrayList<>();
 
     public List<String> getLines() {
@@ -28,5 +28,7 @@ public class readFileByLines {
         }
         return this.lines;
     }
+
+
 
 }
