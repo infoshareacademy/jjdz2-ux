@@ -26,7 +26,7 @@ public class ConvertColorToHex {
         return this.colorHex;
     }
 
-
+    //WAZNE: napisać jeszcze konwersję z rgb(255,255,255) na r,g,b
     //metoda konwertująca RGB na HEX - przeciazona
     public void rgbToHex(int r, int g, int b){
         Color color = new Color(r,g,b);
@@ -36,7 +36,7 @@ public class ConvertColorToHex {
         }while (hex.length() < 6);
         this.colorHex = "#" + hex;
     }
-
+    //opcjonalna
     public void rgbToHex(int rgb){
         Color color = new Color(rgb);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
@@ -56,7 +56,7 @@ public class ConvertColorToHex {
         }while (hex.length() < 6);
         this.colorHex = "#" + hex;
     }
-
+    //opcjonalna
     public void rgbaToHex(int rgba){
         Color color = new Color(rgba);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
