@@ -31,8 +31,7 @@ public class ConvertColorToHex {
     public void rgbToHex(int r, int g, int b){
         Color color = new Color(r,g,b);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        if (hex.length() < 6)
-        {
+        while (hex.length() < 6){
             hex = "0" + hex;
         }
         this.colorHex = "#" + hex;
@@ -43,8 +42,7 @@ public class ConvertColorToHex {
     public void rgbaToHex(int r, int g, int b, int a){
         Color color = new Color(r,g,b,a);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        if (hex.length() < 6)
-        {
+        while (hex.length() < 6){
             hex = "0" + hex;
         }
         this.colorHex = "#" + hex;
