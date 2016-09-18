@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class KeywordsFromHeadlines {
 
-    public List<String> getHeadlineKeywords(String htmlCode) {
+    public List<String> HeadlineKeywords(String htmlCode) {
         List<String> headlineKeywords = new ArrayList<String>();
         String patternHeadline = "<h[1,2,3]{1}[^>]*>[^</]*</h"; //wzór do wyszukiwania headlinów h1,h2,h3
         String splitSentence = " ";
@@ -31,7 +31,7 @@ public class KeywordsFromHeadlines {
     public static void main(String[] args) {
         String html = "";
         KeywordsFromHeadlines keywordsResult = new KeywordsFromHeadlines();
-        List<String> test = keywordsResult.getHeadlineKeywords(html);
+        List<String> test = keywordsResult.HeadlineKeywords(html);
 
         for(String item : test){
             System.out.println(item);
