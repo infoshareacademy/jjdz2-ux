@@ -11,12 +11,12 @@ public class ReadFiles {
 
     private String defaultPatch = "src/main/resources/";
 
-    public String readFileToString(String filename){
+    public String readFileToString(String filename) {
 
         List<String> plik = new ArrayList<>();
-        try(BufferedReader in =new BufferedReader(new FileReader(defaultPatch + filename))){
+        try (BufferedReader in = new BufferedReader(new FileReader(defaultPatch + filename))) {
             String c;
-            while((c = in.readLine()) !=null){
+            while ((c = in.readLine()) != null) {
                 plik.add(c);
             }
         } catch (FileNotFoundException e) {
