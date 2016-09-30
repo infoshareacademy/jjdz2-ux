@@ -12,6 +12,7 @@ public class CssListFromHtml {
 
     public List<String> codeInlineList(String htmlCode){
         List<String> codeInlineList = new ArrayList<String>();
+
         String patternStyle = "(?i)style\\=\"[^\"]*\""; //wzór do pobrania kodu css w tagach html
 
         Pattern p = Pattern.compile(patternStyle);
@@ -26,6 +27,8 @@ public class CssListFromHtml {
 
     public List<String> codeHeadList(String htmlCode){
         List<String> codeHeadList = new ArrayList<>();
+        htmlCode = htmlCode.replaceAll("(?i)/\\*[^\\*]*\\*/",""); //wyczyszczenie kodu z komentarzy blokowych css
+        htmlCode = htmlCode.replaceAll("(?i)//[^\n]*\n",""); //wyczyszczenie kodu z komentzry liniowych css
         String patternStyle = "(?i)<style[^<]*</style>"; //wzór do pobrania kodu css w tagach style
 
         Pattern p = Pattern.compile(patternStyle);
