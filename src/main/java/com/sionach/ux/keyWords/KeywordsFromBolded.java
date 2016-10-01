@@ -10,7 +10,7 @@ public class KeywordsFromBolded {
 
     public List<String> boldedKeywords(String htmlCode) {
 
-        String pattern = "<b [^>]*>[^</]*</b|<strong[^>]*>[^</]*</strong";
+        String pattern = "(?i)<b [^>]*>[^</]*</b>|<strong[^>]*>[^</]*</strong";
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(htmlCode);
 
