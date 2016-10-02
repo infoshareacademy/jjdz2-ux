@@ -17,11 +17,10 @@ public class KeywordsFromBoldedTest {
     }
 
     @Test
-    public void shouldReturnStrings(){
+    public void shouldReturnBoldedAndStrong(){
         ReadFiles readFiles = new ReadFiles();
         KeywordsFromBolded keywordsFromBolded = new KeywordsFromBolded();
         List<String> expected = Arrays.asList("porszt", "JavaSE2_2016.pdf", "1");
         assertTrue("test", keywordsFromBolded.boldedKeywords(readFiles.readFileToString("testowy2.html")).equals(expected));
     }
-
 }
