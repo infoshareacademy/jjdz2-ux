@@ -36,9 +36,8 @@ public class KeywordsFromBolded {
         ReadFiles file = new ReadFiles();
         Document doc = Jsoup.parse(file.readFileToString("testowy2.html"));
 //        Elements bolded = doc.getElementsByTag();
-        Elements bolded = doc.select("strong");
+        Elements bolded = doc.select("strong, b");
         String test = bolded.text();
-        System.out.println(bolded);
         System.out.println(test);
 
         System.out.println(keywordsFromBolded.boldedKeywords(file.readFileToString("testowy2.html")));
