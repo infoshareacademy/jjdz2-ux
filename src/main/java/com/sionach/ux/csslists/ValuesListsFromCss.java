@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * Created by drzalek on 02.10.16.
- */
+
 public class ValuesListsFromCss {
 
     public List<String> valuesList(List<String> propertiesList){

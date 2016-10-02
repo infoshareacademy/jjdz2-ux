@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by webownia on 14.09.16.
- */
+
 public class BracesListsFromCss {
 
     public List<String> bracesList(String cssString) {
