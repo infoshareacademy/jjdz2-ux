@@ -10,16 +10,16 @@ import static org.junit.Assert.*;
 /**
  * Created by webownia on 18.09.16.
  */
-public class ListsFromCssTest {
+public class BracesListsFromCssTest {
     @Test
     public void objectIsNotNull() throws Exception {
-        ListsFromCss listBraces = new ListsFromCss();
+        BracesListsFromCss listBraces = new BracesListsFromCss();
         assertNotNull(listBraces);
     }
 
     @Test
     public void bracesListTest() {
-        ListsFromCss listBraces = new ListsFromCss();
+        BracesListsFromCss listBraces = new BracesListsFromCss();
         List<String> list = listBraces.bracesList("article{width:20px;} td{background-color: black;}");
 
         List<String> testList = new ArrayList<>();

@@ -11,21 +11,30 @@ public class ReadFiles {
 
     private String defaultPatch = "src/main/resources/";
 
-    public String readFileToString(String filename) {
+    public List<String> readFileToList(String filename) {
 
-        List<String> plik = new ArrayList<>();
+        List<String> fileList = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(defaultPatch + filename))) {
             String c;
             while ((c = in.readLine()) != null) {
-                plik.add(c);
+                fileList.add(c);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String result = String.join(" ", plik);
-        return result;
+
+        return fileList;
+    }
+
+    public String readFileToString(String filename){
+
+        List<String> fileList = new ArrayList<>();
+        fileList = readFileToList(filename);
+        String fileString = String.join(" ", fileList);
+
+        return fileString;
     }
 
     public void setDefaultPatch(String defaultPatch) {
