@@ -20,7 +20,7 @@ public class KeywordsFromBoldedTest {
     public void shouldReturnBoldedAndStrong(){
         ReadFiles readFiles = new ReadFiles();
         KeywordsFromBolded keywordsFromBolded = new KeywordsFromBolded();
-        List<String> expected = Arrays.asList("porszt", "JavaSE2_2016.pdf", "1");
-        assertTrue("test", keywordsFromBolded.boldedKeywords(readFiles.readFileToString("testowy2.html")).equals(expected));
+        List<String> expected = Arrays.asList("porszt", "jjdz2-materialy", "JavaSE2_2016.pdf", "1");
+        assertTrue(keywordsFromBolded.boldedKeywords(readFiles.readFileToString("testowy2.html")).equals(expected));
     }
 }
