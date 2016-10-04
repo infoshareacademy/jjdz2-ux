@@ -18,7 +18,6 @@ public class KeywordsFromAnchor {
         for (Element element : elements) {
             articlesList.add(element.toString());
 
-
         }
 
         String articles = String.join(" ",articlesList);
@@ -27,11 +26,10 @@ public class KeywordsFromAnchor {
         Document linkdoc = Jsoup.parse(articles);
         Elements linkelements = linkdoc.select("a");
         for(Element item:linkelements){
-            String[] itemLength = item.text().split(" ");
-            if(itemLength.length<=8){
+
+            if(item.text().split(" ").length<=8){
                 anchor.add(item.text());
             }
-
 
         }
         return anchor;
