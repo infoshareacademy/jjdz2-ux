@@ -1,5 +1,6 @@
 package com.sionach.ux.keyWords;
 
+import com.sionach.ux.filemanagment.ReadFiles;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,7 +18,9 @@ public class KeywordsFromBolded {
         List<String> bolded = new ArrayList<>();
 
         for (Element element : elements) {
-            bolded.add(element.text());
+            if(element.text().split(" ").length <= 8){
+                bolded.add(element.text());
+            }
         }
 
         return bolded;

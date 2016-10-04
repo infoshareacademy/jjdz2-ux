@@ -1,6 +1,5 @@
 package com.sionach.ux.keyWords;
 
-import com.sionach.ux.filemanagment.ReadFiles;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -18,9 +17,17 @@ public class KeywordsFromBoldedTest {
 
     @Test
     public void shouldReturnBoldedAndStrong(){
-        ReadFiles readFiles = new ReadFiles();
         KeywordsFromBolded keywordsFromBolded = new KeywordsFromBolded();
+        String sample = "<b>porszt</b> <strong>jjdz2-materialy</strong> <b><a href=#>JavaSE2_2016.pdf</a></b> <b>1</b>";
         List<String> expected = Arrays.asList("porszt", "jjdz2-materialy", "JavaSE2_2016.pdf", "1");
-        assertTrue(keywordsFromBolded.boldedKeywords(readFiles.readFileToString("testowy2.html")).equals(expected));
+        assertTrue(keywordsFromBolded.boldedKeywords(sample).equals(expected));
+    }
+
+    @Test
+    public void shouldFailOnSentenceWithMoreThan8Words(){
+        KeywordsFromBolded keywordsFromBolded = new KeywordsFromBolded();
+        String sample = "1 2 3 4 5 6 7 8";
+        List<String> expected = Arrays.asList("1 2 3 4 5 6 7 8");
+        assertFalse(keywordsFromBolded.boldedKeywords(sample).equals(expected));
     }
 }
