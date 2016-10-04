@@ -1,5 +1,10 @@
 package com.sionach.ux.keyWords;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -12,19 +17,15 @@ public class KeywordsFromHeadlines {
 
     public List<String> headlineKeywords(String htmlCode) {
         List<String> headlineKeywordsList = new ArrayList<String>();
-        String patternHeadline = "<h[1,2,3]{1}[^>]*>[^</]*</h"; //wzór do wyszukiwania headlinów h1,h2,h3
-        String splitSentence = " ";
-        Pattern p = Pattern.compile(patternHeadline);
-        Matcher m = p.matcher(htmlCode);
+        Document doc = Jsoup.parse(htmlCode);
+        Elements linkelements = doc.select("h1, h2, h3");
+        for(Element item:linkelements){
 
-        while(m.find()){
-            String results = m.group().replaceAll("<h[1,2,3]{1}[^>]*>","").replaceAll("</h","");
-            String[] splitWords = results.split(splitSentence);
-            if(splitWords.length<=8){
-                headlineKeywordsList.add(results);
+            if(item.text().split(" ").length<=8){
+                headlineKeywordsList.add(item.text());
             }
-        }
 
+        }
         return headlineKeywordsList;
     }
 
