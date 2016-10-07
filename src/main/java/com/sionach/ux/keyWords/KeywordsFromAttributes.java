@@ -1,6 +1,10 @@
 package com.sionach.ux.keyWords;
 
 import com.sionach.ux.filemanagment.ReadFiles;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +18,19 @@ public class KeywordsFromAttributes {
 
     public List<String> attributesKeywords(String htmlCode){
         List<String> attributesKeywordsList = new ArrayList<String>();
-        String pattern = "(?i)title=\"[^\"]*\"|alt=\"[^\"]*\""; //wyciagnie wszystkich atryutow alt i title z tagow html
-        String splitSentence = " ";
-        Pattern p  = Pattern.compile(pattern);
-        Matcher m =  p.matcher(htmlCode);
+        Document doc = Jsoup.parse(htmlCode);
+        Elements images = doc.select("img");
 
-        while(m.find()){
-            String results = m.group().replaceAll("(?i)title=\"|alt=\"","").replaceAll("\"","");
-            String[] splitWords = results.split(splitSentence);
-            if(splitWords.length <= 8){
-                attributesKeywordsList.add(results);
+        for(Element item:images){
+           if(item.attr("title").length()>0){
+               attributesKeywordsList.add(item.attr("title"));
+           }
+           if(item.attr("alt").length()>0){
+               attributesKeywordsList.add(item.attr("alt"));
+           }
 
-            }
 
         }
-
         return attributesKeywordsList;
 
     }

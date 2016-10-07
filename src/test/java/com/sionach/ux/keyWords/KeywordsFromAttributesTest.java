@@ -19,10 +19,11 @@ public class KeywordsFromAttributesTest {
         List<String> keywordsList = keywords.attributesKeywords(htmlCodeTest);
 
         List<String> testList = new ArrayList<>();
-        testList.add("Pierwsze slowo kluczowe");
         testList.add("drugie slowo kluczowe");
-        testList.add("trzecie");
+        testList.add("Pierwsze slowo kluczowe");
         testList.add("czwarte");
+        testList.add("trzecie");
+
 
         assertEquals(keywordsList, testList);
     }
