@@ -13,12 +13,10 @@ import java.util.List;
 public class ConvertColorToHex {
     private String colorHex;  // format #rrggbb
 
-    //konstruktor bez parametrow
     ConvertColorToHex(){
         this.colorHex = "#000000";
     }
 
-   //setter i getter
     public void setColorHex(String colorHex) {
         this.colorHex = colorHex;
     }
@@ -27,7 +25,6 @@ public class ConvertColorToHex {
     }
 
 
-    //metoda konwertująca RGB na HEX - przeciazona
     public void rgbToHex(int r, int g, int b){
         Color color = new Color(r,g,b);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
@@ -47,7 +44,6 @@ public class ConvertColorToHex {
     }
 
 
-    //metoda konwertująca RGBA na  - przeciazona
     public void rgbaToHex(int r, int g, int b, int a){
         Color color = new Color(r,g,b,a);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
@@ -66,7 +62,6 @@ public class ConvertColorToHex {
         this.colorHex = "#" + hex;
     }
 
-    //metoda przepisujaca short_HEX na HEX
     public void shortHexToHex(String shortHex){
         char[] charArray = new char[3];
         shortHex.getChars(0,2,charArray,0);
@@ -77,7 +72,6 @@ public class ConvertColorToHex {
         this.colorHex = "#" + hex;
     }
 
-    //metoda konwertująca imię koloru na HEX
     public void nameToHex(String name){
         //czyta plik tableNamesHex do String Listy
         ReadFileByLines readFileByLines = new ReadFileByLines();
