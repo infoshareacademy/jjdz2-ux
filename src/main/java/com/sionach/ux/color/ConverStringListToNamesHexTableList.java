@@ -18,10 +18,10 @@ public class ConverStringListToNamesHexTableList {
         int count = stringList.size();
         System.out.println(count);
         NamesHexTable namesHexTable = new NamesHexTable();
-        for (int i=0; i < count; i++){
-            System.out.println(stringList.get(i));
-            namesHexTable.splitLineBySpace(stringList.get(i));
-            this.namesHexTableList.add(new NamesHexTable(namesHexTable.getColorName(),namesHexTable.getColorHex()));
+        for (String aStringList : stringList) {
+            System.out.println(aStringList);
+            namesHexTable.splitLineBySpace(aStringList);
+            this.namesHexTableList.add(new NamesHexTable(namesHexTable.getColorName(), namesHexTable.getColorHex()));
         }
         return this.namesHexTableList;
     }
