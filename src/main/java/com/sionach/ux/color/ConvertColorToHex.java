@@ -1,7 +1,5 @@
 package com.sionach.ux.color;
 
-import com.sun.xml.internal.fastinfoset.util.CharArray;
-
 import java.awt.*;
 import java.io.IOException;
 import java.util.*;
@@ -46,15 +44,6 @@ public class ConvertColorToHex {
 
     public void rgbaToHex(int r, int g, int b, int a){
         Color color = new Color(r,g,b,a);
-        String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
-            hex = "0" + hex;
-        }while (hex.length() < 6);
-        this.colorHex = "#" + hex;
-    }
-
-    public void rgbaToHex(int rgba){
-        Color color = new Color(rgba);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
         do {
             hex = "0" + hex;
