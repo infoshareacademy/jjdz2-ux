@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
  */
 public class ExtractColorsFromData {
 
-    public static List<String> extractColors(List<String> stringList) {
+    public static List<String> extractHexRgbRgbaColors(List<String> stringList) {
         List<String> extractColorsList = new ArrayList<String>();
-        String pattern = "(?i)#[0-9a-f]{2,6}";
+        String pattern = "(?i)#[0-9a-f]{2,6}|(?i)rgba\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},{01}[0-9]{0,3}\\)|(?i)rgb\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\\)";
         Pattern p = Pattern.compile(pattern);
         for (String aStringList : stringList) {
             Matcher m = p.matcher(aStringList);
@@ -23,4 +23,5 @@ public class ExtractColorsFromData {
         }
         return extractColorsList;
     }
+
 }
