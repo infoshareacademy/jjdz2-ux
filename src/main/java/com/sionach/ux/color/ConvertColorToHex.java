@@ -12,13 +12,16 @@ public class ConvertColorToHex {
     private String colorHex;  // format #rrggbb
 
     ConvertColorToHex(){
+
         this.colorHex = "#000000";
     }
 
     public void setColorHex(String colorHex) {
+
         this.colorHex = colorHex;
     }
     public String getColorHex() {
+
         return this.colorHex;
     }
 
@@ -80,9 +83,9 @@ public class ConvertColorToHex {
         //porównuje name z pierwszym polem namesHexTableList, jeśli równość zachodzi, przypisuje zmiennej hex drugie pole
         String hex = "brak szukanego koloru";
         int count = namesHexTableList.size();
-        for (int i = 0; i < count; i++){
-            if(namesHexTableList.get(i).getColorName()==name) {
-                hex = namesHexTableList.get(i).getColorHex();
+        for (NamesHexTable aNamesHexTableList : namesHexTableList) {
+            if (aNamesHexTableList.getColorName().equals(name)) {
+                hex = aNamesHexTableList.getColorHex();
                 this.colorHex = "#" + hex;
             }
         }
