@@ -1,9 +1,6 @@
 package com.sionach.ux.color;
 
 import java.awt.*;
-import java.io.IOException;
-import java.util.*;
-import java.util.List;
 
 /**
  * Created by Alice on 18.09.2016.
@@ -65,20 +62,9 @@ public class ConvertColorToHex {
     }
 
     public void nameToHex(String name){
-        //czyta plik tableNamesHex do String Listy
-        ReadFileByLines readFileByLines = new ReadFileByLines();
-        java.util.List<String> stringList = new ArrayList<>();
-        try{
-            stringList = readFileByLines.readFileToList("src/main/resources/tableNamesHex.txt");
-            System.out.println(stringList);
-            int count = stringList.size();
-            System.out.println(count);
-        }catch(IOException e){System.out.println("Odczyt pliku nie dziala");}
-
-        //konwertuje String listę w listę obiektów klasy NamesHexTable
-        List<NamesHexTable> namesHexTableList = new ArrayList<>();
-        ConverStringListToNamesHexTableList testVariable = new ConverStringListToNamesHexTableList();
-        namesHexTableList = testVariable.convertToNamesHexTableList(stringList);
+        CreateNamesHexListFromFileTableNamesHex createNamesHexListFromFileTableNamesHex = new CreateNamesHexListFromFileTableNamesHex();
+        java.util.List<NamesHexTable> namesHexTableList;
+        namesHexTableList =  createNamesHexListFromFileTableNamesHex.ToJestProba();
 
         //porównuje name z pierwszym polem namesHexTableList, jeśli równość zachodzi, przypisuje zmiennej hex drugie pole
         String hex = "brak szukanego koloru";
