@@ -12,7 +12,7 @@ public class ExtractColorsFromData {
 
     public static List<String> extractHexRgbRgbaColors(List<String> stringListFromCSS) {
         List<String> extractColorsList = new ArrayList<String>();
-        String pattern = "(?i)#[0-9a-f]{2,6}|(?i)rgba\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},{01}[0-9]{0,3}\\)|(?i)rgb\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\\)";
+        String pattern = "(?i)#[0-9a-f]{2,6}|(?i)rgba\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},[0-1]{0,3}\\)|(?i)rgb\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\\)";
         Pattern p = Pattern.compile(pattern);
         for (String aStringList : stringListFromCSS) {
             Matcher m = p.matcher(aStringList);
