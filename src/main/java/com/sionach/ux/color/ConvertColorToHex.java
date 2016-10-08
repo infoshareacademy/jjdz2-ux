@@ -22,38 +22,27 @@ public class ConvertColorToHex {
         return this.colorHex;
     }
 
-
     public void rgbToHex(int r, int g, int b){
         Color color = new Color(r,g,b);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
+        while (hex.length() < 6){
             hex = "0" + hex;
-        }while (hex.length() < 6);
+        }
         this.colorHex = "#" + hex;
     }
-
-    public void rgbToHex(int rgb){
-        Color color = new Color(rgb);
-        String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
-            hex = "0" + hex;
-        }while (hex.length() < 6);
-        this.colorHex = "#" + hex;
-    }
-
 
     public void rgbaToHex(int r, int g, int b, int a){
         Color color = new Color(r,g,b,a);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
+        while (hex.length() < 6) {
             hex = "0" + hex;
-        }while (hex.length() < 6);
+        }
         this.colorHex = "#" + hex;
     }
 
     public void shortHexToHex(String shortHex){
         char[] charArray = new char[3];
-        shortHex.getChars(0,2,charArray,0);
+        shortHex.getChars(0,3,charArray,0);
         String rhex = Character.toString(charArray[0]);
         String ghex = Character.toString(charArray[1]);
         String bhex = Character.toString(charArray[2]);
