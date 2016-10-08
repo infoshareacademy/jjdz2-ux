@@ -10,14 +10,14 @@ import java.util.regex.Pattern;
  */
 public class ExtractColorsFromData {
 
-    public static List<String> extractHexRgbRgbaColors(List<String> stringList) {
+    public static List<String> extractHexRgbRgbaColors(List<String> stringListFromCSS) {
         List<String> extractColorsList = new ArrayList<String>();
         String pattern = "(?i)#[0-9a-f]{2,6}|(?i)rgba\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},{01}[0-9]{0,3}\\)|(?i)rgb\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\\)";
         Pattern p = Pattern.compile(pattern);
-        for (String aStringList : stringList) {
+        for (String aStringList : stringListFromCSS) {
             Matcher m = p.matcher(aStringList);
             while (m.find()) {
-                String results = m.toString();
+                String results = m.group();
                 extractColorsList.add(results);
             }
         }
@@ -25,7 +25,7 @@ public class ExtractColorsFromData {
         return extractColorsList;
     }
 
-    public static List<String> extractNamesColors(List<String> stringList) {
+    public static List<String> extractNamesColors(List<String> stringListFromCSS) {
         CreateNamesHexListFromFileTableNamesHex createNamesHexListFromFileTableNamesHex = new CreateNamesHexListFromFileTableNamesHex();
         java.util.List<NamesHexTable> namesHexTableList;
         namesHexTableList = createNamesHexListFromFileTableNamesHex.ToJestProba();
@@ -34,10 +34,10 @@ public class ExtractColorsFromData {
         for (NamesHexTable aNamesHexTableList : namesHexTableList) {
             String pattern = aNamesHexTableList.getColorName();
             Pattern p = Pattern.compile(pattern);
-            for (String aStringList : stringList) {
+            for (String aStringList : stringListFromCSS) {
                 Matcher m = p.matcher(aStringList);
                 while (m.find()) {
-                    String results = m.toString();
+                    String results = m.group();
                     extractColorsList.add(results);
                 }
             }
