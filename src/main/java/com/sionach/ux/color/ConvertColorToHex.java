@@ -53,7 +53,7 @@ public class ConvertColorToHex {
     public void nameToHex(String name){
         CreateNamesHexListFromFileTableNamesHex createNamesHexListFromFileTableNamesHex = new CreateNamesHexListFromFileTableNamesHex();
         java.util.List<NamesHexTable> namesHexTableList;
-        namesHexTableList =  createNamesHexListFromFileTableNamesHex.ToJestProba();
+        namesHexTableList =  createNamesHexListFromFileTableNamesHex.FileTolist();
 
         //porównuje name z pierwszym polem namesHexTableList, jeśli równość zachodzi, przypisuje zmiennej hex drugie pole
         String hex = "brak szukanego koloru";

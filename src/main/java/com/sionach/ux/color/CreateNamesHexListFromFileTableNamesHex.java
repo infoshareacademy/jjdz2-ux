@@ -8,7 +8,9 @@ import java.util.List;
  * Created by allic on 07/10/2016.
  */
 public class CreateNamesHexListFromFileTableNamesHex {
-    public List<NamesHexTable> ToJestProba(){
+
+
+    public List<NamesHexTable> FileTolist(){
         //czyta plik tableNamesHex do String Listy
         ReadFileByLines readFileByLines = new ReadFileByLines();
         List<String> stringList = new ArrayList<>();
