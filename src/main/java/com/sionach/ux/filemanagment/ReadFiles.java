@@ -10,11 +10,17 @@ import java.util.List;
 public class ReadFiles {
 
     private String defaultPatch = "src/main/resources/";
+    private String FILENAME;
 
-    public List<String> readFileToList(String filename) {
+    public ReadFiles(String filename){
+
+        this.FILENAME = filename;
+    }
+
+    public List<String> readFileToList() {
 
         List<String> fileList = new ArrayList<>();
-        try (BufferedReader in = new BufferedReader(new FileReader(defaultPatch + filename))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(defaultPatch + FILENAME))) {
             String c;
             while ((c = in.readLine()) != null) {
                 fileList.add(c);
@@ -28,10 +34,10 @@ public class ReadFiles {
         return fileList;
     }
 
-    public String readFileToString(String filename){
+    public String readFileToString(){
 
         List<String> fileList = new ArrayList<>();
-        fileList = readFileToList(filename);
+        fileList = readFileToList();
         String fileString = String.join(" ", fileList);
 
         return fileString;

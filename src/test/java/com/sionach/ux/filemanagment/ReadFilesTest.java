@@ -12,23 +12,23 @@ public class ReadFilesTest {
 
     @Test
     public void objectNotNull() throws Exception {
-        ReadFiles readFiles = new ReadFiles();
+        ReadFiles readFiles = new ReadFiles("testowy.html");
         assertNotNull(readFiles);
     }
 
     @Test
     public void shouldReturnString() throws Exception {
-        ReadFiles readFiles = new ReadFiles();
+        ReadFiles readFiles = new ReadFiles("testowy.html");
         readFiles.setDefaultPatch("src/test/resources/");
-        assertTrue("Return String as expected", readFiles.readFileToString("testowy.html").equals("testowy     testowy             testowy"));
+        assertTrue("Return String as expected", readFiles.readFileToString().equals("testowy     testowy             testowy"));
     }
 
     @Test
     public void shouldReturnList() throws Exception {
-        ReadFiles readFiles = new ReadFiles();
-        readFiles.setDefaultPatch("src/test/resources/");
+        ReadFiles file = new ReadFiles("testowy.html");
+        file.setDefaultPatch("src/test/resources/");
         List<String> expectedList = new ArrayList<>();
         expectedList.addAll(Arrays.asList("testowy", "    testowy", "            testowy"));
-        assertTrue("Return List as expected", expectedList.equals(readFiles.readFileToList("testowy.html")));
+        assertTrue("Return List as expected", expectedList.equals(file.readFileToList()));
     }
 }
