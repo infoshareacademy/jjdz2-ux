@@ -1,6 +1,11 @@
 package com.sionach.ux.color;
 
+import com.sun.xml.internal.fastinfoset.util.CharArray;
+
 import java.awt.*;
+import java.io.IOException;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by Alice on 18.09.2016.
@@ -8,52 +13,49 @@ import java.awt.*;
 public class ConvertColorToHex {
     private String colorHex;  // format #rrggbb
 
+    //konstruktor bez parametrow
     ConvertColorToHex(){
-
         this.colorHex = "#000000";
     }
 
+   //setter i getter
     public void setColorHex(String colorHex) {
-
         this.colorHex = colorHex;
     }
     public String getColorHex() {
-
         return this.colorHex;
     }
 
 
+    //metoda konwertująca RGB na HEX - przeciazona
     public void rgbToHex(int r, int g, int b){
         Color color = new Color(r,g,b);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
+        while (hex.length() < 6){
             hex = "0" + hex;
-        }while (hex.length() < 6);
-        this.colorHex = "#" + hex;
-    }
-
-    public void rgbToHex(int rgb){
-        Color color = new Color(rgb);
-        String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
-            hex = "0" + hex;
-        }while (hex.length() < 6);
+        }
         this.colorHex = "#" + hex;
     }
 
 
+    //metoda konwertująca RGBA na  - przeciazona
     public void rgbaToHex(int r, int g, int b, int a){
         Color color = new Color(r,g,b,a);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
+        while (hex.length() < 6){
             hex = "0" + hex;
-        }while (hex.length() < 6);
+        }
         this.colorHex = "#" + hex;
     }
 
+
+    //metoda przepisujaca short_HEX na HEX
     public void shortHexToHex(String shortHex){
-        char[] charArray = new char[3];
-        shortHex.getChars(0,2,charArray,0);
+        char[] charArray = new char[4];
+        shortHex.getChars(0,3,charArray,0);
+        System.out.println(charArray[0]);
+        System.out.println(charArray[1]);
+        System.out.println(charArray[2]);
         String rhex = Character.toString(charArray[0]);
         String ghex = Character.toString(charArray[1]);
         String bhex = Character.toString(charArray[2]);
@@ -61,20 +63,32 @@ public class ConvertColorToHex {
         this.colorHex = "#" + hex;
     }
 
+    //metoda konwertująca imię koloru na HEX
     public void nameToHex(String name){
-        CreateNamesHexListFromFileTableNamesHex createNamesHexListFromFileTableNamesHex = new CreateNamesHexListFromFileTableNamesHex();
-        java.util.List<NamesHexTable> namesHexTableList;
-        namesHexTableList =  createNamesHexListFromFileTableNamesHex.ToJestProba();
+        //czyta plik tableNamesHex do String Listy
+        ReadFileByLines readFileByLines = new ReadFileByLines();
+        java.util.List<String> stringList = new ArrayList<>();
+        try{
+            stringList = readFileByLines.readFileToList("src/main/resources/tableNamesHex.txt");
+            System.out.println(stringList);
+            int count = stringList.size();
+            System.out.println(count);
+        }catch(IOException e){System.out.println("Odczyt pliku nie dziala");}
+
+        //konwertuje String listę w listę obiektów klasy NamesHexTable
+        List<NamesHexTable> namesHexTableList = new ArrayList<>();
+        ConverStringListToNamesHexTableList testVariable = new ConverStringListToNamesHexTableList();
+        namesHexTableList = testVariable.convertToNamesHexTableList(stringList);
 
         //porównuje name z pierwszym polem namesHexTableList, jeśli równość zachodzi, przypisuje zmiennej hex drugie pole
         String hex = "brak szukanego koloru";
         int count = namesHexTableList.size();
-        for (NamesHexTable aNamesHexTableList : namesHexTableList) {
-            if (aNamesHexTableList.getColorName().equals(name)) {
-                hex = aNamesHexTableList.getColorHex();
+        for (int i = 0; i < count; i++){
+            if(namesHexTableList.get(i).getColorName().equals(name)) {
+                hex = namesHexTableList.get(i).getColorHex();
                 this.colorHex = "#" + hex;
             }
         }
-        System.out.println("#" + hex);
+        System.out.println("The HEX of color: " + name + " is: " + this.colorHex);
     }
 }
