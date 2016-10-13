@@ -1,7 +1,5 @@
 package com.sionach.ux.routing;
 
-import com.sionach.ux.filemanagment.ReadFiles;
-import org.apache.tools.ant.util.KeepAliveInputStream;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,6 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LinkMenagement {
 
@@ -21,6 +20,9 @@ public class LinkMenagement {
     public LinkMenagement(String baseURL, String htmlCode){
         this.BASEURL = baseURL;
         this.HTMLCODE = htmlCode;
+        parseLinksFromHtml();
+        makeInnerLinks();
+        makeOuterLinks();
     }
 
     public void parseLinksFromHtml(){
@@ -34,10 +36,16 @@ public class LinkMenagement {
         }
     }
 
-    public void innerLinks(){
+    public void makeInnerLinks(){
+        innerLinks = links.stream()
+                .filter(link -> link.contains(BASEURL))
+                .collect(Collectors.toList());
     }
 
-    public void outerLinks(){
+    public void makeOuterLinks(){
+        outerLinks = links.stream()
+                .filter(link -> !link.contains(BASEURL))
+                .collect(Collectors.toList());
     }
 
     public List<String> getLinks() {
@@ -50,14 +58,5 @@ public class LinkMenagement {
 
     public List<String> getOuterLinks() {
         return outerLinks;
-    }
-
-    public static void main(String[] args) {
-
-        ReadFiles file = new ReadFiles("auto-bloger.html");
-        LinkMenagement linkMenagement = new LinkMenagement("auto-bloger.pl", file.readFileToString());
-        linkMenagement.parseLinksFromHtml();
-
-        System.out.println(linkMenagement.getLinks());
     }
 }
