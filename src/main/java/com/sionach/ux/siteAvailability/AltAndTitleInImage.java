@@ -20,14 +20,14 @@ public class AltAndTitleInImage {
         for(Element item:elements) {
             if (item.attr("article").length() > 0) {
                 altTitleList.add(item.attr("article"));
-                AltTitleInArticle(item, altTitleList);
+                AltTitleInImage(item, altTitleList);
             }
         }
 
         return altTitleList;
     }
 
-    private void AltTitleInArticle(Element item, List<String> altTitleList){
+    private void AltTitleInImage(Element item, List<String> altTitleList){
         if (item.hasAttr("alt")){
             altTitleList.add(item.attr("alt"));
         } else {
