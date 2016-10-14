@@ -14,34 +14,23 @@ import java.util.List;
 public class AltAndTitleInImage {
     public List<String> ImageAltTitle(String htmlCode){
         Document doc = Jsoup.parse(htmlCode);
-        Elements elements = doc.select("body");
+        Elements elements = doc.select("img");
+        System.out.println(elements.toString());
         List<String> altTitleList = new ArrayList<>();
 
         for(Element item:elements) {
-            if (item.attr("img").length() > 0) {
+            System.out.println(item.toString());
+            if (item.attr("alt").length() > 0) {
                 altTitleList.add(item.attr("img"));
-                AltTitleInImage(item, altTitleList);
+                System.out.println("alt found");
+            }
+            if (item.attr("title").length() > 0) {
+                altTitleList.add(item.attr("title"));
+                System.out.println("title found");
             }
         }
 
         return altTitleList;
     }
-
-    private void AltTitleInImage(Element item, List<String> altTitleList){
-        if (item.hasAttr("alt")){
-            altTitleList.add(item.attr("alt"));
-            System.out.println("There is alt");
-        } else {
-            System.out.println("There is no alternative for this image");
-        }
-
-        if (item.hasAttr("title")){
-            altTitleList.add(item.attr("title"));
-            System.out.println("There is title");
-        } else {
-            System.out.println("The image has no title");
-        }
-    }
-
 
 }
