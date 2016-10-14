@@ -18,8 +18,8 @@ public class AltAndTitleInImage {
         List<String> altTitleList = new ArrayList<>();
 
         for(Element item:elements) {
-            if (item.attr("image").length() > 0) {
-                altTitleList.add(item.attr("article"));
+            if (item.attr("img").length() > 0) {
+                altTitleList.add(item.attr("img"));
                 AltTitleInImage(item, altTitleList);
             }
         }
