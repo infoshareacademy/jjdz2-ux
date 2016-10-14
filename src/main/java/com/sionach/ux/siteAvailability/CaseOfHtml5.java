@@ -14,74 +14,90 @@ import java.util.List;
 public class CaseOfHtml5 {
 
     public List<String> CheckIfHtml5(String htmlCode){
-        Document doc = Jsoup.parse(htmlCode);
-        Elements doctype = doc.select("!DOCTYPE html");
         List<String> html5List = new ArrayList<>();
-
-        if (doctype.isEmpty()){
+        Document doc = Jsoup.parse(htmlCode);
+        if (doc.getElementsContainingText("!DOCTYPE html") != null){
+            System.out.println("This document is HTML5");
+            AttributesFromHtml5(htmlCode,html5List);
+        }
+        else {
             System.out.println("This document is not HTML5");
         }
-        else {AttributesFromHtml5(htmlCode,html5List);}
 
         return html5List;
     }
 
     private void AttributesFromHtml5(String htmlCode, List<String> html5List){
         Document doc = Jsoup.parse(htmlCode);
-        Elements elements = doc.select("html");
+        Elements section = doc.select("section");
+        Elements footer = doc.select("footer");
+        Elements header = doc.select("header");
+        Elements nav = doc.select("nav");
+        Elements article = doc.select("article");
 
-        for(Element item:elements) {
-            if (item.attr("section").length() > 0) {
-                html5List.add(item.attr("charset"));
-            }
+        ArticleCheck(article,html5List);
 
-            if (item.attr("header").length() > 0) {
-                html5List.add(item.attr("charset"));
-            }
-
-            if (item.attr("footer").length() > 0) {
-                html5List.add(item.attr("charset"));
-            }
-
-            if (item.attr("nav").length() > 0) {
-                html5List.add(item.attr("charset"));
-            }
-
-            if (item.attr("article").length() > 0) {
-                html5List.add(item.attr("article"));
-                CheckIfArticle(elements,html5List);
-            }
+        if (!section.isEmpty()){
+            html5List.add("section");
+            System.out.println("There is section");
         }
+        else {
+            System.out.println("There is no section");
+        }
+
+        if (!footer.isEmpty()){
+            html5List.add("footer");
+            System.out.println("There is footer");
+        }
+        else {
+            System.out.println("There is no footer");
+        }
+
+        if (!header.isEmpty()){
+            html5List.add("header");
+            System.out.println("There is header");
+        }
+        else {
+            System.out.println("There is no header");
+        }
+
+        if (!nav.isEmpty()){
+            html5List.add("nav");
+            System.out.println("There is nav");
+        }
+        else {
+            System.out.println("There is no nav");
+        }
+
 
     }
 
-    private void CheckIfArticle(Elements elements, List<String> html5List){
-        Elements articles = elements.select("article");
+    private void ArticleCheck(Elements article, List<String> html5List){
         int numberOfHeaders = 0;
         int numberOfFooters = 0;
-
-        if (articles.isEmpty()){
+        if (article.isEmpty()){
             System.out.println("There is no article tags in this HTML5 document");
         }
         else {
-            for (Element item : articles) {
+
+            for (Element item : article) {
                 if (item.attr("header").length() > 0) {
-                        html5List.add(item.attr("header"));
-                        numberOfHeaders++;
+                    html5List.add(item.attr("header"));
+                    numberOfHeaders++;
                 }
                 if (item.attr("footer").length() > 0) {
-                        html5List.add(item.attr("footer"));
-                        numberOfFooters++;
+                    html5List.add(item.attr("footer"));
+                    numberOfFooters++;
                 }
             }
         }
 
-        if (numberOfFooters != 1) {
+        if (numberOfFooters > 1) {
             System.out.println("There are to many footers in article section");
         }
-        if (numberOfHeaders != 1) {
+        if (numberOfHeaders > 1) {
             System.out.println("There are to many headers in article section");
         }
-    }
 
+    }
 }
