@@ -17,12 +17,10 @@ public class LinkMenagement {
     private List<String> innerLinks;
     private List<String> outerLinks;
 
-    public LinkMenagement(String baseURL, String htmlCode){
+    public LinkMenagement(String htmlCode, String baseURL){
         this.BASEURL = baseURL;
         this.HTMLCODE = htmlCode;
         parseLinksFromHtml();
-        makeInnerLinks();
-        makeOuterLinks();
     }
 
     public void parseLinksFromHtml(){
