@@ -18,7 +18,7 @@ public class AltAndTitleInImage {
         List<String> altTitleList = new ArrayList<>();
 
         for(Element item:elements) {
-            if (item.attr("article").length() > 0) {
+            if (item.attr("image").length() > 0) {
                 altTitleList.add(item.attr("article"));
                 AltTitleInImage(item, altTitleList);
             }
@@ -30,12 +30,14 @@ public class AltAndTitleInImage {
     private void AltTitleInImage(Element item, List<String> altTitleList){
         if (item.hasAttr("alt")){
             altTitleList.add(item.attr("alt"));
+            System.out.println("There is alt");
         } else {
             System.out.println("There is no alternative for this image");
         }
 
         if (item.hasAttr("title")){
             altTitleList.add(item.attr("title"));
+            System.out.println("There is title");
         } else {
             System.out.println("The image has no title");
         }
