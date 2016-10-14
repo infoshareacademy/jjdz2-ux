@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class KeywordsFromMetadataTest {
 
     @Test
-    public void attributesKeywords() throws Exception{
+    public void metadataKeywords() throws Exception{
         String htmlCodeTest = "<meta name=\"keywords\" content=\"HTML, CSS, XML, XHTML, JavaScript\">\n" +
                 "<meta name=\"description\" content=\"Free Web tutorials on HTML and CSS\">\n" +
                 "<meta name=\"author\" content=\"Maniek\">\n" +
