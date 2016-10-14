@@ -15,6 +15,7 @@ public class CaseOfHtml5Test {
         List<String> testList;
         String htmlCodeTest = "<!DOCTYPE html>\n" +
                 "<html>\n" +
+                "<header>This is my site</header>"+
                 "<body>\n" +
                 "\n" +
                 "<h2>Spectacular Mountain</h2>\n" +
