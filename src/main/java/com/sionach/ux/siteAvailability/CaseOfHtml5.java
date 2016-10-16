@@ -16,7 +16,7 @@ public class CaseOfHtml5 {
     public List<String> CheckIfHtml5(String htmlCode){
         List<String> html5List = new ArrayList<>();
         Document doc = Jsoup.parse(htmlCode);
-        if (doc.getElementsContainingText("!DOCTYPE html") != null){
+        if (doc.getElementsContainingText("<!DOCTYPE html>") != null){
             System.out.println("This document is HTML5");
             AttributesFromHtml5(htmlCode,html5List);
         }
