@@ -27,13 +27,11 @@ public class LinkMenagementTest {
 
     @Test
     public void shouldReturn2LinksWithBaseURL(){
-        linkMenagement.makeInnerLinks();
         assertTrue(linkMenagement.getInnerLinks().size()==2);
     }
 
     @Test
     public void shouldReturn1LinkWithOutBaseURL(){
-        linkMenagement.makeOuterLinks();
         assertTrue(linkMenagement.getOuterLinks().size()==1);
     }
 }

@@ -14,8 +14,6 @@ public class LinkMenagement {
     private final String BASEURL;
     private final String HTMLCODE;
     private List<String> links;
-    private List<String> innerLinks;
-    private List<String> outerLinks;
 
     public LinkMenagement(String htmlCode, String baseURL){
         this.BASEURL = baseURL;
@@ -34,27 +32,19 @@ public class LinkMenagement {
         }
     }
 
-    public void makeInnerLinks(){
-        innerLinks = links.stream()
+    public List<String> getInnerLinks(){
+        return links.stream()
                 .filter(link -> link.contains(BASEURL))
                 .collect(Collectors.toList());
     }
 
-    public void makeOuterLinks(){
-        outerLinks = links.stream()
+    public List<String> getOuterLinks(){
+        return links.stream()
                 .filter(link -> !link.contains(BASEURL))
                 .collect(Collectors.toList());
     }
 
     public List<String> getLinks() {
         return links;
-    }
-
-    public List<String> getInnerLinks() {
-        return innerLinks;
-    }
-
-    public List<String> getOuterLinks() {
-        return outerLinks;
     }
 }
