@@ -1,15 +1,12 @@
 package com.sionach.ux.console;
 
-
 import com.sionach.ux.filemanagment.ReadFiles;
 import com.sionach.ux.routing.LinkMenagement;
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -77,6 +74,8 @@ public class Console {
             }
             tempChoice = input;
             while(true){
+                ReadFiles htmlFile = new ReadFiles("index.html");
+                htmlFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice-1) + "/");
                 filesInResources(folderList.get(tempChoice-1));
                 System.out.println("1 Identyfikacja podobnych stron");
                 System.out.println("2 Analiza kolorów na stronie");
@@ -93,6 +92,14 @@ public class Console {
                     case 2:
                         break;
                     case 3:
+                        String baseUrl;
+                        System.out.println("Podaj link bazowy - domena.pl");
+                        baseUrl = reader.next();
+                        LinkMenagement links = new LinkMenagement(htmlFile.readFileToString(), baseUrl);
+                        System.out.println("Linki wewnętrzne:");
+                        System.out.println(links.getInnerLinks());
+                        System.out.println("Linki zewnętrzne:");
+                        System.out.println(links.getOuterLinks());
                         break;
                     case 4:
                         break;
@@ -105,9 +112,9 @@ public class Console {
 
 
 
-    public static void menuOptionHandler(int option, int menuLevel){
-
-    }
+//    public static void menuOptionHandler(int option, int menuLevel){
+//
+//    }
 
 
 //    public static void printMenu(int menuLevel, List<Menu> menu) {
@@ -122,7 +129,7 @@ public class Console {
              return Files.walk(Paths.get(DEFAULTPATCH))
                     .filter(Files::isDirectory)
                     .map(Path::getFileName)
-                     .map(p -> p.toString())
+                    .map(p -> p.toString())
                     .skip(1)
                     .collect(Collectors.toList());
         } catch (IOException e) {
@@ -131,15 +138,16 @@ public class Console {
         return null;
     }
 
-    public static void filesInResources(String option){
-        String defaultPath = DEFAULTPATCH;
+    public static List<String> filesInResources(String option){
         try {
-            Files.walk(Paths.get(defaultPath + option + "/"))
+            return Files.walk(Paths.get(DEFAULTPATCH + option + "/"))
                     .filter(Files::isRegularFile)
                     .map(Path::getFileName)
-                    .forEach(System.out::println);
+                    .map(p -> p.toString())
+                    .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
