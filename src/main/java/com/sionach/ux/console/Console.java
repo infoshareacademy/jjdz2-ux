@@ -23,6 +23,7 @@ public class Console {
     public static void main(String[] args) {
 
         int input = 0;
+        int tempChoice;
         Scanner reader = new Scanner(System.in);
 
 //        int menuLevel = 1;
@@ -74,12 +75,29 @@ public class Console {
             if(input == 3){
                 break;
             }
+            tempChoice = input;
             while(true){
-                filesInResources(folderList.get(input-1));
+                filesInResources(folderList.get(tempChoice-1));
+                System.out.println("1 Identyfikacja podobnych stron");
+                System.out.println("2 Analiza kolorów na stronie");
+                System.out.println("3 Analiza routingu strony");
+                System.out.println("4 Analiza pod kątem kryteriów dostępności");
                 System.out.println("5 Poziom wyżej");
                 input = reader.nextInt();
                 if(input == 5){
                     break;
+                }
+                switch (input){
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        System.out.println("Błąd, wybierz opcje z listy");
                 }
             }
         }
@@ -92,12 +110,12 @@ public class Console {
     }
 
 
-    public static void printMenu(int menuLevel, List<Menu> menu) {
-        menu.stream()
-                .filter(item -> item.getLevel() == menuLevel)
-                .map(Menu::getMessage)
-                .forEach(System.out::println);
-    }
+//    public static void printMenu(int menuLevel, List<Menu> menu) {
+//        menu.stream()
+//                .filter(item -> item.getLevel() == menuLevel)
+//                .map(Menu::getMessage)
+//                .forEach(System.out::println);
+//    }
 
     public static List<String> foldersInResources(){
         try {
