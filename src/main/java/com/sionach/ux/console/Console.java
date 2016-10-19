@@ -22,11 +22,12 @@ public class Console {
 
     public static void main(String[] args) {
 
+        int input = 0;
+        Scanner reader = new Scanner(System.in);
+
 //        int menuLevel = 1;
-//        int input;
 //        List<String> folder;
 //        int page = 0;
-//        Scanner reader = new Scanner(System.in);
 //
 //        //Creating Menu
 //        List<Menu> menu = new ArrayList<>();
@@ -61,9 +62,27 @@ public class Console {
 //        }
 //        input = reader.nextInt();
 
+        List<String> folderList = foldersInResources();
 
-
-
+        while(true){
+            System.out.println("Wybierz stronę");
+            for (String item : folderList) {
+                    System.out.format("%s %s\n", folderList.indexOf(item) + 1, item);
+            }
+            System.out.println("3 Wyjście z programu");
+            input = reader.nextInt();
+            if(input == 3){
+                break;
+            }
+            while(true){
+                filesInResources(folderList.get(input-1));
+                System.out.println("5 Poziom wyżej");
+                input = reader.nextInt();
+                if(input == 5){
+                    break;
+                }
+            }
+        }
     }
 
 
@@ -94,10 +113,10 @@ public class Console {
         return null;
     }
 
-    public static void filesInResources(){
+    public static void filesInResources(String option){
         String defaultPath = DEFAULTPATCH;
         try {
-            Files.walk(Paths.get(defaultPath))
+            Files.walk(Paths.get(defaultPath + option + "/"))
                     .filter(Files::isRegularFile)
                     .map(Path::getFileName)
                     .forEach(System.out::println);
