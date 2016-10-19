@@ -2,6 +2,8 @@ package com.sionach.ux.console;
 
 
 import com.sionach.ux.filemanagment.ReadFiles;
+import com.sionach.ux.routing.LinkMenagement;
+import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,75 +12,65 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Console {
 
-//    public static void choosePage(){
-//        System.out.println("Proszę wybrać stronę do zbadania");
-//    }
+    private static final String DEFAULTPATCH = "src/main/resources/";
+//    public ReadFiles file = new ReadFiles("test");
 
-//    public static void menuMainOptions(){
-//        System.out.println("Wybierz jedną z opcji");
-//        System.out.println("1. Identyfikacja podobnych stron");
-//        System.out.println("2. Analiza kolorów na stronie");
-//        System.out.println("3. Analiza routingu strony");
-//        System.out.println("4. Analiza pod kątem kryteriów dostępności");
-//        System.out.println("5. Wyjście");
-//    }
-
-    public ReadFiles file = new ReadFiles("test");
 
     public static void main(String[] args) {
 
-        int menuLevel = 1;
-        int input;
-        Scanner reader = new Scanner(System.in);
-
-        //Creating Menu
-        List<Menu> menu = new ArrayList<>();
-        menu.add(new Menu(0, 1, "8. Poziom wyżej"));
-        menu.add(new Menu(1, 1, "Proszę wybrać stronę do zbadania"));
-        menu.add(new Menu(1, 9, "9. Wyjście"));
-        menu.add(new Menu(2, 1, "1. Identyfikacja podobnych stron"));
-        menu.add(new Menu(2, 2, "2. Analiza kolorów na stronie"));
-        menu.add(new Menu(2, 3, "3. Analiza routingu strony"));
-        menu.add(new Menu(2, 4, "4. Analiza pod kątem kryteriów dostępności"));
-
-
-        printMenu(menuLevel, menu);
-        input = reader.nextInt();
-
-//        int input = 0;
+//        int menuLevel = 1;
+//        int input;
+//        List<String> folder;
+//        int page = 0;
+//        Scanner reader = new Scanner(System.in);
+//
+//        //Creating Menu
+//        List<Menu> menu = new ArrayList<>();
+//        menu.add(new Menu(1, 0, "Proszę wybrać stronę do zbadania"));
+//        menu.add(new Menu(1, 9, "9. Wyjście"));
+//        menu.add(new Menu(2, 1, "1. Identyfikacja podobnych stron"));
+//        menu.add(new Menu(2, 2, "2. Analiza kolorów na stronie"));
+//        menu.add(new Menu(2, 3, "3. Analiza routingu strony"));
+//        menu.add(new Menu(2, 4, "4. Analiza pod kątem kryteriów dostępności"));
+//        menu.add(new Menu(2, 5, "5. Poziom wyżej"));
+//
 //        while(true) {
-
-//            menuMainOptions();
+////            if (menuLevel == 1) {
+////                folder = foldersInResources();
+////                for (String item : folder) {
+////                    System.out.format("%s %s\n", folder.indexOf(item) + 1, item);
+////                }
+////                page = reader.nextInt();
+////                menuLevel = 2;
+////            } else {
+////                System.out.println(page);
+////                printMenu(menuLevel, menu);
+////                input = reader.nextInt();
+////                switch (input) {
+////                    case 1:
+////
+////                }
+////            }
 //
-//            switch (input){
-//                case 1:
-//                    filesInResources();
-//                    break;
-//                case 2:
+//            printMenu(menuLevel, menu);
 //
-//                    break;
-//
-//                case 3:
-//
-//                    break;
-//
-//                case 4:
-//
-//                    break;
-//
-//                case 5:
-//                    System.out.println("Zamknięcie aplikacji.");
-//                    break;
-//
-//                default:
-//                    System.out.println("Błędna opcja. Proszę wybrać jeszcze raz.");
-//            }
 //        }
+//        input = reader.nextInt();
+
+
+
+
     }
 
+
+
+    public static void menuOptionHandler(int option, int menuLevel){
+
+    }
 
 
     public static void printMenu(int menuLevel, List<Menu> menu) {
@@ -88,8 +80,22 @@ public class Console {
                 .forEach(System.out::println);
     }
 
+    public static List<String> foldersInResources(){
+        try {
+             return Files.walk(Paths.get(DEFAULTPATCH))
+                    .filter(Files::isDirectory)
+                    .map(Path::getFileName)
+                     .map(p -> p.toString())
+                    .skip(1)
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void filesInResources(){
-        String defaultPath = "src/main/resources/";
+        String defaultPath = DEFAULTPATCH;
         try {
             Files.walk(Paths.get(defaultPath))
                     .filter(Files::isRegularFile)
