@@ -14,9 +14,9 @@ public class LinkMenagementTest {
     @BeforeClass
     public static void makeTestLinks(){
         baseUrl = "testowadomena.pl";
-        testCode = "SomeRandomCode<a href=\"http://www.testowa.com domena.com\">A</a>SomeRandomCode" +
+        testCode = "SomeRandomCode<a href=\"http://www.testowa.com\">A</a>SomeRandomCode" +
                 "<a href=\"testowadomena.pl\">B</a>SomeRandomCode, SomeRandomCode<>SomeRandomCode" +
-                "<a href=\"test3.com testowadomena.pl\">C</a>/test/test.SomeRandomCode";
+                "<a href=\"testowadomena.pl\">C</a>/test/test.SomeRandomCode";
         linkMenagement = new LinkMenagement(testCode, baseUrl);
     }
 
