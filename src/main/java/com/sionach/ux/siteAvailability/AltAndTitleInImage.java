@@ -18,25 +18,30 @@ public class AltAndTitleInImage {
         System.out.println(elements.toString());
         List<String> altTitleList = new ArrayList<>();
 
+        List<String> imagesWithNoAltOrNoTitle = new ArrayList<>();
+
         for(Element item:elements) {
             System.out.println(item.toString());
-            if (item.attr("alt").length() > 0) {
-                altTitleList.add(item.attr("alt"));
-                System.out.println("alt found");
+            if (item.attr("alt").isEmpty()) {
+                imagesWithNoAltOrNoTitle.add(item.attr("src"));
             }
             else {
-                System.out.println("There is no alt attribute");
+                altTitleList.add(item.attr("src"));
             }
-            if (item.attr("title").length() > 0) {
-                altTitleList.add(item.attr("title"));
-                System.out.println("title found");
+
+            if (item.attr("title").isEmpty()) {
+                imagesWithNoAltOrNoTitle.add(item.attr("src"));
             }
             else {
-                System.out.println("There is no title of the image");
+                altTitleList.add(item.attr("src"));
             }
         }
 
-        return altTitleList;
+        if(altTitleList.isEmpty()) {
+            System.out.println("There is no alt nor title in any image");
+        }
+
+        return imagesWithNoAltOrNoTitle;
     }
 
 }
