@@ -1,64 +1,29 @@
 package com.sionach.ux.console;
 
+import com.sionach.ux.color.ConverStringListToNamesHexTableList;
+import com.sionach.ux.color.ExtractColorsFromData;
 import com.sionach.ux.filemanagment.ReadFiles;
+import com.sionach.ux.keyWords.*;
 import com.sionach.ux.routing.LinkMenagement;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Console {
 
-    private static final String DEFAULTPATCH = "src/main/resources/";
-//    public ReadFiles file = new ReadFiles("test");
 
+    private static final String DEFAULTPATCH = "src/main/resources/";
 
     public static void main(String[] args) {
 
         int input = 0;
         int tempChoice;
         Scanner reader = new Scanner(System.in);
-
-//        int menuLevel = 1;
-//        List<String> folder;
-//        int page = 0;
-//
-//        //Creating Menu
-//        List<Menu> menu = new ArrayList<>();
-//        menu.add(new Menu(1, 0, "Proszę wybrać stronę do zbadania"));
-//        menu.add(new Menu(1, 9, "9. Wyjście"));
-//        menu.add(new Menu(2, 1, "1. Identyfikacja podobnych stron"));
-//        menu.add(new Menu(2, 2, "2. Analiza kolorów na stronie"));
-//        menu.add(new Menu(2, 3, "3. Analiza routingu strony"));
-//        menu.add(new Menu(2, 4, "4. Analiza pod kątem kryteriów dostępności"));
-//        menu.add(new Menu(2, 5, "5. Poziom wyżej"));
-//
-//        while(true) {
-////            if (menuLevel == 1) {
-////                folder = foldersInResources();
-////                for (String item : folder) {
-////                    System.out.format("%s %s\n", folder.indexOf(item) + 1, item);
-////                }
-////                page = reader.nextInt();
-////                menuLevel = 2;
-////            } else {
-////                System.out.println(page);
-////                printMenu(menuLevel, menu);
-////                input = reader.nextInt();
-////                switch (input) {
-////                    case 1:
-////
-////                }
-////            }
-//
-//            printMenu(menuLevel, menu);
-//
-//        }
-//        input = reader.nextInt();
 
         List<String> folderList = foldersInResources();
 
@@ -67,6 +32,8 @@ public class Console {
             for (String item : folderList) {
                     System.out.format("%s %s\n", folderList.indexOf(item) + 1, item);
             }
+            System.out.println("(1) wmh.pl");
+            System.out.println("(2) infoshareacademy.com");
             System.out.println("3 Wyjście z programu");
             input = reader.nextInt();
             if(input == 3){
@@ -75,21 +42,54 @@ public class Console {
             tempChoice = input;
             while(true){
                 ReadFiles htmlFile = new ReadFiles("index.html");
+                ReadFiles cssFile = new ReadFiles("style.css");
                 htmlFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice-1) + "/");
-                filesInResources(folderList.get(tempChoice-1));
-                System.out.println("1 Identyfikacja podobnych stron");
+                cssFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice-1) + "/");
+
+
+
+                ExtractColorsFromData colors = new ExtractColorsFromData();
+
+                System.out.println("\n1 Identyfikacja podobnych stron");
                 System.out.println("2 Analiza kolorów na stronie");
                 System.out.println("3 Analiza routingu strony");
                 System.out.println("4 Analiza pod kątem kryteriów dostępności");
-                System.out.println("5 Poziom wyżej");
+                System.out.println("5 Poziom wyżej\n");
                 input = reader.nextInt();
                 if(input == 5){
                     break;
                 }
                 switch (input){
                     case 1:
+                        String htmlString = htmlFile.readFileToString();
+
+                        KeywordsFromAnchor anchor = new KeywordsFromAnchor();
+                        KeywordsFromAttributes attributes = new KeywordsFromAttributes();
+                        KeywordsFromBolded bolded = new KeywordsFromBolded();
+                        KeywordsFromHeadlines headlines = new KeywordsFromHeadlines();
+                        KeywordsFromMetadata metadata = new KeywordsFromMetadata();
+
+                        List<String> anchorList = anchor.keywordsAnchor(htmlString);
+                        List<String> attributesList = attributes.attributesKeywords(htmlString);
+                        List<String> boldedList = bolded.boldedKeywords(htmlString);
+                        List<String> headlinesList = headlines.headlineKeywords(htmlString);
+                        List<String> metadataList = metadata.MetadataKeywords(htmlString);
+
+                        List<List<String>> keyWords = Arrays.asList(anchorList, attributesList, boldedList, headlinesList, metadataList);
+//
+                        System.out.println("Lista słów kluczowych po których można znaleść strony podobne do podanej:\n");
+
+                        keyWords.stream()
+                                .flatMap(Collection::stream)
+                                .collect(Collectors.toSet())
+                                .forEach(System.out::println);
                         break;
                     case 2:
+//                        List<String> myColors = colors.extractHexRgbRgbaColors(cssFile.readFileToList());
+//                        ConverStringListToNamesHexTableList converter = new ConverStringListToNamesHexTableList();
+//                        System.out.println(converter.convertToNamesHexTableList(myColors));
+
+//                        colors.extractNamesColors(cssFile.readFileToList());
                         break;
                     case 3:
                         String baseUrl;
@@ -109,20 +109,6 @@ public class Console {
             }
         }
     }
-
-
-
-//    public static void menuOptionHandler(int option, int menuLevel){
-//
-//    }
-
-
-//    public static void printMenu(int menuLevel, List<Menu> menu) {
-//        menu.stream()
-//                .filter(item -> item.getLevel() == menuLevel)
-//                .map(Menu::getMessage)
-//                .forEach(System.out::println);
-//    }
 
     public static List<String> foldersInResources(){
         try {
