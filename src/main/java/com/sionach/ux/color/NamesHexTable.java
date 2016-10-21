@@ -42,8 +42,6 @@ public class NamesHexTable {
         if (split.length == 2) {
             this.colorName = split[0];
             this.colorHex = split[1];
-        } else {
-            System.out.println("Wrong line input");
         }
     }
 

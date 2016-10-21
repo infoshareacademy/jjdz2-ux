@@ -19,7 +19,6 @@ public class ConverStringListToNamesHexTableList {
         System.out.println(count);
         NamesHexTable namesHexTable = new NamesHexTable();
         for (String aStringList : stringList) {
-            System.out.println(aStringList);
             namesHexTable.splitLineBySpace(aStringList);
             this.namesHexTableList.add(new NamesHexTable(namesHexTable.getColorName(), namesHexTable.getColorHex()));
         }
