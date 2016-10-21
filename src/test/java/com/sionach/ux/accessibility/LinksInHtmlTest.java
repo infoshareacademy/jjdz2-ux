@@ -5,13 +5,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by drzal on 21.10.2016.
- */
 public class LinksInHtmlTest {
-    public static String info;
-    public static String htmlCode;
-    public static LinksInHtml links;
+
+    private static String htmlCode;
+    private static LinksInHtml links;
     @BeforeClass
     public static void testLinks(){
         htmlCode = "<html><head></head><body><a href=\"#kontakt\">kontakt</a> Jakiś tekst <a href=\"http://google.pl\">google</a>Kolejny tekst <a href=\"index.html\">strona główna</a></body></html>";
