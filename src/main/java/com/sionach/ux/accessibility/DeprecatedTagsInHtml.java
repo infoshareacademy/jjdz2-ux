@@ -1,10 +1,8 @@
 package com.sionach.ux.accessibility;
 
-import com.sionach.ux.filemanagment.ReadFiles;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.DocumentType;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.FileNotFoundException;
@@ -13,9 +11,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by webownia on 10.10.16.
- */
+
 public class DeprecatedTagsInHtml {
 
     public List<String> findDeprecatedTags(String htmlCode) throws FileNotFoundException {

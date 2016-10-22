@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by webownia on 15.09.16.
- */
+
 public class CssListFromHtml {
 
     public List<String> codeInlineList(String htmlCode){

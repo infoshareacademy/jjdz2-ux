@@ -4,11 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.util.List;
 
-/**
- * Created by webownia on 21.10.16.
- */
 public class HeadlinesInHtml {
 
     public String checkNoOccurrancesH1(String htmlCode){

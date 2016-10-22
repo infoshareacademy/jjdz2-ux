@@ -9,9 +9,6 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by drzal on 21.10.2016.
- */
 public class LinksInHtml {
 
     public String checkNumberOfLinks(String htmlCode){

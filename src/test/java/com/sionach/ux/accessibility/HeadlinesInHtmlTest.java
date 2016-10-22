@@ -5,9 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by webownia on 22.10.16.
- */
+
 public class HeadlinesInHtmlTest {
 
     private static String htmlCode;
