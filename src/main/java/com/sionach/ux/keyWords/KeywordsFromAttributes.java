@@ -1,6 +1,6 @@
 package com.sionach.ux.keyWords;
 
-import com.sionach.ux.filemanagment.ReadFiles;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -8,12 +8,8 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-/**
- * Created by webownia on 17.09.16.
- */
+
 public class KeywordsFromAttributes {
 
     public List<String> attributesKeywords(String htmlCode){
