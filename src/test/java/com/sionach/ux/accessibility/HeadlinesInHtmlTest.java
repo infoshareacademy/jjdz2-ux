@@ -13,7 +13,7 @@ public class HeadlinesInHtmlTest {
     private static String htmlCode;
     private static HeadlinesInHtml headlines;
     @BeforeClass
-    public static void testLinks(){
+    public static void testHeadlines(){
         htmlCode = "<html><head></head><body><h1>Nagłówke rzędu pierwszego</h1><p>Jakiś tekst</p><h2>Nagłówke rzędu drugiego</h2><p>Kolejny tekst</p></body></html>";
         headlines = new HeadlinesInHtml();
     }
