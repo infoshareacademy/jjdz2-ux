@@ -1,11 +1,13 @@
 package com.sionach.ux.console;
 
+import com.sionach.ux.accessibility.SettingsInHeadElement;
 import com.sionach.ux.color.ExtractColorsFromData;
 import com.sionach.ux.csslists.CssListFromHtml;
 import com.sionach.ux.filemanagment.ReadFiles;
 import com.sionach.ux.keyWords.*;
 import com.sionach.ux.routing.LinkMenagement;
 import com.sionach.ux.siteAvailability.CaseOfHtml5;
+import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -36,8 +38,6 @@ public class Console {
             for (String item : folderList) {
                     System.out.format("%s %s\n", folderList.indexOf(item) + 1, item);
             }
-            System.out.println("(1) infoshareacademy.com");
-            System.out.println("(2) wmh.pl");
             System.out.println("3 Wyjście z programu\n");
             input = reader.nextInt();
             if(input == 3){
@@ -113,10 +113,20 @@ public class Console {
                         break;
                     case 4:
                         CaseOfHtml5 caseOfHtml5 = new CaseOfHtml5();
+                        SettingsInHeadElement settingsInHeadElement = new SettingsInHeadElement();
+                        List<String> settingsInHeadRaport = settingsInHeadElement.checkHeadSettings(htmlInString);
+
+
+
 
 
 
                         caseOfHtml5.CheckIfHtml5(htmlInString);
+                        System.out.println("\nRaport sekcji HEAD");
+                        for(String item: settingsInHeadRaport){
+                            System.out.println(item);
+                        }
+//                        System.out.println(settingsInHeadRaport);
 
                         System.out.println("\n");
                         break;
