@@ -2,6 +2,7 @@ package com.sionach.ux.console;
 
 import com.sionach.ux.color.ConverStringListToNamesHexTableList;
 import com.sionach.ux.color.ExtractColorsFromData;
+import com.sionach.ux.csslists.CssListFromHtml;
 import com.sionach.ux.filemanagment.ReadFiles;
 import com.sionach.ux.keyWords.*;
 import com.sionach.ux.routing.LinkMenagement;
@@ -31,13 +32,13 @@ public class Console {
         List<String> folderList = foldersInResources();
 
         while(true){
-            System.out.println("Wybierz stronę");
+            System.out.println("\nWybierz stronę");
             for (String item : folderList) {
                     System.out.format("%s %s\n", folderList.indexOf(item) + 1, item);
             }
             System.out.println("(1) wmh.pl");
             System.out.println("(2) infoshareacademy.com");
-            System.out.println("3 Wyjście z programu");
+            System.out.println("3 Wyjście z programu\n");
             input = reader.nextInt();
             if(input == 3){
                 break;
@@ -52,6 +53,7 @@ public class Console {
 
 
                 ExtractColorsFromData colors = new ExtractColorsFromData();
+                CssListFromHtml cssFromHtml = new CssListFromHtml();
 
                 System.out.println("\n1 Identyfikacja podobnych stron");
                 System.out.println("2 Analiza kolorów na stronie");
@@ -88,11 +90,14 @@ public class Console {
                                 .forEach(System.out::println);
                         break;
                     case 2:
-//                        List<String> myColors = colors.extractHexRgbRgbaColors(cssFile.readFileToList());
+                        //colors from cssFile
+                        List<String> colorsHexRgbRgba = colors.extractHexRgbRgbaColors(cssFile.readFileToList());
+                        List<String> colorsNames = colors.extractNamesColors(cssFile.readFileToList());
+
 //                        ConverStringListToNamesHexTableList converter = new ConverStringListToNamesHexTableList();
 //                        System.out.println(converter.convertToNamesHexTableList(myColors));
 
-//                        colors.extractNamesColors(cssFile.readFileToList());
+//                        System.out.println(colors.extractNamesColors(cssFile.readFileToList()));
                         break;
                     case 3:
                         String baseUrl;
@@ -105,6 +110,8 @@ public class Console {
                         System.out.println(links.getOuterLinks());
                         break;
                     case 4:
+
+
                         break;
                     default:
                         System.out.println("Błąd, wybierz opcje z listy");

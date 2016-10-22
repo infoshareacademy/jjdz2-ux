@@ -57,7 +57,7 @@ public class ConvertColorToHex {
 
         //porównuje name z pierwszym polem namesHexTableList, jeśli równość zachodzi, przypisuje zmiennej hex drugie pole
         String hex = "brak szukanego koloru";
-        int count = namesHexTableList.size();
+//        int count = namesHexTableList.size();
         for (NamesHexTable aNamesHexTableList : namesHexTableList) {
             if (aNamesHexTableList.getColorName().equals(name)) {
                 hex = aNamesHexTableList.getColorHex();

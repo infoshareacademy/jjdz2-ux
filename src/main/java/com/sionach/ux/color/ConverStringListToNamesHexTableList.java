@@ -15,8 +15,8 @@ public class ConverStringListToNamesHexTableList {
     }
 
     public List<NamesHexTable> convertToNamesHexTableList(List<String> stringList) {
-        int count = stringList.size();
-        System.out.println(count);
+//        int count = stringList.size();
+//        System.out.println(count);
         NamesHexTable namesHexTable = new NamesHexTable();
         for (String aStringList : stringList) {
             namesHexTable.splitLineBySpace(aStringList);
