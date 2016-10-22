@@ -5,6 +5,7 @@ import com.sionach.ux.csslists.CssListFromHtml;
 import com.sionach.ux.filemanagment.ReadFiles;
 import com.sionach.ux.keyWords.*;
 import com.sionach.ux.routing.LinkMenagement;
+import com.sionach.ux.siteAvailability.CaseOfHtml5;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -49,7 +50,8 @@ public class Console {
                 htmlFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice-1) + "/");
                 cssFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice-1) + "/");
 
-
+                String htmlInString = htmlFile.readFileToString();
+                List<String> htmlInListofStrings = htmlFile.readFileToList();
 
                 ExtractColorsFromData colors = new ExtractColorsFromData();
                 CssListFromHtml cssFromHtml = new CssListFromHtml();
@@ -65,7 +67,7 @@ public class Console {
                 }
                 switch (input){
                     case 1:
-                        String htmlString = htmlFile.readFileToString();
+
 
                         KeywordsFromAnchor anchor = new KeywordsFromAnchor();
                         KeywordsFromAttributes attributes = new KeywordsFromAttributes();
@@ -73,11 +75,11 @@ public class Console {
                         KeywordsFromHeadlines headlines = new KeywordsFromHeadlines();
                         KeywordsFromMetadata metadata = new KeywordsFromMetadata();
 
-                        List<String> anchorList = anchor.keywordsAnchor(htmlString);
-                        List<String> attributesList = attributes.attributesKeywords(htmlString);
-                        List<String> boldedList = bolded.boldedKeywords(htmlString);
-                        List<String> headlinesList = headlines.headlineKeywords(htmlString);
-                        List<String> metadataList = metadata.MetadataKeywords(htmlString);
+                        List<String> anchorList = anchor.keywordsAnchor(htmlInString);
+                        List<String> attributesList = attributes.attributesKeywords(htmlInString);
+                        List<String> boldedList = bolded.boldedKeywords(htmlInString);
+                        List<String> headlinesList = headlines.headlineKeywords(htmlInString);
+                        List<String> metadataList = metadata.MetadataKeywords(htmlInString);
 
                         List<List<String>> keyWords = Arrays.asList(anchorList, attributesList, boldedList, headlinesList, metadataList);
 //
@@ -103,15 +105,20 @@ public class Console {
                         String baseUrl;
                         System.out.println("Podaj link bazowy - domena.pl");
                         baseUrl = reader.next();
-                        LinkMenagement links = new LinkMenagement(htmlFile.readFileToString(), baseUrl);
+                        LinkMenagement links = new LinkMenagement(htmlInString, baseUrl);
                         System.out.println("Linki wewnętrzne:");
                         System.out.println(links.getInnerLinks());
                         System.out.println("Linki zewnętrzne:");
                         System.out.println(links.getOuterLinks());
                         break;
                     case 4:
+                        CaseOfHtml5 caseOfHtml5 = new CaseOfHtml5();
 
 
+
+                        caseOfHtml5.CheckIfHtml5(htmlInString);
+
+                        System.out.println("\n");
                         break;
                     default:
                         System.out.println("Błąd, wybierz opcje z listy");
