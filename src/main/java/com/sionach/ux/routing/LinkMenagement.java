@@ -35,12 +35,14 @@ public class LinkMenagement {
     public List<String> getInnerLinks(){
         return links.stream()
                 .filter(link -> link.contains(BASEURL))
+                .filter(line -> line.matches("(?i)^[^#]{1}.*$"))
                 .collect(Collectors.toList());
     }
 
     public List<String> getOuterLinks(){
         return links.stream()
                 .filter(link -> !link.contains(BASEURL))
+                .filter(line -> line.matches("(?i)^[^#]{1}.*$"))
                 .collect(Collectors.toList());
     }
 
