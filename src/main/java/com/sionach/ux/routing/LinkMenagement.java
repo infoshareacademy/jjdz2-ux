@@ -1,5 +1,6 @@
 package com.sionach.ux.routing;
 
+import com.sionach.ux.filemanagment.ReadFiles;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -33,20 +34,23 @@ public class LinkMenagement {
     }
 
     public List<String> getInnerLinks(){
+        String patternForInnerLinksBaseUrl = "(http[s]?://[w]{0,3}\\.?"+BASEURL+".*)";
+        String patternForInnerLinks = "(?!http[s]?://)";
         return links.stream()
-                .filter(link -> link.contains(BASEURL))
-                .filter(line -> line.matches("(?i)^[^#]{1}.*$"))
+                .filter(link -> link.matches("(?i)^"+patternForInnerLinksBaseUrl +"|"+ patternForInnerLinks+".*$"))
                 .collect(Collectors.toList());
     }
 
     public List<String> getOuterLinks(){
+        String patternForOuterLinks = "(?i)^http[s]?://.*";
         return links.stream()
+                .filter(link -> link.matches(patternForOuterLinks))
                 .filter(link -> !link.contains(BASEURL))
-                .filter(line -> line.matches("(?i)^[^#]{1}.*$"))
                 .collect(Collectors.toList());
     }
 
     public List<String> getLinks() {
         return links;
     }
+
 }
