@@ -17,11 +17,11 @@ public class CaseOfHtml5 {
         List<String> html5List = new ArrayList<>();
         Document doc = Jsoup.parse(htmlCode);
         if (doc.getElementsContainingText("<!DOCTYPE html>") != null){
-            System.out.println("This document is HTML5");
+            System.out.println("Strona jest napisana w HTML5");
             AttributesFromHtml5(htmlCode,html5List);
         }
         else {
-            System.out.println("This document is not HTML5");
+            System.out.println("Strona nie jest napisana w HTML5");
         }
 
         return html5List;
