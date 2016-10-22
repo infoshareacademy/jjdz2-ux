@@ -39,34 +39,34 @@ public class CaseOfHtml5 {
 
         if (!section.isEmpty()){
             html5List.add("section");
-            System.out.println("There is section");
+            System.out.println("Na stronie występuje znacznik: section");
         }
         else {
-            System.out.println("There is no section");
+            System.out.println("Na stronie brakuje znacznika: section");
         }
 
         if (!footer.isEmpty()){
             html5List.add("footer");
-            System.out.println("There is footer");
+            System.out.println("Na stronie występuje znacznik: footer");
         }
         else {
-            System.out.println("There is no footer");
+            System.out.println("Na stronie brakuje znacznika: footer");
         }
 
         if (!header.isEmpty()){
             html5List.add("header");
-            System.out.println("There is header");
+            System.out.println("Na stronie występuje znacznik: header");
         }
         else {
-            System.out.println("There is no header");
+            System.out.println("Na stronie brakuje znacznika: header");
         }
 
         if (!nav.isEmpty()){
             html5List.add("nav");
-            System.out.println("There is nav");
+            System.out.println("Na stronie występuje znacznik: nav");
         }
         else {
-            System.out.println("There is no nav");
+            System.out.println("Na stronie brakuje znacznika: nav");
         }
 
 
@@ -76,7 +76,7 @@ public class CaseOfHtml5 {
         int numberOfHeaders = 0;
         int numberOfFooters = 0;
         if (article.isEmpty()){
-            System.out.println("There is no article tags in this HTML5 document");
+            System.out.println("Na stronie brakuje znacznika: article");
         }
         else {
 
@@ -93,7 +93,7 @@ public class CaseOfHtml5 {
         }
 
         if (numberOfFooters > 1) {
-            System.out.println("There are to many footers in article section");
+            System.out.println("Na stronie występuje za dużo znaczników footer w sekcji article");
         }
         if (numberOfHeaders > 1) {
             System.out.println("There are to many headers in article section");
