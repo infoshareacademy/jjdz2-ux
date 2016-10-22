@@ -65,4 +65,12 @@ public class ConvertColorToHexTest {
         assertEquals("#9acd32",convertColorToHex.getColorHex());
     }
 
+    @Test
+    public void should_differ_color_format() throws Exception {
+        ConvertColorToHex convertColorToHex = new ConvertColorToHex();
+        String colorString = "YellowGreen";
+        convertColorToHex.checkColorFormatAndConvert(colorString);
+        System.out.println(convertColorToHex.getColorHex());
+    }
+
 }
