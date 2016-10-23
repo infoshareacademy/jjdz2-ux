@@ -1,4 +1,4 @@
-package com.sionach.ux.siteAvailability;
+package com.sionach.ux.accessibility;
 
 import com.sionach.ux.accessibility.CaseOfHtml5;
 import org.junit.Test;

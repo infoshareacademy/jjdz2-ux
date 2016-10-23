@@ -1,4 +1,4 @@
-package com.sionach.ux.siteAvailability;
+package com.sionach.ux.accessibility;
 
 import com.sionach.ux.accessibility.AltAndTitleInImage;
 import org.junit.Test;
@@ -29,6 +29,7 @@ public class AltAndTitleInImageTest {
         System.out.println(testList.toString());
 
         List<String> expectedList = new ArrayList<>();
+        expectedList.add("Lista obrazków które nie posiadają znacznika title lub alt:\n");
         expectedList.add("pic_mountain.jpg");
         System.out.print(expectedList.toString());
 
