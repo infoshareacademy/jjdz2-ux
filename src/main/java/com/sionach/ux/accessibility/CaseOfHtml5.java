@@ -1,4 +1,4 @@
-package com.sionach.ux.siteAvailability;
+package com.sionach.ux.accessibility;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
