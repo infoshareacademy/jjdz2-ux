@@ -143,8 +143,11 @@ public class Console {
                         break;
                     case 3:
                         String baseUrl;
-                        System.out.println("Podaj link bazowy - domena.pl");
-                        baseUrl = reader.next();
+                        if(tempChoice == 1){
+                            baseUrl = "wmh.pl";
+                        } else {
+                            baseUrl = "infoshareacademy.com";
+                        }
                         LinkMenagement links = new LinkMenagement(htmlInString, baseUrl);
                         System.out.println("Linki wewnętrzne:");
                         System.out.println(links.getInnerLinks());
