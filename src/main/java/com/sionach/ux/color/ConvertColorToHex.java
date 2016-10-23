@@ -49,11 +49,6 @@ public class ConvertColorToHex {
         this.colorHex = colorHex;
     }
 
-    public String getColorHex() {
-
-        return this.colorHex;
-    }
-
     public void rgbToHex(int r, int g, int b) {
         Color color = new Color(r, g, b);
         String hex = Integer.toHexString(color.getRGB() & 0xffffff);
@@ -96,5 +91,10 @@ public class ConvertColorToHex {
             }
         }
         System.out.println("#" + hex);
+    }
+
+    public String getColorHex() {
+
+        return this.colorHex;
     }
 }
