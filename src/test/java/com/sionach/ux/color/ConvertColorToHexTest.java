@@ -50,7 +50,7 @@ public class ConvertColorToHexTest {
     @Test
     public void shortHexToHex() throws Exception {
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
-        String colorString = "abc";
+        String colorString = "#abc";
         convertColorToHex.shortHexToHex(colorString);
         System.out.println(convertColorToHex.getColorHex());
         assertEquals("#aabbcc",convertColorToHex.getColorHex());
