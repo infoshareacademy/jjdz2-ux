@@ -16,7 +16,6 @@ public class CreateNamesHexListFromFileTableNamesHex {
         List<String> stringList = new ArrayList<>();
         try{
             stringList = readFileByLines.readFileToList("src/main/resources/tableNamesHex.txt");
-            int count = stringList.size();
         }catch(IOException e){System.out.println("Odczyt pliku nie dziala");}
 
         //konwertuje String listę w listę obiektów klasy NamesHexTable
