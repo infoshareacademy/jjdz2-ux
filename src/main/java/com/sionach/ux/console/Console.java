@@ -46,7 +46,7 @@ public class Console {
 
                 String htmlInString = htmlFile.readFileToString();
 
-                List<String> htmlInListofStrings = htmlFile.readFileToList();
+                List<String> htmlInList = htmlFile.readFileToList();
 
                 ExtractColorsFromData colors = new ExtractColorsFromData();
                 CssListFromHtml cssFromHtml = new CssListFromHtml();
@@ -85,14 +85,26 @@ public class Console {
                                 .forEach(System.out::println);
                         break;
                     case 2:
-                        List<String> colorsHexRgbRgba = colors.extractHexRgbRgbaColors(cssFile.readFileToList());
-                        List<String> colorsNames = colors.extractNamesColors(cssFile.readFileToList());
+                        List<String> cssFromHtmlHead = cssFromHtml.codeHeadList(htmlInString);
+                        List<String> cssFromHtmlInHtmlTags = cssFromHtml.codeInlineList(htmlInString);
+
+
+                        List<String> colorsHexRgbRgbaFromCss = colors.extractHexRgbRgbaColors(cssFile.readFileToList());
+                        List<String> colorsHexRgbRgbaFromHtmlHead = colors.extractHexRgbRgbaColors(cssFromHtmlHead);
+                        List<String> colorsHexRgbRgbaFromHtmlInHtmlTags = colors.extractHexRgbRgbaColors(cssFromHtmlInHtmlTags);
+
+                        List<String> colorsNamesFromCss = colors.extractNamesColors(cssFile.readFileToList());
+                        List<String> colorNamesFromHtmlHead = colors.extractNamesColors(cssFromHtmlHead);
+                        List<String> colorNamesFromHtmlInHtmlTags = colors.extractNamesColors(cssFromHtmlInHtmlTags);
 
 
 
-
-                        System.out.println(colorsHexRgbRgba);
-                        System.out.println(colorsNames);
+                        System.out.println(colorsHexRgbRgbaFromCss);
+                        System.out.println(colorsNamesFromCss);
+                        System.out.println(colorsHexRgbRgbaFromHtmlHead);
+                        System.out.println(colorsHexRgbRgbaFromHtmlInHtmlTags);
+                        System.out.println(colorNamesFromHtmlHead);
+                        System.out.println(colorNamesFromHtmlInHtmlTags);
 
                         break;
                     case 3:
@@ -123,13 +135,10 @@ public class Console {
                             e.printStackTrace();
                         }
 
-
                         caseOfHtml5.CheckIfHtml5(htmlInString);
                         for(String item : deprecatedTagsRaport){
                             System.out.println(item);
                         }
-
-
 
                         System.out.println("\nRaport sekcji HEAD");
                         for(String item: settingsInHeadRaport){
@@ -153,6 +162,7 @@ public class Console {
 
                         System.out.println("\n");
                         break;
+
                     default:
                         System.out.println("Błąd, wybierz opcje z listy");
                 }
