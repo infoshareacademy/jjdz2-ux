@@ -1,5 +1,6 @@
 package com.sionach.ux.console;
 
+import com.sionach.ux.accessibility.HeadlinesInHtml;
 import com.sionach.ux.accessibility.SettingsInHeadElement;
 import com.sionach.ux.color.ExtractColorsFromData;
 import com.sionach.ux.csslists.CssListFromHtml;
@@ -19,9 +20,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-
 public class Console {
-
 
     private static final String DEFAULTPATCH = "src/main/resources/";
 
@@ -51,6 +50,7 @@ public class Console {
                 cssFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice-1) + "/");
 
                 String htmlInString = htmlFile.readFileToString();
+
                 List<String> htmlInListofStrings = htmlFile.readFileToList();
 
                 ExtractColorsFromData colors = new ExtractColorsFromData();
@@ -67,7 +67,6 @@ public class Console {
                 }
                 switch (input){
                     case 1:
-
 
                         KeywordsFromAnchor anchor = new KeywordsFromAnchor();
                         KeywordsFromAttributes attributes = new KeywordsFromAttributes();
@@ -91,9 +90,9 @@ public class Console {
                                 .forEach(System.out::println);
                         break;
                     case 2:
-                        //colors from cssFile
                         List<String> colorsHexRgbRgba = colors.extractHexRgbRgbaColors(cssFile.readFileToList());
                         List<String> colorsNames = colors.extractNamesColors(cssFile.readFileToList());
+
 
 
 
@@ -115,9 +114,7 @@ public class Console {
                         CaseOfHtml5 caseOfHtml5 = new CaseOfHtml5();
                         SettingsInHeadElement settingsInHeadElement = new SettingsInHeadElement();
                         List<String> settingsInHeadRaport = settingsInHeadElement.checkHeadSettings(htmlInString);
-
-
-
+                        HeadlinesInHtml headlinesInHtml = new HeadlinesInHtml();
 
 
 
@@ -126,7 +123,11 @@ public class Console {
                         for(String item: settingsInHeadRaport){
                             System.out.println(item);
                         }
-//                        System.out.println(settingsInHeadRaport);
+
+                        System.out.println("\n");
+
+                        System.out.println(headlinesInHtml.checkHeadlinesInHtml(htmlInString));
+                        System.out.println(headlinesInHtml.checkNoOccurrancesH1(htmlInString));
 
                         System.out.println("\n");
                         break;
