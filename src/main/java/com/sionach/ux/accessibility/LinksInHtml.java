@@ -22,6 +22,7 @@ public class LinksInHtml {
         }
         long numberOfLinks = linkList.stream()
                 .filter(line -> line.matches("(?i)^[^#]{1}.*$"))
+                .filter(line -> line.matches("[^\\(]*"))
                 .count();
 
         if(numberOfLinks>100){
