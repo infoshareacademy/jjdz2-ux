@@ -8,18 +8,9 @@ import java.awt.*;
 public class ConvertColorToHex {
     private String colorHex;  // format #rrggbb
 
-    ConvertColorToHex(){
+    public ConvertColorToHex(){
 
         this.colorHex = "#000000";
-    }
-
-    public void setColorHex(String colorHex) {
-
-        this.colorHex = colorHex;
-    }
-    public String getColorHex() {
-
-        return this.colorHex;
     }
 
     public void checkColorFormatAndConvert(String stringColor) {
@@ -54,6 +45,15 @@ public class ConvertColorToHex {
         } else{
             throw new IllegalArgumentException();    //Pawel, obsłuz wyjatek w Consoli
         }
+    }
+    public void setColorHex(String colorHex) {
+
+        this.colorHex = colorHex;
+    }
+
+    public String getColorHex() {
+
+        return this.colorHex;
     }
 
     public void rgbToHex(int r, int g, int b){
