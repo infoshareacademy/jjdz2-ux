@@ -128,29 +128,19 @@ public class Console {
                             }
                         }
 
+                        for(String item : distinctColorsHexRgbRgba){
+                            try {
+                                convertColorToHex.checkColorFormatAndConvert(item);
+                                distinctHex.add(convertColorToHex.getColorHex());
+                            } catch (IllegalArgumentException e){
+                                e.printStackTrace();
+                            }
+                        }
+
                         System.out.println("Użyte kolory na stronie to:\n");
                         for(String item : distinctHex){
                             System.out.println(item);
                         }
-
-//                        System.out.println(distinctColorsHexRgbRgba);
-//                        for(String item : distinctColorsHexRgbRgba){
-//                            System.out.println(item);
-//                            try {
-//                                convertColorToHex.checkColorFormatAndConvert(item);
-//                            } catch (IllegalArgumentException e){
-//                                e.printStackTrace();
-//                            }
-//                        }
-
-
-
-
-//                        System.out.println(distinctColorsHexRgbRgba);
-
-//                        distinctColorsHexRgbRgba.addAll(colorsOnPageWithDuplicates);
-
-//                        System.out.println(distinctColorsHexRgbRgba);
 
                         break;
                     case 3:
