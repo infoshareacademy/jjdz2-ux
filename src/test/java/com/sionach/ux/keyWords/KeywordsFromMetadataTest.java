@@ -23,11 +23,7 @@ public class KeywordsFromMetadataTest {
         System.out.println(keywordsList.toString());
 
         List<String> testList = new ArrayList<>();
-        testList.add("HTML");
-        testList.add("CSS");
-        testList.add("XML");
-        testList.add("XHTML");
-        testList.add("JavaScript");
+        testList.add("HTML, CSS, XML, XHTML, JavaScript");
         testList.add("keywords");
         testList.add("Free Web tutorials on HTML and CSS");
         testList.add("description");

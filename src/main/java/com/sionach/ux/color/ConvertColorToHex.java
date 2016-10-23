@@ -22,6 +22,40 @@ public class ConvertColorToHex {
         return this.colorHex;
     }
 
+    public void checkColorFormatAndConvert(String stringColor) {
+        if (stringColor.matches("(?i)#[0-9a-f]{2,6}")) {
+            if (stringColor.length() == 7) {
+                this.colorHex = stringColor;
+            } else {
+                shortHexToHex(stringColor);
+            }
+        } else if (stringColor.matches("(?i)rgba\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},[0-1]{0,3}\\)")) {
+            stringColor = stringColor.replaceAll("\\("," ");
+            stringColor = stringColor.replaceAll("\\)"," ");
+            String[] split = stringColor.split(",", 3);
+            int r = Integer.parseInt(split[0]);
+            int g = Integer.parseInt(split[1]);
+            int b = Integer.parseInt(split[2]);
+            int a = Integer.parseInt(split[3]);
+            rgbaToHex(r,g,b,a);
+
+        }
+        else if (stringColor.matches("(?i)rgb\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\\)")) {
+            stringColor = stringColor.replaceAll("\\("," ");
+            stringColor = stringColor.replaceAll("\\)"," ");
+            String[] split = stringColor.split(",", 3);
+            int r = Integer.parseInt(split[0]);
+            int g = Integer.parseInt(split[1]);
+            int b = Integer.parseInt(split[2]);
+            rgbToHex(r,g,b);
+        }
+        else if(stringColor.matches("(?i)[a-z]")){
+            nameToHex(stringColor);
+        } else{
+            throw new IllegalArgumentException();    //Pawel, obsłuz wyjatek w Consoli
+        }
+    }
+
     public void rgbToHex(int r, int g, int b){
         Color color = new Color(r,g,b);
         String hex = Integer.toHexString(color.getRGB()&0xffffff);
