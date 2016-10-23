@@ -15,7 +15,7 @@ public class AltAndTitleInImage {
     public List<String> ImageAltTitle(String htmlCode){
         Document doc = Jsoup.parse(htmlCode);
         Elements elements = doc.select("img");
-        System.out.println(elements.toString());
+//        System.out.println(elements.toString());
         List<String> altTitleList = new ArrayList<>();
 
         List<String> imagesWithNoAltOrNoTitle = new ArrayList<>();
