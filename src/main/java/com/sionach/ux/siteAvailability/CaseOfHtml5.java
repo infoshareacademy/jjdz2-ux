@@ -1,5 +1,6 @@
 package com.sionach.ux.siteAvailability;
 
+import com.sionach.ux.filemanagment.ReadFiles;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,6 +8,8 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by allic on 14/10/2016.
@@ -16,7 +19,9 @@ public class CaseOfHtml5 {
     public List<String> CheckIfHtml5(String htmlCode){
         List<String> html5List = new ArrayList<>();
         Document doc = Jsoup.parse(htmlCode);
-        if (doc.getElementsContainingText("<!DOCTYPE html>") != null){
+        Pattern pattern = Pattern.compile("(?i)<!DOCTYPE html>");
+        Matcher m = pattern.matcher(htmlCode);
+        if (m.find()){
             System.out.println("This document is HTML5");
             AttributesFromHtml5(htmlCode,html5List);
         }
@@ -100,4 +105,5 @@ public class CaseOfHtml5 {
         }
 
     }
+
 }
