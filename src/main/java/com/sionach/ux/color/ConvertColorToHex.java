@@ -68,6 +68,7 @@ public class ConvertColorToHex {
     }
 
     public void shortHexToHex(String shortHex) {
+        if (shortHex.length() == 4){
         char[] charArray = new char[4];
         shortHex.getChars(0, 4, charArray, 0);
         String rhex = Character.toString(charArray[1]);
@@ -75,6 +76,7 @@ public class ConvertColorToHex {
         String bhex = Character.toString(charArray[3]);
         String hex = rhex + rhex + ghex + ghex + bhex + bhex;
         this.colorHex = "#" + hex;
+        }
     }
 
     public void nameToHex(String name) {
