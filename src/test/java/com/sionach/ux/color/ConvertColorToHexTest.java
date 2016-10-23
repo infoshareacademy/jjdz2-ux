@@ -66,11 +66,34 @@ public class ConvertColorToHexTest {
     }
 
     @Test
-    public void should_differ_color_format() throws Exception {
+    public void should_differ_colorName_format() throws Exception {
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
         String colorString = "YellowGreen";
         convertColorToHex.checkColorFormatAndConvert(colorString);
-        System.out.println(convertColorToHex.getColorHex());
+        assertEquals("#9acd32",convertColorToHex.getColorHex());
     }
 
+    @Test
+    public void should_differ_shortHex_format() throws Exception {
+        ConvertColorToHex convertColorToHex = new ConvertColorToHex();
+        String colorString = "#324";
+        convertColorToHex.checkColorFormatAndConvert(colorString);
+        assertEquals("#332244",convertColorToHex.getColorHex());
+    }
+
+    @Test
+    public void should_differ_rgba_format() throws Exception {
+        ConvertColorToHex convertColorToHex = new ConvertColorToHex();
+        String colorString = "rgba(255,255,255,0)";
+        convertColorToHex.checkColorFormatAndConvert(colorString);
+        assertEquals("#ffffff",convertColorToHex.getColorHex());
+    }
+
+    @Test
+    public void should_differ_rgb_format() throws Exception {
+        ConvertColorToHex convertColorToHex = new ConvertColorToHex();
+        String colorString = "rgb(255,255,255)";
+        convertColorToHex.checkColorFormatAndConvert(colorString);
+        assertEquals("#ffffff",convertColorToHex.getColorHex());
+    }
 }
