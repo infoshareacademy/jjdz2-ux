@@ -1,10 +1,9 @@
 package com.sionach.ux.siteAvailability;
 
+import com.sionach.ux.accessibility.CaseOfHtml5;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by allic on 14/10/2016.
