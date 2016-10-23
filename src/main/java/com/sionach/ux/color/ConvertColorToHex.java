@@ -33,7 +33,7 @@ public class ConvertColorToHex {
         } else if (stringColor.matches("(?i)rgba\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},[0-1]{0,3}\\)")) {
             stringColor = stringColor.replaceAll("\\(", " ");
             stringColor = stringColor.replaceAll("\\)", " ");
-            stringColor = stringColor.replace("rgba"," ");
+            stringColor = stringColor.replaceAll("rgba"," ");
             stringColor = stringColor.trim();
             String[] split = stringColor.split(",", 4);
             int r = Integer.valueOf(split[0]);
@@ -45,7 +45,7 @@ public class ConvertColorToHex {
         } else if (stringColor.matches("(?i)rgb\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\\)")) {
             stringColor = stringColor.replaceAll("\\(", " ");
             stringColor = stringColor.replaceAll("\\)", " ");
-            stringColor = stringColor.replace("rgb"," ");
+            stringColor = stringColor.replaceAll("rgb"," ");
             stringColor = stringColor.trim();
             String[] split = stringColor.split(",", 3);
             int r = Integer.valueOf(split[0]);
