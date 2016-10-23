@@ -47,8 +47,6 @@ public class Console {
 
                 String htmlInString = htmlFile.readFileToString();
 
-                List<String> htmlInList = htmlFile.readFileToList();
-
                 ExtractColorsFromData colors = new ExtractColorsFromData();
                 CssListFromHtml cssFromHtml = new CssListFromHtml();
 
@@ -213,19 +211,6 @@ public class Console {
                     .map(Path::getFileName)
                     .map(p -> p.toString())
                     .skip(1)
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static List<String> filesInResources(String option){
-        try {
-            return Files.walk(Paths.get(DEFAULTPATCH + option + "/"))
-                    .filter(Files::isRegularFile)
-                    .map(Path::getFileName)
-                    .map(p -> p.toString())
                     .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
