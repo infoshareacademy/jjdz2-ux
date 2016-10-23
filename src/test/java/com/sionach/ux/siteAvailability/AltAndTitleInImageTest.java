@@ -1,5 +1,6 @@
 package com.sionach.ux.siteAvailability;
 
+import com.sionach.ux.accessibility.AltAndTitleInImage;
 import org.junit.Test;
 
 import java.util.ArrayList;
