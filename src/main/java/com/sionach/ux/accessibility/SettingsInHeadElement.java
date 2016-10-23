@@ -52,7 +52,7 @@ public class SettingsInHeadElement {
             settingsInfo.add("LINK rel=canonical jest ustawiony poprwanie");
         }
 
-        regex = "utf\\-8";
+        regex = "(?i)utf\\-8";
         p = Pattern.compile(regex);
         m = p.matcher(meta);
         if(!m.find()){
