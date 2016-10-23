@@ -15,32 +15,32 @@ public class LinkMenagement {
     private final String HTMLCODE;
     private List<String> links;
 
-    public LinkMenagement(String htmlCode, String baseURL){
+    public LinkMenagement(String htmlCode, String baseURL) {
         this.BASEURL = baseURL;
         this.HTMLCODE = htmlCode;
         parseLinksFromHtml();
     }
 
-    public void parseLinksFromHtml(){
+    public void parseLinksFromHtml() {
 
         links = new ArrayList<>();
         Document doc = Jsoup.parse(HTMLCODE);
         Elements elements = doc.select("a[href]");
 
-        for(Element element : elements){
+        for (Element element : elements) {
             links.add(element.attr("href"));
         }
     }
 
-    public List<String> getInnerLinks(){
-        String patternForInnerLinksBaseUrl = "(http[s]?://[w]{0,3}\\.?"+BASEURL+".*)";
+    public List<String> getInnerLinks() {
+        String patternForInnerLinksBaseUrl = "(http[s]?://[w]{0,3}\\.?" + BASEURL + ".*)";
         String patternForInnerLinks = "(?!http[s]?://)";
         return links.stream()
-                .filter(link -> link.matches("(?i)^"+patternForInnerLinksBaseUrl +"|"+ patternForInnerLinks+".*$"))
+                .filter(link -> link.matches("(?i)^" + patternForInnerLinksBaseUrl + "|" + patternForInnerLinks + ".*$"))
                 .collect(Collectors.toList());
     }
 
-    public List<String> getOuterLinks(){
+    public List<String> getOuterLinks() {
         String patternForOuterLinks = "(?i)^http[s]?://.*";
         return links.stream()
                 .filter(link -> link.matches(patternForOuterLinks))

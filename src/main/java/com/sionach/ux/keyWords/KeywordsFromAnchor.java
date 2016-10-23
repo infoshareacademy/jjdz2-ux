@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class KeywordsFromAnchor {
-    public List<String> keywordsAnchor(String htmlCode){
+    public List<String> keywordsAnchor(String htmlCode) {
         Document doc = Jsoup.parse(htmlCode);
         Elements elements = doc.select("article");
         List<String> articlesList = new ArrayList<>();
@@ -20,14 +20,14 @@ public class KeywordsFromAnchor {
 
         }
 
-        String articles = String.join(" ",articlesList);
+        String articles = String.join(" ", articlesList);
 
         List<String> anchor = new ArrayList<>();
         Document linkdoc = Jsoup.parse(articles);
         Elements linkelements = linkdoc.select("a");
-        for(Element item:linkelements){
+        for (Element item : linkelements) {
 
-            if(item.text().split(" ").length<=8){
+            if (item.text().split(" ").length <= 8) {
                 anchor.add(item.text());
             }
 

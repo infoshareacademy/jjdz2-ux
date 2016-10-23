@@ -10,14 +10,14 @@ public class BracesListsFromCss {
 
     public List<String> bracesList(String cssString) {
         List<String> bracesList = new ArrayList<String>();
-        cssString = cssString.replaceAll("(?i)/\\*[^\\*]*\\*/",""); //wyczyszczenie kodu z komentarzy blokowych css
-        cssString = cssString.replaceAll("(?i)//[^\n]*\n",""); //wyczyszczenie kodu z komentzry liniowych css
+        cssString = cssString.replaceAll("(?i)/\\*[^\\*]*\\*/", ""); //wyczyszczenie kodu z komentarzy blokowych css
+        cssString = cssString.replaceAll("(?i)//[^\n]*\n", ""); //wyczyszczenie kodu z komentzry liniowych css
         String patternBraces = "(?i)\\{[^}]*\\}"; //wzór do pobrania kodu pomiędzy klamrami {} i umieszczenie w elementach tablicy
 
         Pattern p = Pattern.compile(patternBraces);
         Matcher m = p.matcher(cssString);
-        while(m.find()){
-            bracesList.add(m.group().replaceAll("\\{{1}","").replaceAll("\\}{1}",""));
+        while (m.find()) {
+            bracesList.add(m.group().replaceAll("\\{{1}", "").replaceAll("\\}{1}", ""));
         }
 
         return bracesList;

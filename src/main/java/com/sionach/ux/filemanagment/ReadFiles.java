@@ -12,7 +12,7 @@ public class ReadFiles {
     private String defaultPatch = "src/main/resources/";
     private String FILENAME;
 
-    public ReadFiles(String filename){
+    public ReadFiles(String filename) {
 
         this.FILENAME = filename;
     }
@@ -34,7 +34,7 @@ public class ReadFiles {
         return fileList;
     }
 
-    public String readFileToString(){
+    public String readFileToString() {
 
         List<String> fileList = new ArrayList<>();
         fileList = readFileToList();

@@ -12,7 +12,7 @@ import java.util.List;
  * Created by allic on 14/10/2016.
  */
 public class AltAndTitleInImage {
-    public List<String> ImageAltTitle(String htmlCode){
+    public List<String> ImageAltTitle(String htmlCode) {
         Document doc = Jsoup.parse(htmlCode);
         Elements elements = doc.select("img");
 //        System.out.println(elements.toString());
@@ -21,28 +21,26 @@ public class AltAndTitleInImage {
         List<String> imagesWithNoAltOrNoTitle = new ArrayList<>();
         imagesWithNoAltOrNoTitle.add("Lista obrazków które nie posiadają znacznika title lub alt:\n");
 
-        for(Element item:elements) {
+        for (Element item : elements) {
 //            System.out.println(item.toString());
             if (item.attr("alt").isEmpty()) {
                 imagesWithNoAltOrNoTitle.add(item.attr("src"));
-            }
-            else {
+            } else {
                 altTitleList.add(item.attr("src"));
             }
 
             if (item.attr("title").isEmpty()) {
                 imagesWithNoAltOrNoTitle.add(item.attr("src"));
-            }
-            else {
+            } else {
                 altTitleList.add(item.attr("src"));
             }
         }
 
-        if(altTitleList.isEmpty()) {
+        if (altTitleList.isEmpty()) {
             System.out.println("Wszystkie obrazki na stornie nie posiadają znacznika title, oraz alt.");
         }
 
-        if(imagesWithNoAltOrNoTitle.isEmpty()){
+        if (imagesWithNoAltOrNoTitle.isEmpty()) {
             System.out.println("Wszystkie obrazki na stronie prawidłowo posiadają znacznik title, oraz alt");
         }
         return imagesWithNoAltOrNoTitle;

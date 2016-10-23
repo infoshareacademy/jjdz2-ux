@@ -18,7 +18,7 @@ public class KeywordsFromBolded {
         List<String> bolded = new ArrayList<>();
 
         for (Element element : elements) {
-            if(element.text().split(" ").length <= 8){
+            if (element.text().split(" ").length <= 8) {
                 bolded.add(element.text());
             }
         }

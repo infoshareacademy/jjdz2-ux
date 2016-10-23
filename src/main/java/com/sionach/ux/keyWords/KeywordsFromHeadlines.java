@@ -15,9 +15,9 @@ public class KeywordsFromHeadlines {
         List<String> headlineKeywordsList = new ArrayList<String>();
         Document doc = Jsoup.parse(htmlCode);
         Elements linkelements = doc.select("h1, h2, h3");
-        for(Element item:linkelements){
+        for (Element item : linkelements) {
 
-            if(item.text().split(" ").length<=8){
+            if (item.text().split(" ").length <= 8) {
                 headlineKeywordsList.add(item.text());
             }
 

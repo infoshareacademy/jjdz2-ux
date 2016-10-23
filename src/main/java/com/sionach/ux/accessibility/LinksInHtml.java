@@ -11,13 +11,13 @@ import java.util.List;
 
 public class LinksInHtml {
 
-    public String checkNumberOfLinks(String htmlCode){
+    public String checkNumberOfLinks(String htmlCode) {
         String linksInfo;
         Document doc = Jsoup.parse(htmlCode);
         Elements hrefs = doc.select("a");
         List<String> linkList = new ArrayList<>();
 
-        for(Element item:hrefs){
+        for (Element item : hrefs) {
             linkList.add(item.attr("href"));
         }
         long numberOfLinks = linkList.stream()
@@ -25,10 +25,10 @@ public class LinksInHtml {
                 .filter(line -> line.matches("[^\\(]*"))
                 .count();
 
-        if(numberOfLinks>100){
-            linksInfo = "Liczba linków na Twojej stronie wynosi "+numberOfLinks+" i jest ich zbyt dużo. Zalecana maksymalna liczba linków na stronie to 100";
-        }else{
-            linksInfo = "Znaleziono "+numberOfLinks+" linków na Twojej stronie. Liczba linków jest mniejsza niż 100, więc jest prawidłowa";
+        if (numberOfLinks > 100) {
+            linksInfo = "Liczba linków na Twojej stronie wynosi " + numberOfLinks + " i jest ich zbyt dużo. Zalecana maksymalna liczba linków na stronie to 100";
+        } else {
+            linksInfo = "Znaleziono " + numberOfLinks + " linków na Twojej stronie. Liczba linków jest mniejsza niż 100, więc jest prawidłowa";
         }
         return linksInfo;
     }

@@ -19,20 +19,20 @@ public class NamesHexTable {
         this.setColorHex(colorHex);
     }
 
-    public void setColorName(String colorName) {
-        this.colorName = colorName;
-    }
-
-    public void setColorHex(String colorHex) {
-        this.colorHex = colorHex;
-    }
-
     public String getColorName() {
         return colorName;
     }
 
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
+    }
+
     public String getColorHex() {
         return colorHex;
+    }
+
+    public void setColorHex(String colorHex) {
+        this.colorHex = colorHex;
     }
 
     public void splitLineBySpace(String line) {
@@ -47,6 +47,6 @@ public class NamesHexTable {
 
     public String toString() {
 
-        return "{color:" + this.colorHex + ", colorName:" + this.colorName  + "}";
+        return "{color:" + this.colorHex + ", colorName:" + this.colorName + "}";
     }
 }

@@ -5,7 +5,7 @@ import java.awt.*;
 public class ConvertColorToHex {
     private String colorHex;  // format #rrggbb
 
-    public ConvertColorToHex(){
+    public ConvertColorToHex() {
 
         this.colorHex = "#000000";
     }
@@ -20,7 +20,7 @@ public class ConvertColorToHex {
         } else if (stringColor.matches("(?i)rgba\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},[0-1]{0,3}\\)")) {
             stringColor = stringColor.replaceAll("\\(", " ");
             stringColor = stringColor.replaceAll("\\)", " ");
-            stringColor = stringColor.replaceAll("rgba"," ");
+            stringColor = stringColor.replaceAll("rgba", " ");
             stringColor = stringColor.trim();
             String[] split = stringColor.split(",", 4);
             int r = Integer.valueOf(split[0]);
@@ -32,7 +32,7 @@ public class ConvertColorToHex {
         } else if (stringColor.matches("(?i)rgb\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\\)")) {
             stringColor = stringColor.replaceAll("\\(", " ");
             stringColor = stringColor.replaceAll("\\)", " ");
-            stringColor = stringColor.replaceAll("rgb"," ");
+            stringColor = stringColor.replaceAll("rgb", " ");
             stringColor = stringColor.trim();
             String[] split = stringColor.split(",", 3);
             int r = Integer.valueOf(split[0]);
@@ -43,10 +43,6 @@ public class ConvertColorToHex {
         } else {
             nameToHex(stringColor);
         }
-    }
-    public void setColorHex(String colorHex) {
-
-        this.colorHex = colorHex;
     }
 
     public void rgbToHex(int r, int g, int b) {
@@ -68,14 +64,14 @@ public class ConvertColorToHex {
     }
 
     public void shortHexToHex(String shortHex) {
-        if (shortHex.length() == 4){
-        char[] charArray = new char[4];
-        shortHex.getChars(0, 4, charArray, 0);
-        String rhex = Character.toString(charArray[1]);
-        String ghex = Character.toString(charArray[2]);
-        String bhex = Character.toString(charArray[3]);
-        String hex = rhex + rhex + ghex + ghex + bhex + bhex;
-        this.colorHex = "#" + hex;
+        if (shortHex.length() == 4) {
+            char[] charArray = new char[4];
+            shortHex.getChars(0, 4, charArray, 0);
+            String rhex = Character.toString(charArray[1]);
+            String ghex = Character.toString(charArray[2]);
+            String bhex = Character.toString(charArray[3]);
+            String hex = rhex + rhex + ghex + ghex + bhex + bhex;
+            this.colorHex = "#" + hex;
         }
     }
 
@@ -98,5 +94,10 @@ public class ConvertColorToHex {
     public String getColorHex() {
 
         return this.colorHex;
+    }
+
+    public void setColorHex(String colorHex) {
+
+        this.colorHex = colorHex;
     }
 }

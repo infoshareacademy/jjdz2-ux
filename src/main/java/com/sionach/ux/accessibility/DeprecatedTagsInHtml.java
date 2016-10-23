@@ -18,24 +18,24 @@ public class DeprecatedTagsInHtml {
         List<String> deprecatedTags = new ArrayList<>();
         Pattern pattern = Pattern.compile("(?i)<!DOCTYPE html>");
         Matcher m = pattern.matcher(htmlCode);
-        if(m.find()){
+        if (m.find()) {
             Document doc = Jsoup.parse(htmlCode);
             DeprecatedTagsList deprecatedHtmlTags = new DeprecatedTagsList();
             List<String> deprecatedTagsList = deprecatedHtmlTags.createDeprecatedTagsList("src/main/resources/deprecatedTags.txt");
-            for(String item:deprecatedTagsList) {
+            for (String item : deprecatedTagsList) {
                 Elements elements = doc.select(item);
-                if(elements.size()>0){
-                    deprecatedTags.add("Tag: <"+item+"> nie jest używany w HTML5");
+                if (elements.size() > 0) {
+                    deprecatedTags.add("Tag: <" + item + "> nie jest używany w HTML5");
                 }
             }
-            if(deprecatedTags.size()==0){
+            if (deprecatedTags.size() == 0) {
                 deprecatedTags.add("Dokument nie zawiera zdeprecjonowanych elementów");
             }
-        }else{
+        } else {
             deprecatedTags.add("Przesłany dokument nie jest zadeklarowany jako dokument HTML5");
 
         }
-        return  deprecatedTags;
+        return deprecatedTags;
     }
 
 

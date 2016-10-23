@@ -12,7 +12,7 @@ public class DeprecatedTagsList {
     public List<String> createDeprecatedTagsList(String filepath) throws FileNotFoundException {
         Scanner s = new Scanner(new File(filepath));
         ArrayList<String> list = new ArrayList<String>();
-        while (s.hasNext()){
+        while (s.hasNext()) {
             list.add(s.next());
         }
         s.close();
