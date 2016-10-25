@@ -1,9 +1,10 @@
 package com.sionach.ux.console;
 
 import com.sionach.ux.accessibility.*;
+import com.sionach.ux.color.ClipColors;
 import com.sionach.ux.color.ConvertColorToHex;
 import com.sionach.ux.color.ExtractColorsFromData;
-import com.sionach.ux.csslists.CssListFromHtml;
+import com.sionach.ux.color.CssListFromHtml;
 import com.sionach.ux.filemanagment.ReadFiles;
 import com.sionach.ux.keyWords.*;
 import com.sionach.ux.routing.LinkMenagement;
@@ -84,63 +85,8 @@ public class Console {
                                 .forEach(System.out::println);
                         break;
                     case 2:
-                        ConvertColorToHex convertColorToHex = new ConvertColorToHex();
-
-                        List<String> cssFromHtmlHead = cssFromHtml.codeHeadList(htmlInString);
-                        List<String> cssFromHtmlInHtmlTags = cssFromHtml.codeInlineList(htmlInString);
-
-                        List<String> colorsHexRgbRgbaFromCss = colors.extractHexRgbRgbaColors(cssFile.readFileToList());
-                        List<String> colorsHexRgbRgbaFromHtmlHead = colors.extractHexRgbRgbaColors(cssFromHtmlHead);
-                        List<String> colorsHexRgbRgbaFromHtmlInHtmlTags = colors.extractHexRgbRgbaColors(cssFromHtmlInHtmlTags);
-                        List<String> colorNamesFromCss = colors.extractNamesColors(cssFile.readFileToList());
-                        List<String> colorNamesFromHtmlHead = colors.extractNamesColors(cssFromHtmlHead);
-                        List<String> colorNamesFromHtmlInHtmlTags = colors.extractNamesColors(cssFromHtmlInHtmlTags);
-
-                        List<List<String>> colorsHexRgbRgbaOnPageWithDuplicates = Arrays.asList(colorsHexRgbRgbaFromCss,
-                                colorsHexRgbRgbaFromHtmlHead,
-                                colorsHexRgbRgbaFromHtmlInHtmlTags);
-
-                        List<List<String>> colorsNamesOnPageWithDuplicates = Arrays.asList(colorNamesFromCss,
-                                colorNamesFromHtmlHead,
-                                colorNamesFromHtmlInHtmlTags);
-
-                        Set<String> distinctColorsHexRgbRgba;
-                        Set<String> distinctColorsNames;
-
-                        Set<String> distinctHex = new HashSet<>();
-
-                        distinctColorsHexRgbRgba = colorsHexRgbRgbaOnPageWithDuplicates.stream()
-                                .flatMap(Collection::stream)
-                                .collect(Collectors.toSet());
-
-                        distinctColorsNames = colorsNamesOnPageWithDuplicates.stream()
-                                .flatMap(Collection::stream)
-                                .collect(Collectors.toSet());
-
-                        for (String item : distinctColorsNames) {
-                            try {
-                                convertColorToHex.nameToHex(item);
-                                distinctHex.add(convertColorToHex.getColorHex());
-                            } catch (IllegalArgumentException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        for (String item : distinctColorsHexRgbRgba) {
-                            try {
-                                convertColorToHex.checkColorFormatAndConvert(item);
-                                distinctHex.add(convertColorToHex.getColorHex());
-                            } catch (IllegalArgumentException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        System.out.println("Użyte kolory na stronie to:\n");
-                        for (String item : distinctHex) {
-                            System.out.println(item);
-                        }
-
-                        break;
+                        ClipColors clipColors = new ClipColors();
+                        clipColors.ClipColorsFromData(htmlInString,cssFile);
                     case 3:
                         String baseUrl;
                         if(tempChoice == 1){
