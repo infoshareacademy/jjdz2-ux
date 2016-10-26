@@ -1,6 +1,7 @@
 package com.sionach.ux.accessibility;
 
 
+import com.sionach.ux.filemanagment.ReadFiles;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,6 +12,26 @@ import java.util.List;
 
 public class LinksInHtml {
 
+    static final String LINK_TAG = "a";
+    static final String LINK_ATTR = "href";
+
+    public long noOfLinksInHtml(String htmlCode){
+        ParseHtmlString html = new ParseHtmlString();
+        return html.atributesValueFromHtmlTag(htmlCode, LINK_TAG, LINK_ATTR).stream()
+                .filter(tag -> tag.matches("(?i)^[^#]{1}.*$"))
+                .filter(tag -> tag.matches("[^\\(]*"))
+                .count();
+    }
+
+    //test
+    public static void main(String[] args) {
+        ReadFiles file = new ReadFiles("infoshareacademy/index.html");
+        String htmlCode = file.readFileToString();
+        LinksInHtml links = new LinksInHtml();
+        System.out.println(links.noOfLinksInHtml(htmlCode));
+    }
+
+    //stare do usuniecia
     public String checkNumberOfLinks(String htmlCode) {
         String linksInfo;
         Document doc = Jsoup.parse(htmlCode);
