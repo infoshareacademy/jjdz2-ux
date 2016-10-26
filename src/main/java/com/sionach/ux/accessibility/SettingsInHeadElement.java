@@ -1,5 +1,6 @@
 package com.sionach.ux.accessibility;
 
+import com.sionach.ux.filemanagment.ReadFiles;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -9,6 +10,36 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SettingsInHeadElement {
+
+    private String htmlCode;
+
+    public void setHtmlCode(String htmlCode) {
+        this.htmlCode = htmlCode;
+    }
+
+    public int checkDescriptionLength(){
+        return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,"meta[name=description]","content").get(0).length();
+    }
+
+    public int checkMetaKeywordsOccurance(){
+        return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,"meta[name=keywords]","content").size();
+    }
+
+    public int checkTitleLength(){
+        return new ParseHtmlString().tagsTextFromHtml(htmlCode,"title").get(0).length();
+    }
+
+    public int checkRelCanonical(){
+        return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,"link[rel=canonical]","href").toString().length();
+    }
+
+    public static void main(String[] args) {
+        ReadFiles file = new ReadFiles("wmh/index.html");
+        String htmlCode = file.readFileToString();
+        SettingsInHeadElement sets = new SettingsInHeadElement();
+        sets.setHtmlCode(htmlCode);
+        System.out.println(sets.checkRelCanonical());
+    }
 
     public List<String> checkHeadSettings(String htmlCode) {
         List<String> settingsInfo = new ArrayList<>();
@@ -74,5 +105,7 @@ public class SettingsInHeadElement {
 
         return settingsInfo;
     }
+
+
 }
 
