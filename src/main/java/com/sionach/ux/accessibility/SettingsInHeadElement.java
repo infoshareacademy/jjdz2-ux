@@ -12,33 +12,49 @@ import java.util.regex.Pattern;
 public class SettingsInHeadElement {
 
     private String htmlCode;
+    private static final String ATTR_TAG_CONTENT = "content";
+    private static final String ATTR_TAG_HREF = "href";
+    private static final String TAG_META_DESCRIPTION = "meta[name=description]";
+    private static final String TAG_META_KEYWORDS = "meta[name=keywords]";
+    private static final String TAG_TITLE = "title";
+    private static final String TAG_LINK_CANONICAL = "link[rel=canonical]";
 
     public void setHtmlCode(String htmlCode) {
         this.htmlCode = htmlCode;
     }
 
     public int checkDescriptionLength(){
-        return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,"meta[name=description]","content").get(0).length();
+        return String.join(" ",new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,TAG_META_DESCRIPTION,ATTR_TAG_CONTENT)).length();
     }
 
     public int checkMetaKeywordsOccurance(){
-        return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,"meta[name=keywords]","content").size();
+        return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,TAG_META_KEYWORDS,ATTR_TAG_CONTENT).size();
     }
 
     public int checkTitleLength(){
-        return new ParseHtmlString().tagsTextFromHtml(htmlCode,"title").get(0).length();
+        return String.join(" ",new ParseHtmlString().tagsTextFromHtml(htmlCode,TAG_TITLE)).length();
     }
 
-    public int checkRelCanonical(){
-        return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,"link[rel=canonical]","href").toString().length();
+    public boolean checkRelCanonical(){
+        String canonical = new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,TAG_LINK_CANONICAL,ATTR_TAG_HREF).toString();
+        Pattern pattern = Pattern.compile("(?i)http://.*$");
+        Matcher m = pattern.matcher(canonical);
+        if(m.find())
+            return true;
+        else
+            return false;
+    }
+
+    public int checkNoRelCanonicalOccurance(){
+        return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,TAG_LINK_CANONICAL,ATTR_TAG_HREF).size();
     }
 
     public static void main(String[] args) {
-        ReadFiles file = new ReadFiles("wmh/index.html");
+        ReadFiles file = new ReadFiles("infoshareacademy/index.html");
         String htmlCode = file.readFileToString();
         SettingsInHeadElement sets = new SettingsInHeadElement();
         sets.setHtmlCode(htmlCode);
-        System.out.println(sets.checkRelCanonical());
+        System.out.println(sets.checkNoRelCanonicalOccurance());
     }
 
     public List<String> checkHeadSettings(String htmlCode) {
