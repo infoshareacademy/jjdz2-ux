@@ -24,6 +24,7 @@ public class ReadFiles {
 
     public List<String> readFileToList() {
 
+        LOGGER.debug("Starting to read file");
         LOGGER.debug("FilePath: {} FileName {}", defaultPatch, FILENAME);
 
         List<String> fileList = new ArrayList<>();
@@ -39,7 +40,7 @@ public class ReadFiles {
             e.printStackTrace();
         }
 
-        LOGGER.debug("Returning file as list");
+        LOGGER.debug("Return file as list");
         return fileList;
     }
 
@@ -49,12 +50,12 @@ public class ReadFiles {
         fileList = readFileToList();
         LOGGER.debug("Convering List to String");
         String fileString = String.join(" ", fileList);
-        LOGGER.debug("Returning file as String");
+        LOGGER.debug("Return file as String");
         return fileString;
     }
 
     public void setDefaultPatch(String defaultPatch) {
-        LOGGER.debug("Changing file path to: {}", defaultPatch);
+        LOGGER.debug("Changing file path for file {} to: {}",FILENAME, defaultPatch);
         this.defaultPatch = defaultPatch;
         LOGGER.debug("File path: {}", this.defaultPatch);
     }
