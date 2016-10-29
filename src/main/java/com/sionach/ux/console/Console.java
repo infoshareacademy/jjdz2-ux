@@ -48,9 +48,6 @@ public class Console {
 
                 String htmlInString = htmlFile.readFileToString();
 
-                ExtractColorsFromData colors = new ExtractColorsFromData();
-                CssListFromHtml cssFromHtml = new CssListFromHtml();
-
                 System.out.println("\n1 Identyfikacja podobnych stron");
                 System.out.println("2 Analiza kolorów na stronie");
                 System.out.println("3 Analiza routingu strony");
