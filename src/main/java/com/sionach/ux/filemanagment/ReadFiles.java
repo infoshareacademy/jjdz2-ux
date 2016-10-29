@@ -1,5 +1,8 @@
 package com.sionach.ux.filemanagment;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,6 +15,8 @@ public class ReadFiles {
     private String defaultPatch = "src/main/resources/";
     private String FILENAME;
 
+    private static final Logger LOGGER = LogManager.getLogger(ReadFiles.class);
+
     public ReadFiles(String filename) {
 
         this.FILENAME = filename;
@@ -19,31 +24,39 @@ public class ReadFiles {
 
     public List<String> readFileToList() {
 
+        LOGGER.debug("Starting to read file");
+        LOGGER.debug("FilePath: {} FileName {}", defaultPatch, FILENAME);
+
         List<String> fileList = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(defaultPatch + FILENAME))) {
             String c;
             while ((c = in.readLine()) != null) {
                 fileList.add(c);
             }
+            LOGGER.debug("Reading file to list");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        LOGGER.debug("Return file as list");
         return fileList;
     }
 
     public String readFileToString() {
 
-        List<String> fileList = new ArrayList<>();
+        List<String> fileList;
         fileList = readFileToList();
+        LOGGER.debug("Convering List to String");
         String fileString = String.join(" ", fileList);
-
+        LOGGER.debug("Return file as String");
         return fileString;
     }
 
     public void setDefaultPatch(String defaultPatch) {
+        LOGGER.debug("Changing file path for file {} to: {}",FILENAME, defaultPatch);
         this.defaultPatch = defaultPatch;
+        LOGGER.debug("File path: {}", this.defaultPatch);
     }
 }

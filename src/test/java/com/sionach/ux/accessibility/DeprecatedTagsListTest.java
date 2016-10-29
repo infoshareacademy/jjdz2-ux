@@ -1,6 +1,5 @@
 package com.sionach.ux.accessibility;
 
-import com.sionach.ux.csslists.BracesListsFromCss;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;

@@ -84,9 +84,9 @@ public class ConvertColorToHexTest {
     @Test
     public void should_differ_rgba_format() throws Exception {
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
-        String colorString = "rgba(255,255,255,0)";
+        String colorString = "rgba(0,0,0,0)";
         convertColorToHex.checkColorFormatAndConvert(colorString);
-        assertEquals("#ffffff",convertColorToHex.getColorHex());
+        assertEquals("#000000",convertColorToHex.getColorHex());
     }
 
     @Test

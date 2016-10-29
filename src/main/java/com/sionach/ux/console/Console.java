@@ -1,12 +1,16 @@
 package com.sionach.ux.console;
 
 import com.sionach.ux.accessibility.*;
+import com.sionach.ux.color.ClipColors;
 import com.sionach.ux.color.ConvertColorToHex;
 import com.sionach.ux.color.ExtractColorsFromData;
-import com.sionach.ux.csslists.CssListFromHtml;
+import com.sionach.ux.color.CssListFromHtml;
 import com.sionach.ux.filemanagment.ReadFiles;
 import com.sionach.ux.keyWords.*;
 import com.sionach.ux.routing.LinkMenagement;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import sun.rmi.runtime.Log;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,6 +23,7 @@ import java.util.stream.Collectors;
 public class Console {
 
     private static final String DEFAULTPATCH = "src/main/resources/";
+    private static final Logger LOGGER = LogManager.getLogger(Console.class);
 
     public static void main(String[] args) {
 
@@ -26,8 +31,11 @@ public class Console {
         int tempChoice;
         Scanner reader = new Scanner(System.in);
 
+        LOGGER.debug("Creating folder list");
         List<String> folderList = foldersInResources();
+        LOGGER.debug("Folders found: {}", folderList);
 
+        LOGGER.debug("Entering Menu");
         while (true) {
             System.out.println("\nWybierz stronę");
             for (String item : folderList) {
@@ -35,6 +43,7 @@ public class Console {
             }
             System.out.println("3 Wyjście z programu\n");
             input = reader.nextInt();
+            LOGGER.debug("User choosed option number: {}", input);
             if (input == 3) {
                 break;
             }
@@ -42,13 +51,11 @@ public class Console {
             while (true) {
                 ReadFiles htmlFile = new ReadFiles("index.html");
                 ReadFiles cssFile = new ReadFiles("style.css");
+
                 htmlFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
                 cssFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
 
                 String htmlInString = htmlFile.readFileToString();
-
-                ExtractColorsFromData colors = new ExtractColorsFromData();
-                CssListFromHtml cssFromHtml = new CssListFromHtml();
 
                 System.out.println("\n1 Identyfikacja podobnych stron");
                 System.out.println("2 Analiza kolorów na stronie");
@@ -84,63 +91,8 @@ public class Console {
                                 .forEach(System.out::println);
                         break;
                     case 2:
-                        ConvertColorToHex convertColorToHex = new ConvertColorToHex();
-
-                        List<String> cssFromHtmlHead = cssFromHtml.codeHeadList(htmlInString);
-                        List<String> cssFromHtmlInHtmlTags = cssFromHtml.codeInlineList(htmlInString);
-
-                        List<String> colorsHexRgbRgbaFromCss = colors.extractHexRgbRgbaColors(cssFile.readFileToList());
-                        List<String> colorsHexRgbRgbaFromHtmlHead = colors.extractHexRgbRgbaColors(cssFromHtmlHead);
-                        List<String> colorsHexRgbRgbaFromHtmlInHtmlTags = colors.extractHexRgbRgbaColors(cssFromHtmlInHtmlTags);
-                        List<String> colorNamesFromCss = colors.extractNamesColors(cssFile.readFileToList());
-                        List<String> colorNamesFromHtmlHead = colors.extractNamesColors(cssFromHtmlHead);
-                        List<String> colorNamesFromHtmlInHtmlTags = colors.extractNamesColors(cssFromHtmlInHtmlTags);
-
-                        List<List<String>> colorsHexRgbRgbaOnPageWithDuplicates = Arrays.asList(colorsHexRgbRgbaFromCss,
-                                colorsHexRgbRgbaFromHtmlHead,
-                                colorsHexRgbRgbaFromHtmlInHtmlTags);
-
-                        List<List<String>> colorsNamesOnPageWithDuplicates = Arrays.asList(colorNamesFromCss,
-                                colorNamesFromHtmlHead,
-                                colorNamesFromHtmlInHtmlTags);
-
-                        Set<String> distinctColorsHexRgbRgba;
-                        Set<String> distinctColorsNames;
-
-                        Set<String> distinctHex = new HashSet<>();
-
-                        distinctColorsHexRgbRgba = colorsHexRgbRgbaOnPageWithDuplicates.stream()
-                                .flatMap(Collection::stream)
-                                .collect(Collectors.toSet());
-
-                        distinctColorsNames = colorsNamesOnPageWithDuplicates.stream()
-                                .flatMap(Collection::stream)
-                                .collect(Collectors.toSet());
-
-                        for (String item : distinctColorsNames) {
-                            try {
-                                convertColorToHex.nameToHex(item);
-                                distinctHex.add(convertColorToHex.getColorHex());
-                            } catch (IllegalArgumentException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        for (String item : distinctColorsHexRgbRgba) {
-                            try {
-                                convertColorToHex.checkColorFormatAndConvert(item);
-                                distinctHex.add(convertColorToHex.getColorHex());
-                            } catch (IllegalArgumentException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        System.out.println("Użyte kolory na stronie to:\n");
-                        for (String item : distinctHex) {
-                            System.out.println(item);
-                        }
-
-                        break;
+                        ClipColors clipColors = new ClipColors();
+                        clipColors.ClipColorsFromData(htmlInString,cssFile);
                     case 3:
                         String baseUrl;
                         if(tempChoice == 1){
