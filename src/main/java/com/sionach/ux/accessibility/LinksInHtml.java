@@ -7,9 +7,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
 
+@Stateless
 public class LinksInHtml {
 
     static final String LINK_TAG = "a";
@@ -24,12 +26,12 @@ public class LinksInHtml {
     }
 
     //test
-    public static void main(String[] args) {
-        ReadFiles file = new ReadFiles("infoshareacademy/index.html");
-        String htmlCode = file.readFileToString();
-        LinksInHtml links = new LinksInHtml();
-        System.out.println(links.noOfLinksInHtml(htmlCode));
-    }
+////    public static void main(String[] args) {
+////        ReadFiles file = new ReadFiles();
+////        String htmlCode = file.readFileToString("infoshareacademy/index.html");
+////        LinksInHtml links = new LinksInHtml();
+////        System.out.println(links.noOfLinksInHtml(htmlCode));
+//    }
 
     //stare do usuniecia
     public String checkNumberOfLinks(String htmlCode) {

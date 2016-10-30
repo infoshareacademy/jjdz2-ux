@@ -5,6 +5,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import javax.ejb.Stateless;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +13,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-
+@Stateless
 public class DeprecatedTagsInHtml {
-    final static String DEPRECATED_FILE = "src/main/resources/deprecatedTags.txt";
+    final static String DEPRECATED_FILE = "target/classes/deprecatedTags.txt";
 
     public List<String> deprecatedHtmlTagsList(String htmlCode) throws FileNotFoundException {
         List<String> deprecatedTags = new ArrayList<>();

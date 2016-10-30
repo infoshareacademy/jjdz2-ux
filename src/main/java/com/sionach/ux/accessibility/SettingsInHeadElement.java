@@ -57,13 +57,13 @@ public class SettingsInHeadElement {
         return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,TAG_LINK_CANONICAL,ATTR_TAG_HREF).size();
     }
 
-    public static void main(String[] args) {
-        ReadFiles file = new ReadFiles("infoshareacademy/index.html");
-        String htmlCode = file.readFileToString();
-        SettingsInHeadElement sets = new SettingsInHeadElement();
-        sets.setHtmlCode(htmlCode);
-        System.out.println(sets.checkNoRelCanonicalOccurance());
-    }
+//    public static void main(String[] args) {
+//        ReadFiles file = new ReadFiles("infoshareacademy/index.html");
+//        String htmlCode = file.readFileToString();
+//        SettingsInHeadElement sets = new SettingsInHeadElement();
+//        sets.setHtmlCode(htmlCode);
+//        System.out.println(sets.checkNoRelCanonicalOccurance());
+//    }
 
     public List<String> checkHeadSettings(String htmlCode) {
         List<String> settingsInfo = new ArrayList<>();

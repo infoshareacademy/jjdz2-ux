@@ -40,15 +40,15 @@ public class ParseHtmlString {
 
 
 
-    public static void main(String[] args) {
-        ReadFiles file = new ReadFiles("wmh/index.html");
-        String htmlCode = file.readFileToString();
-
-        ParseHtmlString html = new ParseHtmlString();
-        List<String> list = html.atributesValueFromHtmlTag(htmlCode, "a", "href");
-        for(String item:list){
-            System.out.println(item);
-        }
-    }
+//    public static void main(String[] args) {
+//        ReadFiles file = new ReadFiles("wmh/index.html");
+//        String htmlCode = file.readFileToString();
+//
+//        ParseHtmlString html = new ParseHtmlString();
+//        List<String> list = html.atributesValueFromHtmlTag(htmlCode, "a", "href");
+//        for(String item:list){
+//            System.out.println(item);
+//        }
+//    }
 
 }
