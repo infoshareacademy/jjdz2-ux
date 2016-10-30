@@ -2,15 +2,11 @@ package com.sionach.ux.console;
 
 import com.sionach.ux.accessibility.*;
 import com.sionach.ux.color.ClipColors;
-import com.sionach.ux.color.ConvertColorToHex;
-import com.sionach.ux.color.ExtractColorsFromData;
-import com.sionach.ux.color.CssListFromHtml;
 import com.sionach.ux.filemanagment.ReadFiles;
 import com.sionach.ux.keyWords.*;
 import com.sionach.ux.routing.LinkMenagement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import sun.rmi.runtime.Log;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -93,6 +89,7 @@ public class Console {
                     case 2:
                         ClipColors clipColors = new ClipColors();
                         clipColors.ClipColorsFromData(htmlInString,cssFile);
+                        break;
                     case 3:
                         String baseUrl;
                         if(tempChoice == 1){
