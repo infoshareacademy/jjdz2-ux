@@ -1,23 +1,14 @@
 package com.sionach.ux.color;
 
-import com.sionach.ux.accessibility.*;
 import com.sionach.ux.filemanagment.ReadFiles;
-import com.sionach.ux.keyWords.*;
-import com.sionach.ux.routing.LinkMenagement;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class ClipColors {
-
+    
     public void ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
-        ConvertColorToHex convertColorToHex = new ConvertColorToHex();
 
+        ConvertColorToHex convertColorToHex = new ConvertColorToHex();
         CssListFromHtml cssFromHtml = new CssListFromHtml();
         ExtractColorsFromData colors = new ExtractColorsFromData();
         List<String> cssFromHtmlHead = cssFromHtml.codeHeadList(htmlInString);
