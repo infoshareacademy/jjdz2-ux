@@ -14,7 +14,7 @@ import java.util.List;
 @Stateless
 public class ReadFiles {
 
-    private String defaultPatch = "src/main/resources/";
+    private String defaultPatch = "target/classes/";
     private String filename;
 
     private static final Logger LOGGER = LogManager.getLogger(ReadFiles.class);
