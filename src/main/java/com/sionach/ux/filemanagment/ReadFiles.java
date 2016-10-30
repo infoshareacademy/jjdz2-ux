@@ -15,7 +15,6 @@ import java.util.List;
 public class ReadFiles {
 
     private String defaultPatch = "target/classes/";
-    private String filename;
 
     private static final Logger LOGGER = LogManager.getLogger(ReadFiles.class);
 
@@ -49,11 +48,5 @@ public class ReadFiles {
         String fileString = String.join(" ", fileList);
         LOGGER.debug("Return file as String");
         return fileString;
-    }
-
-    public void setDefaultPatch(String defaultPatch) {
-//        LOGGER.debug("Changing file path for file {} to: {}", filename, defaultPatch);
-        this.defaultPatch = defaultPatch;
-        LOGGER.debug("File path: {}", this.defaultPatch);
     }
 }
