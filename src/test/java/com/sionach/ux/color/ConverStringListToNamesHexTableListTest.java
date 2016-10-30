@@ -17,7 +17,7 @@ public class ConverStringListToNamesHexTableListTest {
         stringList.add("Sienna a0522d");
 
         List<NamesHexTable> namesHexTableList = new ArrayList<>();
-        ConverStringListToNamesHexTableList testVariable = new ConverStringListToNamesHexTableList();
+        ConvertStringListToNamesHexTableList testVariable = new ConvertStringListToNamesHexTableList();
 
         namesHexTableList = testVariable.convertToNamesHexTableList(stringList);
         System.out.println(namesHexTableList);
