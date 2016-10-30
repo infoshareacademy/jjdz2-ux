@@ -27,8 +27,7 @@ public class ColorsServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String color = req.getParameter("color");
-        String convertedColor = convertColorToHex.checkColorFormatAndConvert(color);
-
+        convertColorToHex.checkColorFormatAndConvert(color);
 
         req.setAttribute("colorHex", convertColorToHex.getColorHex());
 
