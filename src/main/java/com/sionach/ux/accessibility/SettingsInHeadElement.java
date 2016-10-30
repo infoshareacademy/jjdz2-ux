@@ -27,12 +27,20 @@ public class SettingsInHeadElement {
         return String.join(" ",new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,TAG_META_DESCRIPTION,ATTR_TAG_CONTENT)).length();
     }
 
+    public int checkNoDescriptionOccurance(){
+        return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,TAG_META_DESCRIPTION,ATTR_TAG_CONTENT).size();
+    }
+
     public int checkMetaKeywordsOccurance(){
         return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,TAG_META_KEYWORDS,ATTR_TAG_CONTENT).size();
     }
 
     public int checkTitleLength(){
         return String.join(" ",new ParseHtmlString().tagsTextFromHtml(htmlCode,TAG_TITLE)).length();
+    }
+
+    public int checkNoTitleOccurance(){
+        return new ParseHtmlString().tagsTextFromHtml(htmlCode,TAG_TITLE).size();
     }
 
     public boolean checkRelCanonical(){
