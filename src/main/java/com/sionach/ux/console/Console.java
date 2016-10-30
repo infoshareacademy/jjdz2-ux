@@ -45,13 +45,13 @@ public class Console {
             }
             tempChoice = input;
             while (true) {
-                ReadFiles htmlFile = new ReadFiles("index.html");
-                ReadFiles cssFile = new ReadFiles("style.css");
+                ReadFiles htmlFile = new ReadFiles(); //"index.html"
+                ReadFiles cssFile = new ReadFiles(); //"style.css"
 
                 htmlFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
                 cssFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
 
-                String htmlInString = htmlFile.readFileToString();
+                String htmlInString = htmlFile.readFileToString("index.html");
 
                 System.out.println("\n1 Identyfikacja podobnych stron");
                 System.out.println("2 Analiza kolorów na stronie");

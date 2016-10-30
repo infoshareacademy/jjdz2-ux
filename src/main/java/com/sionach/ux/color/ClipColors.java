@@ -1,9 +1,12 @@
 package com.sionach.ux.color;
 
 import com.sionach.ux.filemanagment.ReadFiles;
+
+import javax.ejb.Stateless;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Stateless
 public class ClipColors {
     
     public void ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
@@ -14,10 +17,12 @@ public class ClipColors {
         List<String> cssFromHtmlHead = cssFromHtml.codeHeadList(htmlInString);
         List<String> cssFromHtmlInHtmlTags = cssFromHtml.codeInlineList(htmlInString);
 
-        List<String> colorsHexRgbRgbaFromCss = ExtractColorsFromData.extractHexRgbRgbaColors(cssFile.readFileToList());
+        //TODO
+        List<String> colorsHexRgbRgbaFromCss = ExtractColorsFromData.extractHexRgbRgbaColors(cssFile.readFileToList(""));
         List<String> colorsHexRgbRgbaFromHtmlHead = ExtractColorsFromData.extractHexRgbRgbaColors(cssFromHtmlHead);
         List<String> colorsHexRgbRgbaFromHtmlInHtmlTags = ExtractColorsFromData.extractHexRgbRgbaColors(cssFromHtmlInHtmlTags);
-        List<String> colorNamesFromCss = ExtractColorsFromData.extractNamesColors(cssFile.readFileToList());
+        //TODO
+        List<String> colorNamesFromCss = ExtractColorsFromData.extractNamesColors(cssFile.readFileToList(""));
         List<String> colorNamesFromHtmlHead = ExtractColorsFromData.extractNamesColors(cssFromHtmlHead);
         List<String> colorNamesFromHtmlInHtmlTags = ExtractColorsFromData.extractNamesColors(cssFromHtmlInHtmlTags);
 

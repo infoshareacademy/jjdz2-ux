@@ -3,8 +3,10 @@ package com.sionach.ux.color;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.ejb.Stateless;
 import java.awt.*;
 
+@Stateless
 public class ConvertColorToHex {
     private String colorHex;  // format #rrggbb
 
@@ -15,7 +17,7 @@ public class ConvertColorToHex {
         this.colorHex = "#000000";
     }
 
-    public void checkColorFormatAndConvert(String stringColor) {
+    public String checkColorFormatAndConvert(String stringColor) {
         LOGGER.debug("Checking color format");
         if (stringColor.matches("(?i)#[0-9a-f]{2,6}")) {
             LOGGER.info("Color is some HEX");
@@ -55,6 +57,7 @@ public class ConvertColorToHex {
             LOGGER.info("It might be color name");
             nameToHex(stringColor);
         }
+        return stringColor;
     }
 
     public void rgbToHex(int r, int g, int b) {
