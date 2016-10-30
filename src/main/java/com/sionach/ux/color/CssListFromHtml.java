@@ -1,5 +1,8 @@
 package com.sionach.ux.color;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -8,7 +11,10 @@ import java.util.regex.Pattern;
 
 public class CssListFromHtml {
 
+    private static final Logger LOGGER = LogManager.getLogger("CssListFromHtml.class");
+
     public List<String> codeInlineList(String htmlCode) {
+        LOGGER.debug("Search for CSS in inline elements of html");
         List<String> codeInlineList = new ArrayList<String>();
 
         String patternStyle = "(?i)style\\=\"[^\"]*\""; //wzór do pobrania kodu css w tagach html
@@ -18,12 +24,14 @@ public class CssListFromHtml {
         while (m.find()) {
             //codeList.add(m.group());
             codeInlineList.add(m.group().replaceAll("style\\=\"", "").replaceAll("\"", ""));
+            LOGGER.info("CSS found");
         }
 
         return codeInlineList;
     }
 
     public List<String> codeHeadList(String htmlCode) {
+        LOGGER.debug("Search for CSS in head of html");
         List<String> codeHeadList = new ArrayList<>();
         htmlCode = htmlCode.replaceAll("(?i)/\\*[^\\*]*\\*/", ""); //wyczyszczenie kodu z komentarzy blokowych css
         htmlCode = htmlCode.replaceAll("(?i)//[^\n]*\n", ""); //wyczyszczenie kodu z komentzry liniowych css
@@ -34,6 +42,7 @@ public class CssListFromHtml {
         while (m.find()) {
             //codeList.add(m.group());
             codeHeadList.add(m.group().replaceAll("<style[^>]*>", "").replaceAll("</style>", ""));
+            LOGGER.info("CSS found");
         }
 
         return codeHeadList;

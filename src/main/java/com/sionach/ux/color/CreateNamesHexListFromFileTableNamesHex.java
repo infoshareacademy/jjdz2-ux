@@ -1,14 +1,18 @@
 package com.sionach.ux.color;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CreateNamesHexListFromFileTableNamesHex {
 
+    private static final Logger LOGGER = LogManager.getLogger(CreateNamesHexListFromFileTableNamesHex.class);
 
     public List<NamesHexTable> FileTolist() {
-        //czyta plik tableNamesHex do String Listy
+        LOGGER.debug("Attempt to read the file");
         ReadFileByLines readFileByLines = new ReadFileByLines();
         List<String> stringList = new ArrayList<>();
         try {
@@ -17,9 +21,9 @@ public class CreateNamesHexListFromFileTableNamesHex {
             System.out.println("Odczyt pliku nie dziala");
         }
 
-        //konwertuje String listę w listę obiektów klasy NamesHexTable
+        LOGGER.debug("Convert string list into namesHexTable list");
         List<NamesHexTable> namesHexTableLists;
-        ConverStringListToNamesHexTableList testVariable = new ConverStringListToNamesHexTableList();
+        ConvertStringListToNamesHexTableList testVariable = new ConvertStringListToNamesHexTableList();
         namesHexTableLists = testVariable.convertToNamesHexTableList(stringList);
 
         return namesHexTableLists;

@@ -2,12 +2,11 @@ package com.sionach.ux.console;
 
 import com.sionach.ux.accessibility.*;
 import com.sionach.ux.color.ClipColors;
-import com.sionach.ux.color.ConvertColorToHex;
-import com.sionach.ux.color.ExtractColorsFromData;
-import com.sionach.ux.color.CssListFromHtml;
 import com.sionach.ux.filemanagment.ReadFiles;
 import com.sionach.ux.keyWords.*;
 import com.sionach.ux.routing.LinkMenagement;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,6 +19,7 @@ import java.util.stream.Collectors;
 public class Console {
 
     private static final String DEFAULTPATCH = "src/main/resources/";
+    private static final Logger LOGGER = LogManager.getLogger(Console.class);
 
     public static void main(String[] args) {
 
@@ -27,8 +27,11 @@ public class Console {
         int tempChoice;
         Scanner reader = new Scanner(System.in);
 
+        LOGGER.debug("Creating folder list");
         List<String> folderList = foldersInResources();
+        LOGGER.debug("Folders found: {}", folderList);
 
+        LOGGER.debug("Entering Menu");
         while (true) {
             System.out.println("\nWybierz stronę");
             for (String item : folderList) {
@@ -36,6 +39,7 @@ public class Console {
             }
             System.out.println("3 Wyjście z programu\n");
             input = reader.nextInt();
+            LOGGER.debug("User choosed option number: {}", input);
             if (input == 3) {
                 break;
             }
@@ -43,13 +47,11 @@ public class Console {
             while (true) {
                 ReadFiles htmlFile = new ReadFiles("index.html");
                 ReadFiles cssFile = new ReadFiles("style.css");
+
                 htmlFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
                 cssFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
 
                 String htmlInString = htmlFile.readFileToString();
-
-                ExtractColorsFromData colors = new ExtractColorsFromData();
-                CssListFromHtml cssFromHtml = new CssListFromHtml();
 
                 System.out.println("\n1 Identyfikacja podobnych stron");
                 System.out.println("2 Analiza kolorów na stronie");
@@ -87,6 +89,7 @@ public class Console {
                     case 2:
                         ClipColors clipColors = new ClipColors();
                         clipColors.ClipColorsFromData(htmlInString,cssFile);
+                        break;
                     case 3:
                         String baseUrl;
                         if(tempChoice == 1){
