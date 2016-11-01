@@ -99,7 +99,6 @@ public class ConvertColorToHex {
         java.util.List<NamesHexTable> namesHexTableList;
         namesHexTableList = createNamesHexListFromFileTableNamesHex.FileTolist();
 
-        //porównuje name z pierwszym polem namesHexTableList, jeśli równość zachodzi, przypisuje zmiennej hex drugie pole
         String hex = "brak szukanego koloru";
         for (NamesHexTable aNamesHexTableList : namesHexTableList) {
             if (aNamesHexTableList.getColorName().equals(name)) {

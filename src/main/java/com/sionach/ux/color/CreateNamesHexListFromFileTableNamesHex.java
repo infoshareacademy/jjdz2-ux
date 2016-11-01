@@ -1,10 +1,9 @@
 package com.sionach.ux.color;
 
+import com.sionach.ux.filemanagment.ReadFiles;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CreateNamesHexListFromFileTableNamesHex {
@@ -13,13 +12,9 @@ public class CreateNamesHexListFromFileTableNamesHex {
 
     public List<NamesHexTable> FileTolist() {
         LOGGER.debug("Attempt to read the file");
-        ReadFileByLines readFileByLines = new ReadFileByLines();
-        List<String> stringList = new ArrayList<>();
-        try {
-            stringList = readFileByLines.readFileToList("src/main/resources/tableNamesHex.txt");
-        } catch (IOException e) {
-            System.out.println("Odczyt pliku nie dziala");
-        }
+        ReadFiles readFile = new ReadFiles();
+        List<String> stringList;
+        stringList = readFile.readFileToList("src/main/resources/tableNamesHex.txt");
 
         LOGGER.debug("Convert string list into namesHexTable list");
         List<NamesHexTable> namesHexTableLists;

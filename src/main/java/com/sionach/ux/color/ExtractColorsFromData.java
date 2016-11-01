@@ -17,41 +17,38 @@ public class ExtractColorsFromData {
 
     public static List<String> extractHexRgbRgbaColors(List<String> stringListFromCSS) {
         LOGGER.debug("Extracts hex, rgb and rgba colors from data");
-        List<String> extractColorsList = new ArrayList<String>();
         String pattern = "(?i)#[0-9a-f]{2,6}|(?i)rgba\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},[0-1]{0,3}\\)|(?i)rgb\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\\)";
         Pattern p = Pattern.compile(pattern);
-        for (String aStringList : stringListFromCSS) {
-            Matcher m = p.matcher(aStringList);
-            while (m.find()) {
-                String results = m.group();
-                extractColorsList.add(results);
-                LOGGER.debug("Color found" + results);
-            }
-        }
-
-        return extractColorsList;
+        List<String> extractColorsList = new ArrayList<>();
+        return ExtractColors(stringListFromCSS,p,extractColorsList);
     }
 
     public static List<String> extractNamesColors(List<String> stringListFromCSS) {
         LOGGER.debug("Extracts color names from data");
         CreateNamesHexListFromFileTableNamesHex createNamesHexListFromFileTableNamesHex = new CreateNamesHexListFromFileTableNamesHex();
-        java.util.List<NamesHexTable> namesHexTableList;
+        List<NamesHexTable> namesHexTableList;
         namesHexTableList = createNamesHexListFromFileTableNamesHex.FileTolist();
 
-        List<String> extractColorsList = new ArrayList<String>();
+        List<String> extractColorsList = new ArrayList<>();
         for (NamesHexTable aNamesHexTableList : namesHexTableList) {
             String pattern = aNamesHexTableList.getColorName();
             Pattern p = Pattern.compile(pattern);
-            for (String aStringList : stringListFromCSS) {
-                Matcher m = p.matcher(aStringList);
-                while (m.find()) {
-                    String results = m.group();
-                    extractColorsList.add(results);
-                    LOGGER.debug("Color name found" + results);
-                }
+            ExtractColors(stringListFromCSS,p,extractColorsList);
+        }
+        return extractColorsList;
+    }
+
+    private static List<String> ExtractColors(List<String> stringListFromCSS, Pattern p, List<String> extractColorsList){
+        for (String aStringList : stringListFromCSS) {
+            Matcher m = p.matcher(aStringList);
+            while (m.find()) {
+                String results = m.group();
+                LOGGER.debug("Color found" + results);
+                extractColorsList.add(results);
             }
         }
         return extractColorsList;
     }
 
 }
+
