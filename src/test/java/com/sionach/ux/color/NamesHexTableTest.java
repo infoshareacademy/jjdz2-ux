@@ -1,11 +1,12 @@
 package com.sionach.ux.color;
 
+import com.sionach.ux.filemanagment.ReadFiles;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -19,11 +20,12 @@ public class NamesHexTableTest{
         Assert.assertNotEquals(namesHexTable1, namesHexTable2);
     }
 
+
     @Test
     public void should_convert_list() { //nie wykorzystuje klasy ConvertStringToNamesHexTableList bo dzialanie tej
         //klasy sprawdza test odpowiedni tej klasie
         List<NamesHexTable> namesHexTableList = new ArrayList<>(); //Lista z tabelą kolorow nazwa-hex
-        ReadFileByLines readFileByLines = new ReadFileByLines(); //instancja klasy ReadFileByLines
+        ReadFiles readFileByLines = new ReadFiles(); //instancja klasy ReadFileByLines
         List<String> stringList = new ArrayList<>();
         try{
             stringList = readFileByLines.readFileToList("src/main/resources/tableNamesHex.txt");
@@ -38,7 +40,7 @@ public class NamesHexTableTest{
                 namesHexTableList.add(new NamesHexTable(namesHexTable.getColorName(),namesHexTable.getColorHex()));
             }
             System.out.println(namesHexTableList);
-        }catch(IOException e){System.out.println("Odczyt pliku nie dziala");}
+        }catch(RuntimeException e){System.out.println("Odczyt pliku nie dziala");}
         assertNotNull(namesHexTableList);
         assertNotNull(stringList);
 

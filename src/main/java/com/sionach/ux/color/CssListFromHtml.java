@@ -22,7 +22,6 @@ public class CssListFromHtml {
         Pattern p = Pattern.compile(patternStyle);
         Matcher m = p.matcher(htmlCode);
         while (m.find()) {
-            //codeList.add(m.group());
             codeInlineList.add(m.group().replaceAll("style\\=\"", "").replaceAll("\"", ""));
             LOGGER.info("CSS found");
         }
@@ -40,7 +39,6 @@ public class CssListFromHtml {
         Pattern p = Pattern.compile(patternStyle);
         Matcher m = p.matcher(htmlCode);
         while (m.find()) {
-            //codeList.add(m.group());
             codeHeadList.add(m.group().replaceAll("<style[^>]*>", "").replaceAll("</style>", ""));
             LOGGER.info("CSS found");
         }

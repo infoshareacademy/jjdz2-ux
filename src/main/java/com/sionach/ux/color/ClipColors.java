@@ -13,7 +13,6 @@ public class ClipColors {
 
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
         CssListFromHtml cssFromHtml = new CssListFromHtml();
-        ExtractColorsFromData colors = new ExtractColorsFromData();
         List<String> cssFromHtmlHead = cssFromHtml.codeHeadList(htmlInString);
         List<String> cssFromHtmlInHtmlTags = cssFromHtml.codeInlineList(htmlInString);
 

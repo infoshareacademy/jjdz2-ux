@@ -20,25 +20,25 @@ public class ExtractColorsFromData {
         String pattern = "(?i)#[0-9a-f]{2,6}|(?i)rgba\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},[0-1]{0,3}\\)|(?i)rgb\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\\)";
         Pattern p = Pattern.compile(pattern);
         List<String> extractColorsList = new ArrayList<>();
-        return ExtractColors(stringListFromCSS,p,extractColorsList);
+        return extractColors(stringListFromCSS,p,extractColorsList);
     }
 
     public static List<String> extractNamesColors(List<String> stringListFromCSS) {
         LOGGER.debug("Extracts color names from data");
         CreateNamesHexListFromFileTableNamesHex createNamesHexListFromFileTableNamesHex = new CreateNamesHexListFromFileTableNamesHex();
         List<NamesHexTable> namesHexTableList;
-        namesHexTableList = createNamesHexListFromFileTableNamesHex.FileTolist();
+        namesHexTableList = createNamesHexListFromFileTableNamesHex.fileToStringList();
 
         List<String> extractColorsList = new ArrayList<>();
         for (NamesHexTable aNamesHexTableList : namesHexTableList) {
             String pattern = aNamesHexTableList.getColorName();
             Pattern p = Pattern.compile(pattern);
-            ExtractColors(stringListFromCSS,p,extractColorsList);
+            extractColors(stringListFromCSS,p,extractColorsList);
         }
         return extractColorsList;
     }
 
-    private static List<String> ExtractColors(List<String> stringListFromCSS, Pattern p, List<String> extractColorsList){
+    private static List<String> extractColors(List<String> stringListFromCSS, Pattern p, List<String> extractColorsList){
         for (String aStringList : stringListFromCSS) {
             Matcher m = p.matcher(aStringList);
             while (m.find()) {
