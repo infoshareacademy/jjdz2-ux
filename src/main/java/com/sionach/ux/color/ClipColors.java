@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class ClipColors {
     
-    public void ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
+    public Set<String> ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
 
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
         CssListFromHtml cssFromHtml = new CssListFromHtml();
@@ -64,8 +64,8 @@ public class ClipColors {
             }
         }
 
-        System.out.println("Użyte kolory na stronie to:\n");
-        distinctHex.forEach(System.out::println);
-
+        //System.out.println("Użyte kolory na stronie to:\n");
+        //distinctHex.forEach(System.out::println);
+        return distinctHex;
     }
 }
