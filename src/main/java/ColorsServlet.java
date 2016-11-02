@@ -1,4 +1,6 @@
-import com.sionach.ux.color.ConvertColorToHex;
+import com.sionach.ux.color.ClipColors;
+import com.sionach.ux.color.CssListFromHtml;
+import com.sionach.ux.filemanagment.ReadFiles;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -8,29 +10,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Set;
 
 /**
- * Created by porszt on 30.10.16.
+ * Created by allic on 02/11/2016.
  */
 
 @WebServlet(urlPatterns = "/colors")
-public class ColorsServlet extends HttpServlet{
-
+public class ColorsServlet extends HttpServlet {
 
     @EJB
-    ConvertColorToHex convertColorToHex;
+    ClipColors clipColors;
+    @EJB
+    ReadFiles htmlFile;
+    @EJB
+    ReadFiles cssFile;
+    @EJB
+    CssListFromHtml cssFromHtml;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-        String color = req.getParameter("color");
-        String convertedColor = convertColorToHex.checkColorFormatAndConvert(color);
+        String htmlPath = req.getParameter("HTMLpath");
+        String cssPath = req.getParameter("CSSpath");
 
+        htmlFile.setDefaultPatch(htmlPath);
+        cssFile.setDefaultPatch(cssPath);
 
-        req.setAttribute("colorHex", convertColorToHex.getColorHex());
+        String htmlInString = htmlFile.readFileToString(htmlPath);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
+        Set<String> distinctHex;
+        distinctHex = clipColors.ClipColorsFromData(htmlInString,cssFile);
 
+        req.setAttribute("listOfColors", distinctHex);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/fromClip.jsp");
         dispatcher.forward(req, resp);
     }
+
 }

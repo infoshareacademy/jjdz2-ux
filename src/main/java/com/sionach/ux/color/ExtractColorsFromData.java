@@ -25,9 +25,9 @@ public class ExtractColorsFromData {
 
     public static List<String> extractNamesColors(List<String> stringListFromCSS) {
         LOGGER.debug("Extracts color names from data");
-        CreateNamesHexListFromFileTableNamesHex createNamesHexListFromFileTableNamesHex = new CreateNamesHexListFromFileTableNamesHex();
+        CreateNamesHexListFromFile createNamesHexListFromFile = new CreateNamesHexListFromFile();
         List<NamesHexTable> namesHexTableList;
-        namesHexTableList = createNamesHexListFromFileTableNamesHex.fileToStringList();
+        namesHexTableList = createNamesHexListFromFile.fileToStringList();
 
         List<String> extractColorsList = new ArrayList<>();
         for (NamesHexTable aNamesHexTableList : namesHexTableList) {

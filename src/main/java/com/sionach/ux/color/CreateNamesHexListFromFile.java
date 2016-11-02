@@ -7,9 +7,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateNamesHexListFromFileTableNamesHex {
+public class CreateNamesHexListFromFile {
 
-    private static final Logger LOGGER = LogManager.getLogger(CreateNamesHexListFromFileTableNamesHex.class);
+    private static final Logger LOGGER = LogManager.getLogger(CreateNamesHexListFromFile.class);
 
 
 
