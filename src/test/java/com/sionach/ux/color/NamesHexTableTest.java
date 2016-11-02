@@ -28,7 +28,7 @@ public class NamesHexTableTest{
         ReadFiles readFileByLines = new ReadFiles(); //instancja klasy ReadFileByLines
         List<String> stringList = new ArrayList<>();
         try{
-            stringList = readFileByLines.readFileToList("src/main/resources/tableNamesHex.txt");
+            stringList = readFileByLines.readFileToList("tableNamesHex.txt");
             System.out.println(stringList);
             int count = stringList.size();
             System.out.println(count);
