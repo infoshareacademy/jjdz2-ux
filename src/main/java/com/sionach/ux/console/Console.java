@@ -4,7 +4,7 @@ import com.sionach.ux.accessibility.AccessibilityClip;
 import com.sionach.ux.color.ClipColors;
 import com.sionach.ux.filemanagment.ReadFiles;
 import com.sionach.ux.keyWords.KeyWordsClip;
-import com.sionach.ux.routing.LinkMenagement;
+import com.sionach.ux.routing.LinkManagement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -81,7 +81,7 @@ public class Console {
                         } else {
                             baseUrl = "infoshareacademy.com";
                         }
-                        LinkMenagement links = new LinkMenagement(htmlInString, baseUrl);
+                        LinkManagement links = new LinkManagement(htmlInString, baseUrl);
                         System.out.println("Linki wewnętrzne:");
                         System.out.println(links.getInnerLinks());
                         System.out.println("Linki zewnętrzne:");

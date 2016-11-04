@@ -7,7 +7,7 @@
 
 <div>
     <form method="post" action="setHTMLpath">
-        Enter a path to your HTML file: <input type="text" name="HTML_path1">
+        Enter a path to your HTML file: <input type="text" name="HTMLpath1">
     </form>
 </div>
 

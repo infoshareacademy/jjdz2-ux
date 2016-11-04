@@ -46,7 +46,7 @@ public class ColorsServlet extends HttpServlet {
 
         req.setAttribute("listOfColors", distinctHex);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/fromClip.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/formColors.jsp");
         dispatcher.forward(req, resp);
     }
 
