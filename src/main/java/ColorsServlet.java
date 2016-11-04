@@ -41,7 +41,8 @@ public class ColorsServlet extends HttpServlet {
         String htmlInString = htmlFile.readFileToString(htmlPath);
 
         Set<String> distinctHex;
-        distinctHex = clipColors.ClipColorsFromData(htmlInString,cssFile);
+        clipColors.ClipColorsFromData(htmlInString,cssFile);
+        distinctHex = clipColors.getDistinctHex();
 
         req.setAttribute("listOfColors", distinctHex);
 
