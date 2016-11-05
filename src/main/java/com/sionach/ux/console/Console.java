@@ -48,8 +48,6 @@ public class Console {
                 ReadFiles htmlFile = new ReadFiles(); //"index.html"
                 ReadFiles cssFile = new ReadFiles(); //"style.css"
 
-//                htmlFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
-//                cssFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
 
                 String htmlInString = htmlFile.readFileToString("index.html");
 
