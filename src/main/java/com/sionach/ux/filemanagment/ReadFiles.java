@@ -20,8 +20,7 @@ public class ReadFiles {
 
     public List<String> readFileToList(String filename) {
 
-        LOGGER.debug("Starting to read file");
-        LOGGER.debug("FilePath: {} FileName {}", defaultPatch, filename);
+        LOGGER.debug("Starting to read file: {}", filename);
 
         List<String> fileList = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(defaultPatch + filename))) {
@@ -48,5 +47,9 @@ public class ReadFiles {
         String fileString = String.join(" ", fileList);
         LOGGER.debug("Return file as String");
         return fileString;
+    }
+
+    public void setDefaultPatch(String defaultPatch) {
+        this.defaultPatch = defaultPatch;
     }
 }
