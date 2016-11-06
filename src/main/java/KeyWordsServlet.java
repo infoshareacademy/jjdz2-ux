@@ -19,10 +19,10 @@ public class KeyWordsServlet extends HttpServlet {
     ReadFiles readFiles;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String folder = req.getParameter("folder");
-        readFiles.setDefaultPatch("target/classes" + folder);
+        readFiles.setDefaultPatch("target/classes/" + folder + "/");
         String htmlCode = readFiles.readFileToString("index.html");
 
         req.setAttribute("keyWords", keyWords.extractKeyWords(htmlCode));
