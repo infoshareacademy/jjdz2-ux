@@ -6,6 +6,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import javax.ejb.Stateless;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,9 +19,14 @@ public class KeyWords {
 
     private Document doc;
 
-    public Set<String> extractKeyWords(String htmlCode) {
+    public Set<String> extractKeyWords(String link) {
 
-        doc = Jsoup.parse(htmlCode);
+        try {
+            doc = Jsoup.connect(link).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("coś poszło nie tak ;p");
+        }
         List<List<String>> keyWords = Arrays.asList(
                 keywordsAnchor(),
                 attributesKeywords(),

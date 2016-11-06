@@ -7,13 +7,13 @@
 <div>
     <form method="post" action="keywords">
         Wybierz stronę
-        <select name="folder">
-            <option value="infoshareacademy">infoshareacademy</option>
-            <option value="wmh">wmh</option>
-        </select>
+        <input tyle="text" name="link" value="http://www.">
+
         <input type="submit" value="OK">
     </form>
 </div>
+
+
 
 
 <H2>Lista słów kluczowych na stronie</H2>

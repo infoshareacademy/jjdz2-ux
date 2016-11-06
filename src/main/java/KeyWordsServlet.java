@@ -15,17 +15,13 @@ public class KeyWordsServlet extends HttpServlet {
 
     @EJB
     KeyWords keyWords;
-    @EJB
-    ReadFiles readFiles;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String folder = req.getParameter("folder");
-        readFiles.setDefaultPatch("target/classes/" + folder + "/");
-        String htmlCode = readFiles.readFileToString("index.html");
+        String link = req.getParameter("link");
 
-        req.setAttribute("keyWords", String.join("<br />", keyWords.extractKeyWords(htmlCode)));
+        req.setAttribute("keyWords", String.join("<br />", keyWords.extractKeyWords(link)));
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/keywords.jsp");
 
