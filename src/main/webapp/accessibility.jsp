@@ -16,5 +16,7 @@
 
 <h2>Zdeprecjonowane tagi html</h2>
 <p>${deprecatedTags}</p>
+<p>bla bla bla</p>
+${htmlcode}
 </body>
 </html>

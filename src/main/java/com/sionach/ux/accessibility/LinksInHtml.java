@@ -25,12 +25,12 @@ public class LinksInHtml {
                 .count();
     }
 
-    //test
-////    public static void main(String[] args) {
-////        ReadFiles file = new ReadFiles();
-////        String htmlCode = file.readFileToString("infoshareacademy/index.html");
-////        LinksInHtml links = new LinksInHtml();
-////        System.out.println(links.noOfLinksInHtml(htmlCode));
+
+//    public static void main(String[] args) {
+//        ReadFiles file = new ReadFiles();
+//        String htmlCode = file.readFileToString("infoshareacademy/index.html");
+//        LinksInHtml links = new LinksInHtml();
+//        System.out.println(links.noOfLinksInHtml(htmlCode));
 //    }
 
     //stare do usuniecia

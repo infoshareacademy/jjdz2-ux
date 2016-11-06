@@ -39,6 +39,7 @@ public class AccessibilityServlet extends HttpServlet {
 
         req.setAttribute("linksInHtml", noLinks);
         req.setAttribute("deprecatedTags", deprecatedTagsString);
+        //req.setAttribute("htmlcode", htmlCode);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/accessibility.jsp");
 
         dispatcher.forward(req, resp);
