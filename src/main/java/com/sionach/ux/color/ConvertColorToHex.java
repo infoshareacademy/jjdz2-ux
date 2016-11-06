@@ -1,108 +1,120 @@
 package com.sionach.ux.color;
 
-import com.sun.xml.internal.fastinfoset.util.CharArray;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
-import java.io.IOException;
-import java.util.*;
-import java.util.List;
 
-/**
- * Created by Alice on 18.09.2016.
- */
 public class ConvertColorToHex {
     private String colorHex;  // format #rrggbb
 
-    //konstruktor bez parametrow
-    ConvertColorToHex(){
+    private static final Logger LOGGER = LogManager.getLogger(ConvertColorToHex.class);
+
+    public ConvertColorToHex() {
+        LOGGER.debug("Set the default value for color");
         this.colorHex = "#000000";
     }
 
-   //setter i getter
-    public void setColorHex(String colorHex) {
-        this.colorHex = colorHex;
-    }
-    public String getColorHex() {
-        return this.colorHex;
+    public void checkColorFormatAndConvert(String stringColor) {
+        LOGGER.debug("Checking color format");
+        if (stringColor.matches("(?i)#[0-9a-f]{2,6}")) {
+            LOGGER.info("Color is some HEX");
+            if (stringColor.length() == 7) {
+                LOGGER.info("Color is HEX");
+                this.colorHex = stringColor;
+            } else {
+                LOGGER.info("Color is short HEX");
+                shortHexToHex(stringColor);
+            }
+        } else if (stringColor.matches("(?i)rgba\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3},[0-1]{0,3}\\)")) {
+            LOGGER.info("Color is rgba");
+            stringColor = stringColor.replaceAll("\\(", " ");
+            stringColor = stringColor.replaceAll("\\)", " ");
+            stringColor = stringColor.replaceAll("rgba", " ");
+            stringColor = stringColor.trim();
+            String[] split = stringColor.split(",", 4);
+            int r = Integer.valueOf(split[0]);
+            int g = Integer.valueOf(split[1]);
+            int b = Integer.valueOf(split[2]);
+            int a = Integer.valueOf(split[3]);
+            rgbaToHex(r, g, b, a);
+
+        } else if (stringColor.matches("(?i)rgb\\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\\)")) {
+            LOGGER.info("Color is rgb");
+            stringColor = stringColor.replaceAll("\\(", " ");
+            stringColor = stringColor.replaceAll("\\)", " ");
+            stringColor = stringColor.replaceAll("rgb", " ");
+            stringColor = stringColor.trim();
+            String[] split = stringColor.split(",", 3);
+            int r = Integer.valueOf(split[0]);
+            int g = Integer.valueOf(split[1]);
+            int b = Integer.valueOf(split[2]);
+            rgbToHex(r, g, b);
+
+        } else {
+            LOGGER.info("It might be color name");
+            nameToHex(stringColor);
+        }
     }
 
-
-    //metoda konwertująca RGB na HEX - przeciazona
-    public void rgbToHex(int r, int g, int b){
-        Color color = new Color(r,g,b);
-        String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
+    public void rgbToHex(int r, int g, int b) {
+        LOGGER.debug("Starts rgb to hex conversion");
+        Color color = new Color(r, g, b);
+        String hex = Integer.toHexString(color.getRGB() & 0xffffff);
+        while (hex.length() < 6) {
             hex = "0" + hex;
-        }while (hex.length() < 6);
+        }
         this.colorHex = "#" + hex;
     }
 
-    public void rgbToHex(int rgb){
-        Color color = new Color(rgb);
-        String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
+    public void rgbaToHex(int r, int g, int b, int a) {
+        LOGGER.debug("Starts rgba to hex conversion");
+        Color color = new Color(r, g, b, a);
+        String hex = Integer.toHexString(color.getRGB() & 0xffffff);
+        while (hex.length() < 6) {
             hex = "0" + hex;
-        }while (hex.length() < 6);
+        }
         this.colorHex = "#" + hex;
     }
 
-
-    //metoda konwertująca RGBA na  - przeciazona
-    public void rgbaToHex(int r, int g, int b, int a){
-        Color color = new Color(r,g,b,a);
-        String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
-            hex = "0" + hex;
-        }while (hex.length() < 6);
-        this.colorHex = "#" + hex;
+    public void shortHexToHex(String shortHex) {
+        LOGGER.debug("Starts short hex to hex conversion");
+        if (shortHex.length() == 4) {
+            char[] charArray = new char[4];
+            shortHex.getChars(0, 4, charArray, 0);
+            String rhex = Character.toString(charArray[1]);
+            String ghex = Character.toString(charArray[2]);
+            String bhex = Character.toString(charArray[3]);
+            String hex = rhex + rhex + ghex + ghex + bhex + bhex;
+            this.colorHex = "#" + hex;
+        }
     }
 
-    public void rgbaToHex(int rgba){
-        Color color = new Color(rgba);
-        String hex = Integer.toHexString(color.getRGB()&0xffffff);
-        do {
-            hex = "0" + hex;
-        }while (hex.length() < 6);
-        this.colorHex = "#" + hex;
-    }
-
-    //metoda przepisujaca short_HEX na HEX
-    public void shortHexToHex(String shortHex){
-        char[] charArray = new char[3];
-        shortHex.getChars(0,2,charArray,0);
-        String rhex = Character.toString(charArray[0]);
-        String ghex = Character.toString(charArray[1]);
-        String bhex = Character.toString(charArray[2]);
-        String hex = rhex + rhex + ghex + ghex + bhex + bhex;
-        this.colorHex = "#" + hex;
-    }
-
-    //metoda konwertująca imię koloru na HEX
-    public void nameToHex(String name){
-        //czyta plik tableNamesHex do String Listy
-        ReadFileByLines readFileByLines = new ReadFileByLines();
-        java.util.List<String> stringList = new ArrayList<>();
-        try{
-            stringList = readFileByLines.readFileToList("src/main/resources/tableNamesHex.txt");
-            System.out.println(stringList);
-            int count = stringList.size();
-            System.out.println(count);
-        }catch(IOException e){System.out.println("Odczyt pliku nie dziala");}
-
-        //konwertuje String listę w listę obiektów klasy NamesHexTable
-        List<NamesHexTable> namesHexTableList = new ArrayList<>();
-        ConverStringListToNamesHexTableList testVariable = new ConverStringListToNamesHexTableList();
-        namesHexTableList = testVariable.convertToNamesHexTableList(stringList);
+    public void nameToHex(String name) {
+        LOGGER.debug("Starts color name to hex conversion");
+        CreateNamesHexListFromFileTableNamesHex createNamesHexListFromFileTableNamesHex = new CreateNamesHexListFromFileTableNamesHex();
+        java.util.List<NamesHexTable> namesHexTableList;
+        namesHexTableList = createNamesHexListFromFileTableNamesHex.FileTolist();
 
         //porównuje name z pierwszym polem namesHexTableList, jeśli równość zachodzi, przypisuje zmiennej hex drugie pole
         String hex = "brak szukanego koloru";
-        int count = namesHexTableList.size();
-        for (int i = 0; i < count; i++){
-            if(namesHexTableList.get(i).getColorName()==name) {
-                hex = namesHexTableList.get(i).getColorHex();
+        for (NamesHexTable aNamesHexTableList : namesHexTableList) {
+            if (aNamesHexTableList.getColorName().equals(name)) {
+                hex = aNamesHexTableList.getColorHex();
                 this.colorHex = "#" + hex;
+                LOGGER.info("It is a color name!");
             }
         }
         System.out.println("#" + hex);
+    }
+
+    public String getColorHex() {
+        LOGGER.debug("Gets color hex");
+        return this.colorHex;
+    }
+
+    public void setColorHex(String colorHex) {
+        LOGGER.debug("Sets color hex");
+        this.colorHex = colorHex;
     }
 }

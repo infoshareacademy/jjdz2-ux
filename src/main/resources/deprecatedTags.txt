@@ -1,0 +1,14 @@
+acronym
+applet
+basefont
+big
+center
+font
+frame
+frameset
+isindex
+noframes
+s
+strike
+tt
+u
