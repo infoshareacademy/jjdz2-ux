@@ -63,9 +63,9 @@ public class Console {
                 switch (input) {
                     case 1:
 
-                        KeyWords keyWords = new KeyWords(htmlInString);
+                        KeyWords keyWords = new KeyWords();
                         System.out.println("Lista słów kluczowych po których można znaleść strony podobne do podanej:\n");
-                        System.out.println(keyWords.extractKeyWords());
+                        System.out.println(keyWords.extractKeyWords(htmlInString));
                         break;
                     case 2:
                         ClipColors clipColors = new ClipColors();
