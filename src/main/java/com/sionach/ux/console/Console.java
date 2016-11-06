@@ -48,8 +48,6 @@ public class Console {
                 ReadFiles htmlFile = new ReadFiles(); //"index.html"
                 ReadFiles cssFile = new ReadFiles(); //"style.css"
 
-                htmlFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
-                cssFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
 
                 String htmlInString = htmlFile.readFileToString("index.html");
 
@@ -65,26 +63,9 @@ public class Console {
                 switch (input) {
                     case 1:
 
-                        KeywordsFromAnchor anchor = new KeywordsFromAnchor();
-                        KeywordsFromAttributes attributes = new KeywordsFromAttributes();
-                        KeywordsFromBolded bolded = new KeywordsFromBolded();
-                        KeywordsFromHeadlines headlines = new KeywordsFromHeadlines();
-                        KeywordsFromMetadata metadata = new KeywordsFromMetadata();
-
-                        List<String> anchorList = anchor.keywordsAnchor(htmlInString);
-                        List<String> attributesList = attributes.attributesKeywords(htmlInString);
-                        List<String> boldedList = bolded.boldedKeywords(htmlInString);
-                        List<String> headlinesList = headlines.headlineKeywords(htmlInString);
-                        List<String> metadataList = metadata.MetadataKeywords(htmlInString);
-
-                        List<List<String>> keyWords = Arrays.asList(anchorList, attributesList, boldedList, headlinesList, metadataList);
-//
+                        KeyWords keyWords = new KeyWords();
                         System.out.println("Lista słów kluczowych po których można znaleść strony podobne do podanej:\n");
-
-                        keyWords.stream()
-                                .flatMap(Collection::stream)
-                                .collect(Collectors.toSet())
-                                .forEach(System.out::println);
+                        System.out.println(keyWords.extractKeyWords(htmlInString));
                         break;
                     case 2:
                         ClipColors clipColors = new ClipColors();
