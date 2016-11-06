@@ -9,7 +9,7 @@ public class LinkMenagementTest {
 
     public static String testCode;
     public static String baseUrl;
-    public static LinkMenagement linkMenagement;
+    public static LinkManagement linkMenagement;
 
     @BeforeClass
     public static void makeTestLinks(){
@@ -17,7 +17,7 @@ public class LinkMenagementTest {
         testCode = "SomeRandomCode<a href=\"http://www.testowa.com\">A</a>SomeRandomCode" +
                 "<a href=\"testowadomena.pl\">B</a>SomeRandomCode, SomeRandomCode<>SomeRandomCode" +
                 "<a href=\"testowadomena.pl\">C</a>/test/test.SomeRandomCode";
-        linkMenagement = new LinkMenagement(testCode, baseUrl);
+        linkMenagement = new LinkManagement(testCode, baseUrl);
     }
 
     @Test

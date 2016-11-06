@@ -15,13 +15,13 @@ public class NamesHexTable {
     private static final Logger LOGGER = LogManager.getLogger(NamesHexTable.class);
 
     NamesHexTable() {
-        LOGGER.info("Sets default value of color");
+        LOGGER.info("Sets default value of color's name and hex");
         this.setColorName("White");
         this.setColorHex("ffffff");
     }
 
     NamesHexTable(String colorName, String colorHex) {
-        LOGGER.info("Set given value of color");
+        LOGGER.info("Set given value of color's name and hex");
         this.setColorName(colorName);
         this.setColorHex(colorHex);
     }
@@ -29,15 +29,13 @@ public class NamesHexTable {
     public String getColorName() {
         return colorName;
     }
-
-    public void setColorName(String colorName) {
-        this.colorName = colorName;
-    }
-
     public String getColorHex() {
         return colorHex;
     }
 
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
+    }
     public void setColorHex(String colorHex) {
         this.colorHex = colorHex;
     }

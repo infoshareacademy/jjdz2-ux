@@ -1,12 +1,13 @@
 package com.sionach.ux.keyWords;
 
-import org.testng.annotations.Test;
+
+
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.testng.Assert.*;
 
 /**
  * Created by webownia on 04.10.16.
@@ -18,7 +19,7 @@ public class KeywordsFromAnchorTest {
         KeywordsFromAnchor anchors = new KeywordsFromAnchor();
         List<String> keywords = anchors.keywordsAnchor(htmlCodeTest);
 
-        List<String> keywordsTest = new ArrayList<>();
+        List<String> keywordsTest = new ArrayList<String>();
         keywordsTest.add("ultricies est non faucibus");
         keywordsTest.add("Donec interdum");
         assertEquals(keywords, keywordsTest);

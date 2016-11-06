@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LinkMenagement {
+public class LinkManagement {
 
     private final String BASEURL;
     private final String HTMLCODE;
     private List<String> links;
 
-    public LinkMenagement(String htmlCode, String baseURL) {
+    public LinkManagement(String htmlCode, String baseURL) {
         this.BASEURL = baseURL;
         this.HTMLCODE = htmlCode;
         parseLinksFromHtml();

@@ -1,23 +1,32 @@
 package com.sionach.ux.color;
 
 import com.sionach.ux.filemanagment.ReadFiles;
+
+import javax.ejb.Stateless;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Stateless
 public class ClipColors {
-    
+    private Set<String> distinctHex = new HashSet<>();
+
+    public Set<String> getDistinctHex() {
+        return distinctHex;
+    }
+
     public void ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
 
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
         CssListFromHtml cssFromHtml = new CssListFromHtml();
-        ExtractColorsFromData colors = new ExtractColorsFromData();
         List<String> cssFromHtmlHead = cssFromHtml.codeHeadList(htmlInString);
         List<String> cssFromHtmlInHtmlTags = cssFromHtml.codeInlineList(htmlInString);
 
-        List<String> colorsHexRgbRgbaFromCss = ExtractColorsFromData.extractHexRgbRgbaColors(cssFile.readFileToList());
+        //TODO
+        List<String> colorsHexRgbRgbaFromCss = ExtractColorsFromData.extractHexRgbRgbaColors(cssFile.readFileToList(""));
         List<String> colorsHexRgbRgbaFromHtmlHead = ExtractColorsFromData.extractHexRgbRgbaColors(cssFromHtmlHead);
         List<String> colorsHexRgbRgbaFromHtmlInHtmlTags = ExtractColorsFromData.extractHexRgbRgbaColors(cssFromHtmlInHtmlTags);
-        List<String> colorNamesFromCss = ExtractColorsFromData.extractNamesColors(cssFile.readFileToList());
+        //TODO
+        List<String> colorNamesFromCss = ExtractColorsFromData.extractNamesColors(cssFile.readFileToList(""));
         List<String> colorNamesFromHtmlHead = ExtractColorsFromData.extractNamesColors(cssFromHtmlHead);
         List<String> colorNamesFromHtmlInHtmlTags = ExtractColorsFromData.extractNamesColors(cssFromHtmlInHtmlTags);
 
@@ -32,8 +41,6 @@ public class ClipColors {
         Set<String> distinctColorsHexRgbRgba;
         Set<String> distinctColorsNames;
 
-        Set<String> distinctHex = new HashSet<>();
-
         distinctColorsHexRgbRgba = colorsHexRgbRgbaOnPageWithDuplicates.stream()
                 .flatMap(Collection::stream)
                 .collect(Collectors.toSet());
@@ -45,7 +52,7 @@ public class ClipColors {
         for (String item : distinctColorsNames) {
             try {
                 convertColorToHex.nameToHex(item);
-                distinctHex.add(convertColorToHex.getColorHex());
+                this.distinctHex.add(convertColorToHex.getColorHex());
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
@@ -54,14 +61,12 @@ public class ClipColors {
         for (String item : distinctColorsHexRgbRgba) {
             try {
                 convertColorToHex.checkColorFormatAndConvert(item);
-                distinctHex.add(convertColorToHex.getColorHex());
+                this.distinctHex.add(convertColorToHex.getColorHex());
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
         }
 
-        System.out.println("Użyte kolory na stronie to:\n");
-        distinctHex.forEach(System.out::println);
-
     }
+
 }

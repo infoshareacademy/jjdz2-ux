@@ -3,39 +3,32 @@ package com.sionach.ux.filemanagment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.ejb.Stateless;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Stateless
 public class ReadFiles {
 
-    private String defaultPatch = "src/main/resources/";
-    private String FILENAME;
+    private String defaultPath = "target/classes/";
 
     private static final Logger LOGGER = LogManager.getLogger(ReadFiles.class);
 
-    public ReadFiles(String filename) {
-
-        this.FILENAME = filename;
-    }
-
-    public List<String> readFileToList() {
+    public List<String> readFileToList(String filename) {
 
         LOGGER.debug("Starting to read file");
-        LOGGER.debug("FilePath: {} FileName {}", defaultPatch, FILENAME);
+        LOGGER.debug("FilePath: {} FileName {}", defaultPath, filename);
 
         List<String> fileList = new ArrayList<>();
-        try (BufferedReader in = new BufferedReader(new FileReader(defaultPatch + FILENAME))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(defaultPath + filename))) {
             String c;
             while ((c = in.readLine()) != null) {
                 fileList.add(c);
             }
             LOGGER.debug("Reading file to list");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,10 +37,10 @@ public class ReadFiles {
         return fileList;
     }
 
-    public String readFileToString() {
+    public String readFileToString(String filename) {
 
         List<String> fileList;
-        fileList = readFileToList();
+        fileList = readFileToList(filename);
         LOGGER.debug("Convering List to String");
         String fileString = String.join(" ", fileList);
         LOGGER.debug("Return file as String");
@@ -55,8 +48,8 @@ public class ReadFiles {
     }
 
     public void setDefaultPatch(String defaultPatch) {
-        LOGGER.debug("Changing file path for file {} to: {}",FILENAME, defaultPatch);
-        this.defaultPatch = defaultPatch;
-        LOGGER.debug("File path: {}", this.defaultPatch);
+//        LOGGER.debug("Changing file path for file {} to: {}", filename, defaultPatch);
+        this.defaultPath = defaultPatch;
+        LOGGER.debug("File path: {}", this.defaultPath);
     }
 }
