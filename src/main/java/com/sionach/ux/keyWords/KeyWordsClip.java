@@ -1,5 +1,6 @@
 package com.sionach.ux.keyWords;
 
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 /**
  * Created by allic on 04/11/2016.
  */
+@Stateless
 public class KeyWordsClip {
 
     List<List<String>> keyWords = new ArrayList<>();

@@ -1,5 +1,6 @@
 package com.sionach.ux.accessibility;
 
+import javax.ejb.Stateless;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 /**
  * Created by allic on 04/11/2016.
  */
+@Stateless
 public class AccessibilityClip {
 
     public void Accessibility(String htmlInString) {
