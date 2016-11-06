@@ -1,6 +1,8 @@
 import com.sionach.ux.color.ClipColors;
-import com.sionach.ux.color.ConvertColorToHex;
+import com.sionach.ux.color.CssListFromHtml;
 import com.sionach.ux.filemanagment.ReadFiles;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -10,29 +12,54 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 /**
- * Created by porszt on 30.10.16.
+ * Created by allic on 02/11/2016.
  */
 
 @WebServlet(urlPatterns = "/colors")
-public class ColorsServlet extends HttpServlet{
+public class ColorsServlet extends HttpServlet {
 
+    private static final Logger LOGGER = LogManager.getLogger(ColorsServlet.class);
 
     @EJB
-    ConvertColorToHex convertColorToHex;
+    ClipColors clipColors;
+    @EJB
+    ReadFiles htmlFile;
+    @EJB
+    ReadFiles cssFile;
+    @EJB
+    CssListFromHtml cssFromHtml;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-        String color = req.getParameter("color");
-        convertColorToHex.checkColorFormatAndConvert(color);
-
-        req.setAttribute("colorHex", convertColorToHex.getColorHex());
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
-
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/formColors.jsp");
         dispatcher.forward(req, resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String choose = req.getParameter("choose");
+        cssFile.setDefaultPatch("target/classes/" + choose + "/style.css");
+        htmlFile.setDefaultPatch("target/classes/" + choose + "/");
+
+        String htmlInString = htmlFile.readFileToString("index.html");
+
+        Set<String> distinctHex;
+        clipColors.ClipColorsFromData(htmlInString,cssFile);
+        distinctHex = clipColors.getDistinctHex();
+        LOGGER.info("przekazujemy Color Servelt {}",clipColors );
+
+        req.setAttribute("listOfColors", distinctHex);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/formColors.jsp");
+        dispatcher.forward(req, resp);
+
+    }
+
 }

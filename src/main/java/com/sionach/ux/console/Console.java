@@ -1,19 +1,18 @@
 package com.sionach.ux.console;
 
-import com.sionach.ux.accessibility.*;
+import com.sionach.ux.accessibility.AccessibilityClip;
 import com.sionach.ux.color.ClipColors;
 import com.sionach.ux.filemanagment.ReadFiles;
-import com.sionach.ux.keyWords.*;
-import com.sionach.ux.routing.LinkMenagement;
+import com.sionach.ux.routing.LinkManagement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Console {
@@ -48,6 +47,8 @@ public class Console {
                 ReadFiles htmlFile = new ReadFiles(); //"index.html"
                 ReadFiles cssFile = new ReadFiles(); //"style.css"
 
+                htmlFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/"); //
+                cssFile.setDefaultPatch(DEFAULTPATCH + folderList.get(tempChoice - 1) + "/");
 
                 String htmlInString = htmlFile.readFileToString("index.html");
 
@@ -62,14 +63,15 @@ public class Console {
                 }
                 switch (input) {
                     case 1:
-
-                        KeyWords keyWords = new KeyWords();
-                        System.out.println("Lista słów kluczowych po których można znaleść strony podobne do podanej:\n");
-                        System.out.println(keyWords.extractKeyWords(htmlInString));
-                        break;
+//                        KeyWordsClip keyWordsClip = new KeyWordsClip();
+//                        keyWordsClip.KeyWordsFromData(htmlInString);
+//                        System.out.println(keyWordsClip.getKeyWords());
+//                        break;
                     case 2:
                         ClipColors clipColors = new ClipColors();
                         clipColors.ClipColorsFromData(htmlInString,cssFile);
+                        System.out.println("Użyte kolory na stronie to:\n");
+                        System.out.println(clipColors.getDistinctHex());
                         break;
                     case 3:
                         String baseUrl;
@@ -78,56 +80,15 @@ public class Console {
                         } else {
                             baseUrl = "infoshareacademy.com";
                         }
-                        LinkMenagement links = new LinkMenagement(htmlInString, baseUrl);
+                        LinkManagement links = new LinkManagement(htmlInString, baseUrl);
                         System.out.println("Linki wewnętrzne:");
                         System.out.println(links.getInnerLinks());
                         System.out.println("Linki zewnętrzne:");
                         System.out.println(links.getOuterLinks());
                         break;
                     case 4:
-                        CaseOfHtml5 caseOfHtml5 = new CaseOfHtml5();
-                        SettingsInHeadElement settingsInHeadElement = new SettingsInHeadElement();
-                        HeadlinesInHtml headlinesInHtml = new HeadlinesInHtml();
-                        DeprecatedTagsInHtml deprecatedTagsInHtml = new DeprecatedTagsInHtml();
-                        AltAndTitleInImage altAndTitleInImage = new AltAndTitleInImage();
-                        LinksInHtml linksInHtml = new LinksInHtml();
-
-                        List<String> altAndTitleInImageRaport = altAndTitleInImage.ImageAltTitle(htmlInString);
-                        List<String> settingsInHeadRaport = settingsInHeadElement.checkHeadSettings(htmlInString);
-                        List<String> deprecatedTagsRaport = new ArrayList<>();
-                        try {
-                            deprecatedTagsRaport = deprecatedTagsInHtml.findDeprecatedTags(htmlInString);
-                        } catch (FileNotFoundException e) {
-                            System.out.println("Nie znaleziono pliku z deprecjonowanymi elementami\n");
-                            e.printStackTrace();
-                        }
-
-                        caseOfHtml5.CheckIfHtml5(htmlInString);
-                        for (String item : deprecatedTagsRaport) {
-                            System.out.println(item);
-                        }
-
-                        System.out.println("\nRaport sekcji HEAD");
-                        for (String item : settingsInHeadRaport) {
-                            System.out.println(item);
-                        }
-
-                        System.out.println("\n");
-
-                        System.out.println(headlinesInHtml.checkHeadlinesInHtml(htmlInString));
-                        System.out.println(headlinesInHtml.checkNoOccurrancesH1(htmlInString));
-
-                        System.out.println("\n");
-
-                        for (String item : altAndTitleInImageRaport) {
-                            System.out.println(item);
-                        }
-
-                        System.out.println("\n");
-
-                        System.out.println(linksInHtml.checkNumberOfLinks(htmlInString));
-
-                        System.out.println("\n");
+                        AccessibilityClip accessibilityClip = new AccessibilityClip();
+                        accessibilityClip.Accessibility(htmlInString);
                         break;
 
                     default:
