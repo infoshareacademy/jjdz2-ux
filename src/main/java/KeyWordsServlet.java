@@ -25,11 +25,10 @@ public class KeyWordsServlet extends HttpServlet {
         readFiles.setDefaultPatch("target/classes/" + folder + "/");
         String htmlCode = readFiles.readFileToString("index.html");
 
-        req.setAttribute("keyWords", keyWords.extractKeyWords(htmlCode));
+        req.setAttribute("keyWords", String.join("<br />", keyWords.extractKeyWords(htmlCode)));
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/keywords.jsp");
 
         dispatcher.forward(req, resp);
     }
-
 }
