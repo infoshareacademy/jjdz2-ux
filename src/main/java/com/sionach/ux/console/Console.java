@@ -3,7 +3,6 @@ package com.sionach.ux.console;
 import com.sionach.ux.accessibility.AccessibilityClip;
 import com.sionach.ux.color.ClipColors;
 import com.sionach.ux.filemanagment.ReadFiles;
-import com.sionach.ux.keyWords.KeyWordsClip;
 import com.sionach.ux.routing.LinkManagement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,10 +63,10 @@ public class Console {
                 }
                 switch (input) {
                     case 1:
-                        KeyWordsClip keyWordsClip = new KeyWordsClip();
-                        keyWordsClip.KeyWordsFromData(htmlInString);
-                        System.out.println(keyWordsClip.getKeyWords());
-                        break;
+//                        KeyWordsClip keyWordsClip = new KeyWordsClip();
+//                        keyWordsClip.KeyWordsFromData(htmlInString);
+//                        System.out.println(keyWordsClip.getKeyWords());
+//                        break;
                     case 2:
                         ClipColors clipColors = new ClipColors();
                         clipColors.ClipColorsFromData(htmlInString,cssFile);
