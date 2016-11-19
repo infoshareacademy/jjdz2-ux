@@ -21,7 +21,7 @@ public class DeprecatedTagsInHtml {
         List<String> deprecatedTags = new ArrayList<>();
         DeprecatedTagsList deprecatedHtmlTags = new DeprecatedTagsList();
         List<String> allDeprecatedTags = deprecatedHtmlTags.createDeprecatedTagsList(DEPRECATED_FILE);
-        ParseHtmlString html = new ParseHtmlString();
+        ParseHtmlUrl html = new ParseHtmlUrl();
         if(html.CheckHtml5(htmlCode)){
            deprecatedTags = allDeprecatedTags.stream()
                     .filter(tag -> html.tagsTextFromHtml(htmlCode, tag).size()>0)

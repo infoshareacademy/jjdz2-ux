@@ -11,6 +11,11 @@
     <title>Accessibility HTML</title>
 </head>
 <body>
+<form action="accessibility" method="post">
+    <lable>Podaj adres url domeny do sprawdzenia:</lable>
+    <input type="text" placeholder="Url domeny" name="domainurl">
+    <input type="submit" value="sprawdz">
+</form>
 <h2>Liczba linków na stronie</h2>
 <p>${linksInHtml}</p>
 

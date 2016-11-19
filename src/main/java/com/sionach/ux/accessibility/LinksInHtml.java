@@ -18,7 +18,7 @@ public class LinksInHtml {
     static final String LINK_ATTR = "href";
 
     public long noOfLinksInHtml(String htmlCode){
-        ParseHtmlString html = new ParseHtmlString();
+        ParseHtmlUrl html = new ParseHtmlUrl();
         return html.atributesValueFromHtmlTag(htmlCode, LINK_TAG, LINK_ATTR).stream()
                 .filter(tag -> tag.matches("(?i)^[^#]{1}.*$"))
                 .filter(tag -> tag.matches("[^\\(]*"))
