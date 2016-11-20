@@ -6,6 +6,27 @@ import org.jsoup.select.Elements;
 
 
 public class HeadlinesInHtml {
+    private String htmlCode;
+    private static final String TAG_HEADLINE = "h1, h2, h3, h4, h5, h6";
+    private static final String TAG_H1 = "h1";
+    public void setHtmlCode(String htmlCode) {
+        this.htmlCode = htmlCode;
+    }
+
+    public int checkNoHeadlinesOccurance(){
+        return new ParseHtmlString().tagsTextFromHtml(htmlCode,TAG_HEADLINE).size();
+    }
+
+    public int checkNoH1Occurance(){
+        return new ParseHtmlString().tagsTextFromHtml(htmlCode,TAG_H1).size();
+    }
+
+//    public static void main(String[] args) {
+//        String htmlCode = "<html lang=\"pl-pl\"><head></head><body><h1>test</h1><h1>hej</h1><h4>bla</h4></body></html> ";
+//        HeadlinesInHtml headlines = new HeadlinesInHtml();
+//        headlines.setHtmlCode(htmlCode);
+//        System.out.println(headlines.checkNoH1Occurance());
+//    }
 
     public String checkNoOccurrancesH1(String htmlCode) {
         String noH1 = "";
