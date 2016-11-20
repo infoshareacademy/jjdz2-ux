@@ -1,15 +1,13 @@
 package com.sionach.ux.color;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by ablazejewska on 20.11.16.
  */
+@Entity
 public class DistHex {
 
     public void setDistinctHex(Set<String> distinctHex) {
