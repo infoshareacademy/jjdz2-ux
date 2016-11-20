@@ -3,8 +3,7 @@ package com.sionach.ux.color;
 import com.sionach.ux.filemanagment.ReadFiles;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,13 +13,9 @@ public class ClipColors {
     @PersistenceContext
     EntityManager entityManager;
 
-    private Set<String> distinctHex = new HashSet<>();
+    public Set<String> ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
 
-    public Set<String> getDistinctHex() {
-        return distinctHex;
-    }
-
-    public void ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
+        DistHex distHex = new DistHex();
 
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
         CssListFromHtml cssFromHtml = new CssListFromHtml();
@@ -58,7 +53,7 @@ public class ClipColors {
         for (String item : distinctColorsNames) {
             try {
                 convertColorToHex.nameToHex(item);
-                this.distinctHex.add(convertColorToHex.getColorHex());
+                distHex.getDistinctHex().add(convertColorToHex.getColorHex());
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
@@ -67,15 +62,15 @@ public class ClipColors {
         for (String item : distinctColorsHexRgbRgba) {
             try {
                 convertColorToHex.checkColorFormatAndConvert(item);
-                this.distinctHex.add(convertColorToHex.getColorHex());
+                distHex.getDistinctHex().add(convertColorToHex.getColorHex());
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
         }
 
-        for (String singleHex : distinctHex){
-            entityManager.persist(singleHex);
-        }
+
+        entityManager.persist(distHex);
+        return distHex.getDistinctHex();
 
     }
 

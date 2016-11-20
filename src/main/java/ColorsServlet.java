@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,9 +51,7 @@ public class ColorsServlet extends HttpServlet {
 
         String htmlInString = htmlFile.readFileToString("index.html");
 
-        Set<String> distinctHex;
-        clipColors.ClipColorsFromData(htmlInString,cssFile);
-        distinctHex = clipColors.getDistinctHex();
+        Set<String> distinctHex = clipColors.ClipColorsFromData(htmlInString,cssFile);
         LOGGER.info("przekazujemy Color Servelt {}",clipColors );
 
         req.setAttribute("listOfColors", distinctHex);
