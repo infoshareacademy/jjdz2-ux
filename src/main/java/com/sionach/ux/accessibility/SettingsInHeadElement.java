@@ -18,6 +18,8 @@ public class SettingsInHeadElement {
     private static final String TAG_META_KEYWORDS = "meta[name=keywords]";
     private static final String TAG_TITLE = "title";
     private static final String TAG_LINK_CANONICAL = "link[rel=canonical]";
+    private static final String TAG_HTML = "html";
+    private static final String ATTR_TAG_LANG = "lang";
 
     public void setHtmlCode(String htmlCode) {
         this.htmlCode = htmlCode;
@@ -57,13 +59,28 @@ public class SettingsInHeadElement {
         return new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,TAG_LINK_CANONICAL,ATTR_TAG_HREF).size();
     }
 
-//    public static void main(String[] args) {
-//        ReadFiles file = new ReadFiles("infoshareacademy/index.html");
-//        String htmlCode = file.readFileToString();
-//        SettingsInHeadElement sets = new SettingsInHeadElement();
-//        sets.setHtmlCode(htmlCode);
-//        System.out.println(sets.checkNoRelCanonicalOccurance());
-//    }
+    //meta charset
+
+    public boolean checkHtmlLang(){
+        String lang = new ParseHtmlString().atributesValueFromHtmlTag(htmlCode,TAG_HTML,ATTR_TAG_LANG).toString().replaceAll("\\[*\\]*","");
+        System.out.println(lang);
+        Pattern pattern = Pattern.compile("(?i)^[a-z]{2}\\-[a-z]{2}$");
+        Matcher m = pattern.matcher(lang);
+        Pattern patternShort = Pattern.compile("(?i)^[a-z]{2}$");
+        Matcher mShort = patternShort.matcher(lang);
+        if(m.find() || mShort.find())
+            return true;
+        else
+            return false;
+    }
+
+    public static void main(String[] args) {
+
+        String htmlCode = "<html lang=\"pl-pl\"><head></head><body></body></html> ";
+        SettingsInHeadElement sets = new SettingsInHeadElement();
+        sets.setHtmlCode(htmlCode);
+        System.out.println(sets.checkHtmlLang());
+    }
 
     public List<String> checkHeadSettings(String htmlCode) {
         List<String> settingsInfo = new ArrayList<>();
