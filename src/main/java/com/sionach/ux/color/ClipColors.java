@@ -3,11 +3,17 @@ package com.sionach.ux.color;
 import com.sionach.ux.filemanagment.ReadFiles;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Stateless
 public class ClipColors {
+
+    @PersistenceContext
+    EntityManager entityManager;
+
     private Set<String> distinctHex = new HashSet<>();
 
     public Set<String> getDistinctHex() {
@@ -65,6 +71,10 @@ public class ClipColors {
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
+        }
+
+        for (String singleHex : distinctHex){
+            entityManager.persist(singleHex);
         }
 
     }
