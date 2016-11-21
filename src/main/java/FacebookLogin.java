@@ -3,19 +3,21 @@ import com.sionach.ux.facebook.FBGraph;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-public class MainMenu extends HttpServlet {
+@WebServlet(urlPatterns = "/facelog")
+public class FacebookLogin extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private String code="";
 
 	public void service(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException {		
+			throws ServletException, IOException {
 		code = req.getParameter("code");
 		if (code == null || code.equals("")) {
 			throw new RuntimeException(
