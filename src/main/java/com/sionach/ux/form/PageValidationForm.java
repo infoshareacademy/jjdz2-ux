@@ -14,12 +14,10 @@ public class PageValidationForm {
     @EJB
     ReadFiles readFiles;
 
-    private Map<String, String> answerMap = new HashMap<>();
-    private String fileWithAnswers = "answerMap";
-
     public Map<String, String> generateAnswers(Map<String, String[]> formAnswers){
 
-        Map<String, List<String>> fileAnswers = readFiles.readFileToMapWith2Values(fileWithAnswers);
+        Map<String, List<String>> fileAnswers = readFiles.readFileToMapWith2Values("answerMap");
+        Map<String, String> answerMap = new HashMap<>();
         for(Map.Entry<String, String[]> item:formAnswers.entrySet()){
 
             List<String> answears = fileAnswers.get(item.getKey());
