@@ -1,0 +1,34 @@
+{
+  "questions": {
+    "key": "question1",
+    "title": "Czy Twoje ilustracje na stronie są opatrzone wypełnionymi atrybutaki alt ?",
+    "options": {
+      "answear1": "answear1",
+      "answear2": "answear2"
+    },
+    "key": "question2",
+    "title": "Czy na Twojej stronie znajdują się nagłówhi h1, h2, h3 ?",
+    "options": {
+      "answear1": "answear1",
+      "answear2": "answear2"
+    },
+    "key": "question3",
+    "title": "Czy wszystkie podstrony posiadają unikalny tytuł ?",
+    "options": {
+      "answear1": "answear1",
+      "answear2": "answear2"
+    },
+    "key": "question4",
+    "title": "Czy każda z podstron zawiera opis ?",
+    "options": {
+      "answear1": "answear1",
+      "answear2": "answear2"
+    },
+    "key": "question5",
+    "title": "Czy wszyskie media na stronie są ładowane w ostatniej kolejności ?",
+    "options": {
+      "answear1": "answear1",
+      "answear2": "answear2"
+    }
+  }
+}
