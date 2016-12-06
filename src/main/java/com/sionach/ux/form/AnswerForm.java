@@ -21,4 +21,12 @@ public class AnswerForm {
     public void setAnswer2(String answer2) {
         this.answer2 = answer2;
     }
+
+    public String getAnswerByOption(String i) {
+        if (i.equals("1")) {
+            return answer1;
+        } else {
+            return answer2;
+        }
+    }
 }
