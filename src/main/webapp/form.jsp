@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: morhen
-  Date: 22.11.16
-  Time: 18:24
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -37,6 +31,11 @@
 <br/>
 <h3>Wyniki</h3>
 <div>
+    <ul>
+        <c:forEach items="${answers}" var="answer">
+        <li> ${answer.title}: <b>${answer.answers.answer1}</b>
+            </c:forEach>
+    </ul>
     <p>${answers}</p>
 </div>
 </body>
