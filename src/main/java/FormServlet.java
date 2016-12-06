@@ -1,4 +1,5 @@
-import com.sionach.ux.form.PageValidationForm;
+import com.sionach.ux.form.QuestionForm;
+import com.sionach.ux.form.QuestionsJsonReader;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -8,27 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/form")
 public class FormServlet extends HttpServlet {
 
     @EJB
-    PageValidationForm pageValidationForm;
+    QuestionsJsonReader qJsonReader;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<String, String[]> parameterMap = req.getParameterMap();
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Map<String, String> answersMap;
+        List<QuestionForm> questions = qJsonReader.readJsonFile();
 
-        answersMap = pageValidationForm.generateAnswers(parameterMap);
-
-
-        req.setAttribute("answers", answersMap);
+        req.setAttribute("questions", questions);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/form.jsp");
-        System.out.println("wysyłam");
         dispatcher.forward(req, resp);
     }
 }
