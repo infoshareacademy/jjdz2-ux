@@ -1,14 +1,11 @@
 package com.sionach.ux.form;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.ejb.Stateless;
 import java.util.LinkedList;
 import java.util.List;
 
+
+@Stateless
 public class QuestionsJsonReader {
 
     public static final String JSON_FILE = "target/classes/answerMap.json";
@@ -48,7 +45,7 @@ public class QuestionsJsonReader {
     public List<QuestionForm> readJsonFile() {
 
         List<QuestionForm> questions = new LinkedList<>();
-        for(int i=0; i<5; i++){
+        for (int i = 0; i < 5; i++) {
             QuestionForm questionForm = new QuestionForm();
             questionForm.setKey(i);
             questionForm.setTitle("question" + i);
