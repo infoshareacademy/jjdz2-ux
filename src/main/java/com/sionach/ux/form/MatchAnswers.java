@@ -14,6 +14,7 @@ public class MatchAnswers {
 
         for (QuestionForm item : questions) {
 
+            answers.add(item.getTitle());
             answers.add(item.getAnswers().getAnswerByOption(parameters.get(String.valueOf(item.getKey()))[0]));
         }
 
