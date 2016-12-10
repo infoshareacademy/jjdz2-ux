@@ -29,12 +29,12 @@ public class FacebookLogin extends HttpServlet {
     public static final Token EMPTY_TOKEN = null;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         OAuth20Service service = new ServiceBuilder()
                 .apiKey("339512966407211")
                 .apiSecret("f3f144e2ef310fbbf507f8ed8dac0e7c")
-                .callback("http://localhost/callback")
+                .callback("http://localhost:8080/callback")
                 .build(FacebookApi.instance());
 
         String authorizationUrl=service.getAuthorizationUrl();
