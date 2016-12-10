@@ -1,11 +1,10 @@
 package com.sionach.ux.form;
 
-public class QuestionForm {
+public class Question {
 
     private int key;
     private String title;
-    private AnswerForm answers;
-
+    private Answers answers;
 
     public int getKey() {
         return key;
@@ -23,11 +22,11 @@ public class QuestionForm {
         this.title = title;
     }
 
-    public AnswerForm getAnswers() {
+    public Answers getAnswers() {
         return answers;
     }
 
-    public void setAnswers(AnswerForm answers) {
+    public void setAnswers(Answers answers) {
         this.answers = answers;
     }
 }

@@ -1,7 +1,7 @@
 package com.sionach.ux.form;
 
 
-public class AnswerForm {
+public class Answers {
 
     private String answer1;
     private String answer2;
