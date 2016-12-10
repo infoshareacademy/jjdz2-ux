@@ -34,7 +34,7 @@ public class FacebookLogin extends HttpServlet {
         OAuth20Service service = new ServiceBuilder()
                 .apiKey("339512966407211")
                 .apiSecret("f3f144e2ef310fbbf507f8ed8dac0e7c")
-                .callback("http://localhost:8080/callback")
+                .callback("http://localhost:8080/sionach-ux/callback")
                 .build(FacebookApi.instance());
 
         String authorizationUrl=service.getAuthorizationUrl();
