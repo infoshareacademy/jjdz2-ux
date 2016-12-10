@@ -7,6 +7,7 @@ import com.github.scribejava.apis.FacebookApi;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.oauth.OAuth20Service;
 import com.github.scribejava.core.oauth.OAuthService;
 
 
@@ -30,14 +31,13 @@ public class FacebookLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        OAuthService service = new ServiceBuilder()
-                .provider(FacebookApi.class)
+        OAuth20Service service = new ServiceBuilder()
                 .apiKey("339512966407211")
                 .apiSecret("f3f144e2ef310fbbf507f8ed8dac0e7c")
                 .callback("http://localhost/callback")
-                .build();
+                .build(FacebookApi.instance());
 
-        String authorizationUrl = service.getAuthorizationUrl(EMPTY_TOKEN);
+        String authorizationUrl=service.getAuthorizationUrl();
         System.out.println("Authorization URL : "+authorizationUrl);
 
         resp.sendRedirect(authorizationUrl);
