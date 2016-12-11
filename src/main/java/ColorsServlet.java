@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
-
 /**
  * Created by allic on 02/11/2016.
  */
@@ -50,10 +49,17 @@ public class ColorsServlet extends HttpServlet {
 
         String htmlInString = htmlFile.readFileToString("index.html");
 
-        Set<String> distinctHex;
-        clipColors.ClipColorsFromData(htmlInString,cssFile);
-        distinctHex = clipColors.getDistinctHex();
+        Set<String> distinctHex = clipColors.ClipColorsFromData(htmlInString,cssFile);
         LOGGER.info("przekazujemy Color Servelt {}",clipColors );
+
+        //zapis distinctHex do bazy danych
+//        for (String hex:distinctHex) {
+//            Query query = entityManager
+//                    .createQuery("INSERT INTO colors(colors) VALUES (hex)");
+//            Object single = query.getSingleResult();
+//            List list = query.getFirstResult();
+//        }
+
 
         req.setAttribute("listOfColors", distinctHex);
 
