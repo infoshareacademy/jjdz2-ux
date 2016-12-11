@@ -1,10 +1,18 @@
-package com.sionach.ux.database;
+package com.sionach.ux.databaseEntities;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by allic on 11/12/2016.
  */
-public class Accessibility {
+@Entity
+@Table(name="accessibility")
+public class Accessibility implements Serializable{
+    @Column(name="domain_id",unique = false)
     private int domain_id;
+
+    @Column(name="recommendation",unique = false)
     private String recommendation;
 
     public int getDomain_id() {
@@ -21,5 +29,17 @@ public class Accessibility {
 
     public void setRecommendation(String recommendation) {
         this.recommendation = recommendation;
+    }
+
+
+    private String id;
+
+    @Id
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

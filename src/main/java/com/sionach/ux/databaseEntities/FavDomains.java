@@ -1,11 +1,22 @@
-package com.sionach.ux.database;
+package com.sionach.ux.databaseEntities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by allic on 11/12/2016.
  */
-public class FavDomains {
+@Entity
+@Table(name="fav_domains")
+public class FavDomains implements Serializable {
+    @Column(name="primary_key")
     private int primary_key;
+    @Column(name="user_id")
     private int user_id;
+    @Column(name="domain_id")
     private String domain_url;
 
     public int getPrimary_key() {
@@ -30,5 +41,16 @@ public class FavDomains {
 
     public void setDomain_url(String domain_url) {
         this.domain_url = domain_url;
+    }
+
+    @Id
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

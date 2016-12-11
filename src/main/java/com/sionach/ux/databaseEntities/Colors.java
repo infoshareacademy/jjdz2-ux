@@ -1,11 +1,22 @@
-package com.sionach.ux.database;
+package com.sionach.ux.databaseEntities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by allic on 11/12/2016.
  */
-public class Colors {
+@Entity
+@Table(name="colors")
+public class Colors implements Serializable{
+    @Column(name="domain_id")
     private int domain_id;
+    @Column(name="colors")
     private String colors;
+    @Column(name="test-date")
     private String test_date;
 
     public int getDomain_id() {
@@ -30,5 +41,16 @@ public class Colors {
 
     public void setTest_date(String test_date) {
         this.test_date = test_date;
+    }
+
+    @Id
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

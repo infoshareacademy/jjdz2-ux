@@ -1,22 +1,27 @@
-package com.sionach.ux.database;
+package com.sionach.ux.databaseEntities;
+
+import com.sun.xml.internal.ws.developer.UsesJAXBContext;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by allic on 11/12/2016.
  */
-public class Users {
-    private int id;
+@Entity
+@Table(name="users")
+public class Users implements Serializable{
+    @Column(name="firstname")
     private String firstname;
+    @Column(name="lastname")
     private String lastname;
+    @Column(name="email")
     private String email;
+    @Column(name="role")
     private int role;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFirstname() {
         return firstname;
@@ -48,5 +53,16 @@ public class Users {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    @Id
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
