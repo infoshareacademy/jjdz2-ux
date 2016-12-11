@@ -13,7 +13,7 @@ public class Colors implements Serializable{
     private int domain_id;
     @Column(name="colors")
     private String colors;
-    @Column(name="test-date")
+    @Column(name="test_date")
     private String test_date;
 
     public int getDomain_id() {

@@ -52,6 +52,17 @@ public class ColorsServlet extends HttpServlet {
         Set<String> distinctHex = clipColors.ClipColorsFromData(htmlInString,cssFile);
         LOGGER.info("przekazujemy Color Servelt {}",clipColors );
 
+        //zapis distinctHex do bazy danych
+//        for (String hex:distinctHex) {
+//            String query = "INSERT INTO colors(colors) VALUES (hex)";
+//            Query queryObj = getSession().createSQLQuery(query);
+//            int updated = queryObj.executeUpdate();
+//        }
+
+//        Statement stmt = con.createStatement( );
+//        String SQL="INSERT INTO colors(colors) VALUES (hex)";
+//        ResultSet rs = stmt.executeQuery( SQL );
+
         req.setAttribute("listOfColors", distinctHex);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/formColors.jsp");
