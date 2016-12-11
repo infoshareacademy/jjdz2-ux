@@ -1,11 +1,18 @@
 package com.sionach.ux.form;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.List;
+
 public class Question {
 
     private int key;
-    private String title;
-    private Answers answers;
 
+    private String title;
+
+    private List<Answer> answers;
+
+    @JsonProperty("key")
     public int getKey() {
         return key;
     }
@@ -14,6 +21,7 @@ public class Question {
         this.key = key;
     }
 
+    @JsonProperty("title")
     public String getTitle() {
         return title;
     }
@@ -22,11 +30,13 @@ public class Question {
         this.title = title;
     }
 
-    public Answers getAnswers() {
+    @JsonDeserialize(as=List.class)
+    @JsonProperty("options")
+    public List<Answer> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(Answers answers) {
+    public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
 }

@@ -1,34 +1,44 @@
 {
-  "questions": {
-    "key": 1,
-    "title": "Czy Twoje ilustracje na stronie są opatrzone wypełnionymi atrybutaki alt ?",
-    "options": {
-      "answear1": "answear1",
-      "answear2": "answear2"
+  "questions": [
+    {
+      "key": 1,
+      "title": "Czy Twoje ilustracje na stronie są opatrzone wypełnionymi atrybutaki alt ?",
+      "options": [
+        {"answer": "answear1"},
+        {"answer": "answear2"}
+      ]
     },
-    "key": 2,
-    "title": "Czy na Twojej stronie znajdują się nagłówhi h1, h2, h3 ?",
-    "options": {
-      "answear1": "answear1",
-      "answear2": "answear2"
+    {
+      "key": 2,
+      "title": "Czy na Twojej stronie znajdują się nagłówhi h1, h2, h3 ?",
+      "options": [
+        {"answer": "answear1"},
+        {"answer": "answear2"}
+      ]
     },
-    "key": 3,
-    "title": "Czy wszystkie podstrony posiadają unikalny tytuł ?",
-    "options": {
-      "answear1": "answear1",
-      "answear2": "answear2"
+    {
+      "key": 3,
+      "title": "Czy wszystkie podstrony posiadają unikalny tytuł ?",
+      "options": [
+        {"answer": "answear1"},
+        {"answer": "answear2"}
+      ]
     },
-    "key": 4,
-    "title": "Czy każda z podstron zawiera opis ?",
-    "options": {
-      "answear1": "answear1",
-      "answear2": "answear2"
+    {
+      "key": 4,
+      "title": "Czy każda z podstron zawiera opis ?",
+      "options": [
+        {"answer": "answear1"},
+        {"answer": "answear2"}
+      ]
     },
-    "key": 5,
-    "title": "Czy wszyskie media na stronie są ładowane w ostatniej kolejności ?",
-    "options": {
-      "answear1": "answear1",
-      "answear2": "answear2"
+    {
+      "key": 5,
+      "title": "Czy wszyskie media na stronie są ładowane w ostatniej kolejności ?",
+      "options": [
+        {"answer": "answear1"},
+        {"answer": "answear2"}
+      ]
     }
-  }
+  ]
 }
