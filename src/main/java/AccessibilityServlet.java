@@ -22,30 +22,6 @@ public class AccessibilityServlet extends HttpServlet {
     AccessibilityRecommendations accessibilityRecommendations;
 
 
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String fileName = req.getParameter("filename");
-//        String htmlCode = readFiles.readFileToString(fileName);
-//        Long noLinks = linksInHtml.noOfLinksInHtml(htmlCode);
-//        List<String> deprecatedList = deprecatedTagsInHtml.deprecatedHtmlTagsList(fileName);
-//        String deprecatedTagsString;
-//        if(deprecatedList.size()>0){
-//            deprecatedTagsString = deprecatedList.toString();
-//
-//        }else{
-//            deprecatedTagsString = "Strona nie posiada zdeprecjonowanych elementów";
-//        }
-//
-//        req.setAttribute("linksInHtml", noLinks);
-//        req.setAttribute("deprecatedTags", deprecatedTagsString);
-//        //req.setAttribute("htmlcode", htmlCode);
-//        RequestDispatcher dispatcher = req.getRequestDispatcher("/accessibility.jsp");
-//
-//        dispatcher.forward(req, resp);
-//    }
-//
-//    @Override
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String domainUrl = req.getParameter("domainurl");
@@ -56,6 +32,7 @@ public class AccessibilityServlet extends HttpServlet {
         req.setAttribute("deprecatedTags", accessibilityRecommendations.checkDeprecatedTags());
         req.setAttribute("headRecommendations", accessibilityRecommendations.checkHeadParameters());
         req.setAttribute("headlinesHtml", accessibilityRecommendations.checkHeadlinesInBodyHtml());
+        req.setAttribute("domainurl", domainUrl.replaceAll("http://","").replaceAll("https://",""));
 
 
 

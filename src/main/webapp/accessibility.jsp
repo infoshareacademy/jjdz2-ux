@@ -4,36 +4,44 @@
 
 <main class="container">
 
-<article>
-    <header><h1>Wyniki testu dostępności Twojej strony internetowej</h1></header>
+<article class="test-results">
+    <header><h1>Wyniki testu dostępności dla<br>${domainurl}</h1></header>
+    <a href="#" class="exact-form-show">Sprawdź inną stronę</a>
+
+    <form action="accessibility" method="post" class="form-inline exact-form">
+        <input type="text" placeholder="Url domeny" name="domainurl">
+        <button type="submit" class="btn btn-warning">Testuj</button>
+    </form>
     <h2>Liczba linków na stronie</h2>
-    <p>${linksInHtml}</p>
+    <div class="recommendation-box"><p>${linksInHtml}</p></div>
+
 
     <h2>Zdeprecjonowane tagi html</h2>
-    <p>${deprecatedTags}</p>
+    <div class="recommendation-box">
     <ul>
         <c:forEach items="${deprecatedTags}" var="recommendationDeprecated">
             <li>${recommendationDeprecated}</li>
         </c:forEach>
     </ul>
+    </div>
     <h2>Ustawienia w sekcji head</h2>
-
+    <div class="recommendation-box">
     <ul>
         <c:forEach items="${headRecommendations}" var="recommendation">
             <li>${recommendation}</li>
         </c:forEach>
     </ul>
+    </div>
     <h2>Nagłówki na stronie</h2>
+    <div class="recommendation-box">
     <ul>
         <c:forEach items="${headlinesHtml}" var="recommendationHeadline">
             <li>${recommendationHeadline}</li>
         </c:forEach>
     </ul>
+    </div>
 </article>
-    <form action="accessibility" method="post">
-        <input type="text" placeholder="Url domeny" name="domainurl">
-        <input type="submit" value="sprawdz">
-    </form>
+
 </main>
 
 

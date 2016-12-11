@@ -7,6 +7,15 @@ body{
     line-height: 1.5;
 }
 
+a{
+    color: #f9ae30;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #434345;
+}
+
 h1,h2,h3{
     text-align: center;
 }
@@ -143,7 +152,7 @@ section.slider form button{
 }
 
 main{
-    
+    padding-bottom: 3em;
 }
 
 article header{
@@ -156,17 +165,7 @@ ul.services-list{
     list-style: none;
     
 }
-/*
-ul.services-list li{
-    width: 260px;
-    float: left;
-    margin-right: 45px;
-    display: block;
-}
 
-ul.services-list li:last-child{
-    margin-right: 0;
-}*/
 
 ul.services-list li img{
     display: block;
@@ -233,4 +232,30 @@ p.bottom-text{
     color: #989899;
     border-top: 1px solid #989899;
     margin-top: 20px;
+}
+
+article.test-results h2{
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+div.recommendation-box{
+    border: 1px solid #989899;
+    border-radius: 5px;
+    background-color: #eaeaea;
+    padding: 15px;
+}
+
+div.recommendation-box ul{
+    list-style: none;
+
+}
+
+div.recommendation-box ul li{
+    margin-bottom: 1.1em;
+}
+
+form.exact-form{
+    display: none;
 }

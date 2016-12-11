@@ -21,7 +21,7 @@
         </ul>
     </nav>
     <div class="row primary-menu">
-        <a href="/" class="logo col-lg-5"><img src="images/logo.png" alt="Sionach" title="Sionach" ></a>
+        <a href="/sionach-ux/" class="logo col-lg-5"><img src="images/logo.png" alt="Sionach" title="Sionach" ></a>
         <nav class="primary-nav col-lg-7 navbar navbar-default">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed menu-button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -33,7 +33,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav row">
-                    <li class="col-lg-3"><a href="">Home</a></li>
+                    <li class="col-lg-3"><a href="/sionach-ux/">Home</a></li>
                     <li class="col-lg-3"><a href="">Web test</a></li>
                     <li class="col-lg-3"><a href="">O projekcie</a></li>
                     <li class="col-lg-3"><a href="">Kontakt</a></li>
