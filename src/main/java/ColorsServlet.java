@@ -63,19 +63,26 @@ public class ColorsServlet extends HttpServlet {
 //        List<Long> domains = entityManager.createQuery("SELECT d.id FROM Domains d", Long.class).getResultList();
 //        System.out.println(domains);
 
-        req.setAttribute("listOfColors", distinctHex);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/formColors.jsp");
-        dispatcher.forward(req, resp);
-
         //zapis do bazy danych wyszukanych kolorów
-        Colors colors = new Colors();
         for (String hex:distinctHex){
+            Colors colors = new Colors();
             colors.setColors(hex);
+            colors.setDomain_id(22364);
+            colors.setTest_date("24.11.1991");
+            //entityManager.getTransaction().begin();
             entityManager.persist(colors);
+            //entityManager.getTransaction().commit();
         }
 
         List<String> colores = entityManager.createQuery("SELECT d.colors FROM Colors d", String.class).getResultList();
         System.out.println(colores);
+
+        //przekazanie do formColors.jsp
+        req.setAttribute("listOfColors", distinctHex);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/formColors.jsp");
+        dispatcher.forward(req, resp);
+
+
 
     }
 
