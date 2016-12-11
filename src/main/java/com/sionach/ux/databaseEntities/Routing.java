@@ -1,9 +1,6 @@
 package com.sionach.ux.databaseEntities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -44,6 +41,7 @@ public class Routing implements Serializable{
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     public String getId() {

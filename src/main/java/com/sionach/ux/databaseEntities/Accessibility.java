@@ -35,6 +35,7 @@ public class Accessibility implements Serializable{
     private String id;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public String getId() {
         return id;
     }

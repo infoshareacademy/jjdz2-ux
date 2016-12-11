@@ -2,10 +2,7 @@ package com.sionach.ux.databaseEntities;
 
 import com.sun.xml.internal.ws.developer.UsesJAXBContext;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -56,6 +53,7 @@ public class Users implements Serializable{
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     public String getId() {
