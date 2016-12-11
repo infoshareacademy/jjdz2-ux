@@ -52,15 +52,11 @@ public class Users implements Serializable{
         this.role = role;
     }
 
+    @Column(name="id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-
-    public String getId() {
+    private Long id;
+    public Long getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

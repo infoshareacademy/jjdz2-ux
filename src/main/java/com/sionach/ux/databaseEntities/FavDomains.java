@@ -40,15 +40,11 @@ public class FavDomains implements Serializable {
         this.domain_url = domain_url;
     }
 
+    @Column(name="id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-
-    public String getId() {
+    private Long id;
+    public Long getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

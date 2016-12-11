@@ -31,16 +31,11 @@ public class Accessibility implements Serializable{
         this.recommendation = recommendation;
     }
 
-
-    private String id;
-
+    @Column(name="id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public String getId() {
+    private Long id;
+    public Long getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }
