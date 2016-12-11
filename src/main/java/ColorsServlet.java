@@ -54,14 +54,12 @@ public class ColorsServlet extends HttpServlet {
 
         //zapis distinctHex do bazy danych
 //        for (String hex:distinctHex) {
-//            String query = "INSERT INTO colors(colors) VALUES (hex)";
-//            Query queryObj = getSession().createSQLQuery(query);
-//            int updated = queryObj.executeUpdate();
+//            Query query = entityManager
+//                    .createQuery("INSERT INTO colors(colors) VALUES (hex)");
+//            Object single = query.getSingleResult();
+//            List list = query.getFirstResult();
 //        }
 
-//        Statement stmt = con.createStatement( );
-//        String SQL="INSERT INTO colors(colors) VALUES (hex)";
-//        ResultSet rs = stmt.executeQuery( SQL );
 
         req.setAttribute("listOfColors", distinctHex);
 
