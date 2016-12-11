@@ -1,7 +1,6 @@
+import com.sionach.ux.accessibility.AccessibilityRecommendations;
 import com.sionach.ux.accessibility.DeprecatedTagsInHtml;
 import com.sionach.ux.accessibility.LinksInHtml;
-import com.sionach.ux.accessibility.SettingsInHeadElement;
-import com.sionach.ux.filemanagment.ReadFiles;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -18,11 +17,9 @@ import java.util.List;
 public class AccessibilityServlet extends HttpServlet {
 
     @EJB
-    LinksInHtml linksInHtml;
-    @EJB
     DeprecatedTagsInHtml deprecatedTagsInHtml;
     @EJB
-    SettingsInHeadElement settingsInHeadElement;
+    AccessibilityRecommendations accessibilityRecommendations;
 
 
 //    @Override
@@ -52,38 +49,14 @@ public class AccessibilityServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String domainUrl = req.getParameter("domainurl");
-        Long noLinks = linksInHtml.noOfLinksInHtml(domainUrl);
-        List<String> deprecatedList = deprecatedTagsInHtml.deprecatedHtmlTagsList(domainUrl);
-        String deprecatedTagsString;
-        settingsInHeadElement.setDomainUrl(domainUrl);
-        int descriptionOccurance = settingsInHeadElement.checkNoDescriptionOccurance();
-        int descriptionLength = settingsInHeadElement.checkDescriptionLength();
-        int metaKeywordsOccurance = settingsInHeadElement.checkMetaKeywordsOccurance();
-        int titleOccurance = settingsInHeadElement.checkNoTitleOccurance();
-        int titleLength = settingsInHeadElement.checkTitleLength();
-        int relCanonicalOccurance = settingsInHeadElement.checkNoRelCanonicalOccurance();
-        boolean isRelCanonical = settingsInHeadElement.checkRelCanonical();
-        boolean htmlLang = settingsInHeadElement.checkHtmlLang();
 
+        accessibilityRecommendations.setDomainUrl(domainUrl);
 
+        req.setAttribute("linksInHtml", accessibilityRecommendations.checkLinksInHtml());
+        req.setAttribute("deprecatedTags", accessibilityRecommendations.checkDeprecatedTags());
+        req.setAttribute("headRecommendations", accessibilityRecommendations.checkHeadParameters());
+        req.setAttribute("headlinesHtml", accessibilityRecommendations.checkHeadlinesInBodyHtml());
 
-        if(deprecatedList.size()>0){
-            deprecatedTagsString = deprecatedList.toString();
-
-        }else{
-            deprecatedTagsString = "Strona nie posiada zdeprecjonowanych elementów";
-        }
-
-        req.setAttribute("linksInHtml", noLinks);
-        req.setAttribute("deprecatedTags", deprecatedTagsString);
-        req.setAttribute("descriptionOccurance", descriptionOccurance);
-        req.setAttribute("descriptionLength", descriptionLength);
-        req.setAttribute("metaKeywordsOccurance", metaKeywordsOccurance);
-        req.setAttribute("titleOccurance", titleOccurance);
-        req.setAttribute("titleLength", titleLength);
-        req.setAttribute("relCanonicalOccurance", relCanonicalOccurance);
-        req.setAttribute("isRelCanonical", isRelCanonical);
-        req.setAttribute("htmlLnag", htmlLang);
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/accessibility.jsp");

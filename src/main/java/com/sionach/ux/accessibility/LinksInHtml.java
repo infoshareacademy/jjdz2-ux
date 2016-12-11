@@ -11,15 +11,20 @@ import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
 
-@Stateless
+
 public class LinksInHtml {
 
-    static final String LINK_TAG = "a";
-    static final String LINK_ATTR = "href";
+    public void setDomainUrl(String domainUrl) {
+        this.domainUrl = domainUrl;
+    }
 
-    public long noOfLinksInHtml(String htmlCode){
+    private String domainUrl;
+    private static final String LINK_TAG = "a";
+    private static final String LINK_ATTR = "href";
+
+    public long noOfLinksInHtml(){
         ParseHtmlUrl html = new ParseHtmlUrl();
-        return html.atributesValueFromHtmlTag(htmlCode, LINK_TAG, LINK_ATTR).stream()
+        return html.atributesValueFromHtmlTag(domainUrl, LINK_TAG, LINK_ATTR).stream()
                 .filter(tag -> tag.matches("(?i)^[^#]{1}.*$"))
                 .filter(tag -> tag.matches("[^\\(]*"))
                 .count();
