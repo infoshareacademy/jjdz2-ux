@@ -1,7 +1,5 @@
 package com.sionach.ux.databaseEntities;
 
-import com.sun.xml.internal.ws.developer.UsesJAXBContext;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
