@@ -7,7 +7,7 @@
 <body>
 <h3>Wyniki</h3>
 <div>
-    <c:forEach items="${answer}" var="answer">
+    <c:forEach items="${answers}" var="answer">
         <p>${answer}</p>
     </c:forEach>
 </div>

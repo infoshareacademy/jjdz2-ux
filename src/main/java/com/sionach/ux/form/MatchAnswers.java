@@ -18,14 +18,14 @@ public class MatchAnswers {
         }
         List<String> answers = new LinkedList<>();
 
-//        for (QuestionsForm item : questions) {
-//
-//            answers.add(item.getTitle());
-//            answers.add(item.getAnswers().getAnswerByOption(parameters.get(String.valueOf(item.getKey()))[0]));
-//        }
-
-        System.out.println(questions);
-
+        for (Question item : questions.getQuestionsAndAnswers()) {
+            answers.add(item.getTitle());
+            for (Answer answer : item.getAnswers()) {
+                if (parameters.get(String.valueOf(item.getKey()))[0].equals(String.valueOf(answer.getOption()))) {
+                    answers.add(answer.getAnswer());
+                }
+            }
+        }
         return answers;
     }
 }

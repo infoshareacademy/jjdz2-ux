@@ -1,13 +1,10 @@
 package com.sionach.ux.form;
 
-
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ejb.Stateless;
 import java.io.File;
 import java.io.IOException;
-
 
 @Stateless
 public class QuestionsJsonReader {

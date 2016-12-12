@@ -8,7 +8,7 @@
 <h3>Wypełnij formularz</h3>
 
 <form method="post" action="formAnswers" title="Formularz walidacji strony www">
-    <c:forEach items="${questions}" var="question">
+    <c:forEach items="${questions.questionsAndAnswers}" var="question">
         <p>${question.title}</p>
         <input type="radio" name="${question.key}" value="1">Tak
         <input type="radio" name="${question.key}" value="0" checked="checked">Nie <br/>
