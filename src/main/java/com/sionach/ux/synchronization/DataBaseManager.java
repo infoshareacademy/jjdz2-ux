@@ -1,4 +1,4 @@
-package com.sionach.ux;
+package com.sionach.ux.synchronization;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
