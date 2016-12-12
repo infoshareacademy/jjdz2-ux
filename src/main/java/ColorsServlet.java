@@ -1,10 +1,10 @@
 import com.sionach.ux.color.ClipColors;
 import com.sionach.ux.color.CssListFromHtml;
 import com.sionach.ux.databaseEntities.Colors;
-import com.sionach.ux.databaseEntities.Domains;
 import com.sionach.ux.filemanagment.ReadFiles;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -72,6 +72,7 @@ public class ColorsServlet extends HttpServlet {
             //entityManager.getTransaction().begin();
             entityManager.persist(colors);
             //entityManager.getTransaction().commit();
+            //entityManager.close();
         }
 
         List<String> colores = entityManager.createQuery("SELECT d.colors FROM Colors d", String.class).getResultList();
