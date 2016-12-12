@@ -4,16 +4,16 @@
       "key": 1,
       "title": "Czy Twoje ilustracje na stronie są opatrzone wypełnionymi atrybutaki alt ?",
       "options": [
-        {"answer": "answear1", "option": 0},
-        {"answer": "answear2", "option": 1}
+        {"answer": "Powinieneś zaopatrzyć każdy obrazek w swój unikatowy atrybut alt. Dzięki temu Twoja witryna będzie lepiej czytana przez roboty indeksujące strony internetowe.", "option": 0},
+        {"answer": "Bardzo dobrze. Upewnij się jednak czy wszystkie obrazki są opatrzone tym atrybutem. W tym celu wykorzystaj nasze bezpłatne narzędzie", "option": 1}
       ]
     },
     {
       "key": 2,
       "title": "Czy na Twojej stronie znajdują się nagłówhi h1, h2, h3 ?",
       "options": [
-        {"answer": "answear1", "option": 0},
-        {"answer": "answear2", "option": 1}
+        {"answer": "Powinieneś dodać odpowiednio 1 nagłówek h1 na każdej z podstron, oraz conajmniej 1 nagłówek h2, oraz h3.", "option": 0},
+        {"answer": "Bardzo dobrze. Żeby być pewnym, że nie pominąłeś żadnej z podstron skorzystaj z naszych narzędzi.", "option": 1}
       ]
     },
     {
@@ -36,8 +36,8 @@
       "key": 5,
       "title": "Czy wszyskie media na stronie są ładowane w ostatniej kolejności ?",
       "options": [
-        {"answer": "answear1",  "option": 0},
-        {"answer": "answear2",  "option": 1}
+        {"answer": "Pamiętaj, że nie każdy użytkownik posiada szybkie łącze internetowe. Odwiedzający Twoją stronę mogą szybko się zniecierpliwić jej ładowaniem, i zacząć szukać alternatywy u konkurencji. ",  "option": 0},
+        {"answer": "Świetnie!",  "option": 1}
       ]
     }
   ]
