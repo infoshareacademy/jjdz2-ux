@@ -21,6 +21,13 @@ public class AccessibilityServlet extends HttpServlet {
     @EJB
     AccessibilityRecommendations accessibilityRecommendations;
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/accessibility.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

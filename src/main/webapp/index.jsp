@@ -7,16 +7,17 @@
             <div class="col-lg-6 col-lg-offset-3">
                 <nav class="type-test-nav">
                     <ul>
-                        <li><a href="" class="active">UX</a></li>
-                        <li><a href="">GRAFIKA</a></li>
-                        <li><a href="">SEO</a></li>
+                        <li><a href="#" class="active" data-form="accessibility">UX</a></li>
+                        <li><a href="#" data-form="colors">KOLORY</a></li>
+                        <li><a href="#" data-form="keywords">SEO</a></li>
+                        <li><a href="#" data-form="routing">LINKI</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
-                <form action="accessibility" method="post" class="form-inline">
+                <form id="main-form" action="accessibility" method="post" class="form-inline">
                     <input class=""type="text" name="domainurl" placeholder="Podaj adres witryny"><button type="submit" class="btn btn-warning">Testuj</button>
                 </form>
             </div>
