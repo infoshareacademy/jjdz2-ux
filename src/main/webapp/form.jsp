@@ -25,7 +25,7 @@
                 </div>
             </c:forEach>
             <button type="submit" class="btn btn-warning">Wyślij</button>
-            <button type="reset" class="btn btn-danger">Wyślij</button>
+            <button type="reset" class="btn btn-danger">Resetuj</button>
         </form>
 
     </div>
