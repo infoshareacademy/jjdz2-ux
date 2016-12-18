@@ -2,6 +2,7 @@ package com.sionach.ux.databaseEntities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by allic on 11/12/2016.
@@ -14,7 +15,7 @@ public class Colors implements Serializable{
     @Column(name="colors")
     private String colors;
     @Column(name="test_date")
-    private String test_date;
+    private Date test_date;
 
     public int getDomain_id() {
         return domain_id;
@@ -32,11 +33,11 @@ public class Colors implements Serializable{
         this.colors = colors;
     }
 
-    public String getTest_date() {
+    public Date getTest_date() {
         return test_date;
     }
 
-    public void setTest_date(String test_date) {
+    public void setTest_date(Date test_date) {
         this.test_date = test_date;
     }
 
