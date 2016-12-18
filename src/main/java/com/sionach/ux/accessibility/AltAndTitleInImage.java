@@ -8,9 +8,6 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by allic on 14/10/2016.
- */
 public class AltAndTitleInImage {
     public List<String> ImageAltTitle(String htmlCode) {
         Document doc = Jsoup.parse(htmlCode);
