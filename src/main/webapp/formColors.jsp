@@ -11,7 +11,10 @@
     <%--action to sciezka na jaka ma byc wyslane zadanie http--%>
     <form method="post" action="colors">
         Write or paste the url of your page:
-        <input class=""type="text" name="domainurl" placeholder="Podaj adres witryny">
+        <select name="choose">
+            <option value="infoshareacademy">infoshareacademy</option>
+            <option value="wmh">wmh</option>
+        </select>
         <input type="submit" value="OK">
     </form>
 </div>

@@ -50,11 +50,11 @@ public class ColorsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String choose = req.getParameter("domainurl");
-//        cssFile.setDefaultPatch("target/classes/" + choose + "/style.css");
-//        htmlFile.setDefaultPatch("target/classes/" + choose + "/");
+        String choose = req.getParameter("choose");
+        cssFile.setDefaultPatch("target/classes/" + choose + "/style.css");
+        htmlFile.setDefaultPatch("target/classes/" + choose + "/");
 
-//        String htmlInString = htmlFile.readFileToString("index.html");
+        String htmlInString = htmlFile.readFileToString("index.html");
 
 
 
