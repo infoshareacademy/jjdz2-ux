@@ -1,6 +1,6 @@
+import com.sionach.ux.accessibility.AccessibilityRecommendations;
 import com.sionach.ux.accessibility.DeprecatedTagsInHtml;
 import com.sionach.ux.accessibility.LinksInHtml;
-import com.sionach.ux.filemanagment.ReadFiles;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -17,29 +17,25 @@ import java.util.List;
 public class AccessibilityServlet extends HttpServlet {
 
     @EJB
-    LinksInHtml linksInHtml;
-    @EJB
-    ReadFiles readFiles;
-    @EJB
     DeprecatedTagsInHtml deprecatedTagsInHtml;
+    @EJB
+    AccessibilityRecommendations accessibilityRecommendations;
+
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String fileName = req.getParameter("filename");
-        String htmlCode = readFiles.readFileToString(fileName);
-        Long noLinks = linksInHtml.noOfLinksInHtml(htmlCode);
-        List<String> deprecatedList = deprecatedTagsInHtml.deprecatedHtmlTagsList(fileName);
-        String deprecatedTagsString;
-        if(deprecatedList.size()>0){
-            deprecatedTagsString = deprecatedList.toString();
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String domainUrl = req.getParameter("domainurl");
 
-        }else{
-            deprecatedTagsString = "Strona nie posiada zdeprecjonowanych elementów";
-        }
+        accessibilityRecommendations.setDomainUrl(domainUrl);
 
-        req.setAttribute("linksInHtml", noLinks);
-        req.setAttribute("deprecatedTags", deprecatedTagsString);
-        //req.setAttribute("htmlcode", htmlCode);
+        req.setAttribute("linksInHtml", accessibilityRecommendations.checkLinksInHtml());
+        req.setAttribute("deprecatedTags", accessibilityRecommendations.checkDeprecatedTags());
+        req.setAttribute("headRecommendations", accessibilityRecommendations.checkHeadParameters());
+        req.setAttribute("headlinesHtml", accessibilityRecommendations.checkHeadlinesInBodyHtml());
+        req.setAttribute("domainurl", domainUrl.replaceAll("http://","").replaceAll("https://",""));
+
+
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("/accessibility.jsp");
 
         dispatcher.forward(req, resp);
