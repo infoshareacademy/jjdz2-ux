@@ -259,3 +259,8 @@ div.recommendation-box ul li{
 form.exact-form{
     display: none;
 }
+
+.glyphicon{
+    margin-right: 20px;
+    cursor: pointer;
+}

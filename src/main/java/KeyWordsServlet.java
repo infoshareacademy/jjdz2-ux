@@ -18,9 +18,9 @@ public class KeyWordsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String link = req.getParameter("link");
+        String link = req.getParameter("domainurl");
 
-        req.setAttribute("keyWords", String.join("<br />", keyWords.extractKeyWords(link)));
+        req.setAttribute("keyWords", keyWords.extractKeyWords(link));
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/keywords.jsp");
 
