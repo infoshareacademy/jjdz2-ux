@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav row">
                     <li class="col-lg-3"><a href="/sionach-ux/">Home</a></li>
-                    <li class="col-lg-3"><a href="">Web test</a></li>
+                    <li class="col-lg-3"><a href="/sionach-ux/form">Web test</a></li>
                     <li class="col-lg-3"><a href="">O projekcie</a></li>
                     <li class="col-lg-3"><a href="">Kontakt</a></li>
                 </ul>
