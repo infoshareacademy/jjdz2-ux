@@ -3,15 +3,11 @@ package com.sionach.ux.color;
 import com.sionach.ux.filemanagment.ReadFiles;
 
 import javax.ejb.Stateless;
-import javax.persistence.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Stateless
 public class ClipColors {
-
-    @PersistenceContext
-    EntityManager entityManager;
 
     public Set<String> ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
 
@@ -68,8 +64,6 @@ public class ClipColors {
             }
         }
 
-
-        entityManager.persist(distHex);
         return distHex.getDistinctHex();
 
     }

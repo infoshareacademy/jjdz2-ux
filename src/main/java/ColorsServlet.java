@@ -1,6 +1,7 @@
 import com.sionach.ux.color.ClipColors;
 import com.sionach.ux.color.CssListFromHtml;
 import com.sionach.ux.databaseEntities.Colors;
+import com.sionach.ux.databaseEntities.ColorsDAO;
 import com.sionach.ux.filemanagment.ReadFiles;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,9 +35,8 @@ public class ColorsServlet extends HttpServlet {
     ReadFiles cssFile;
     @EJB
     CssListFromHtml cssFromHtml;
-
-    @PersistenceContext
-    EntityManager entityManager;
+    @EJB
+    ColorsDAO colorsDAO;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -59,32 +59,13 @@ public class ColorsServlet extends HttpServlet {
         Set<String> distinctHex = clipColors.ClipColorsFromData(htmlInString,cssFile);
         LOGGER.info("przekazujemy Color Servelt {}",clipColors );
 
-//        //pobranie czasu utworzenia listy distinctHex
-//        List<Long> domains = entityManager.createQuery("SELECT d.id FROM Domains d", Long.class).getResultList();
-//        System.out.println(domains);
-
-        //zapis do bazy danych wyszukanych kolorów
-        for (String hex:distinctHex){
-            Colors colors = new Colors();
-            colors.setColors(hex);
-            colors.setDomain_id(22364);
-            colors.setTest_date("24.11.1991");
-            //entityManager.getTransaction().begin();
-            entityManager.persist(colors);
-            //entityManager.getTransaction().commit();
-            //entityManager.close();
-        }
-
-        List<String> colores = entityManager.createQuery("SELECT d.colors FROM Colors d", String.class).getResultList();
-        System.out.println(colores);
+        colorsDAO.save(distinctHex);
+        colorsDAO.readColors();
 
         //przekazanie do formColors.jsp
         req.setAttribute("listOfColors", distinctHex);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/formColors.jsp");
         dispatcher.forward(req, resp);
-
-
-
     }
 
 }
