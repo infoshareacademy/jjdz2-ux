@@ -10,11 +10,8 @@
     <%--action "color" do servlet colors, "keywords" do keywords srvlet--%>
     <%--action to sciezka na jaka ma byc wyslane zadanie http--%>
     <form method="post" action="colors">
-        Choose page:
-        <select name="choose">
-            <option value="infoshareacademy">infoshareacademy</option>
-            <option value="wmh">wmh</option>
-        </select>
+        Write or paste the url of your page:
+        <input class=""type="text" name="domainurl" placeholder="Podaj adres witryny">
         <input type="submit" value="OK">
     </form>
 </div>

@@ -16,7 +16,7 @@
 <header class="top container">
     <nav class="top-nav row">
         <ul class="top-nav col-lg-3 col-lg-offset-9 col-xs-12 row">
-            <li class="col-lg-6 col-xs-6"><a href="">Logowanie</a></li>
+            <li class="col-lg-6 col-xs-6"><a href="login.jsp">Logowanie</a></li>
             <li class="col-lg-6 col-xs-6"><a href="">Rejestracja</a></li>
         </ul>
     </nav>
