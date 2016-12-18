@@ -7,6 +7,7 @@ import facebook4j.Facebook;
 import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
 import facebook4j.User;
+import facebook4j.auth.AccessToken;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -46,6 +47,8 @@ public class FacebookCallback extends HttpServlet {
         Facebook facebook = new FacebookFactory().getInstance();
         facebook.setOAuthAppId(API_KEY,API_SECRET);
         try {
+            //facebook.getOAuthAppAccessToken();
+            facebook.setOAuthAccessToken(new AccessToken("9ddaa99271ad0cdda928ebbf3279080e",null));
             User me = facebook.getMe();
             String name = me.getFirstName();
             String surname = me.getLastName();
