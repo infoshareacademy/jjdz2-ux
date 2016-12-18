@@ -1,9 +1,5 @@
 package com.sionach.ux.accessibility;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-
 
 public class HeadlinesInHtml {
 
