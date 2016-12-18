@@ -12,4 +12,8 @@ $(document).ready(function(){
        return false;
    });
 
+    $('ul.keywords-list li span.glyphicon-heart').on('click',function(){
+        $(this).removeClass('glyphicon-heart').addClass('glyphicon-ok');
+    });
+
 });
