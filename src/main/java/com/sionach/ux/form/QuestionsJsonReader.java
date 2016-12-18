@@ -2,21 +2,32 @@ package com.sionach.ux.form;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import javax.ejb.Stateless;
-import java.io.File;
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import java.io.IOException;
 
-@Stateless
+@Startup
+@Singleton
 public class QuestionsJsonReader {
 
-    public static final String JSON_FILE = "target/classes/answerMap.json";
+    private QuestionsForm questionsForm;
 
-    public QuestionsForm readJsonFile() throws IOException {
+    public static final String JSON_FILE_NAME = "answerMap.json";
+
+    @PostConstruct
+    public void readJsonFile() {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        QuestionsForm questionsForm = objectMapper.readValue(new File(JSON_FILE), QuestionsForm.class);
+        try {
+            questionsForm = objectMapper.readValue(QuestionsJsonReader.class.getClassLoader().getResource(JSON_FILE_NAME), QuestionsForm.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public QuestionsForm getQuestionsForm() {
         return questionsForm;
     }
 }
