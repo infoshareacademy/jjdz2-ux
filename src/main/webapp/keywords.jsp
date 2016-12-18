@@ -7,7 +7,7 @@
 <div>
     <form method="post" action="keywords">
         Wybierz stronę
-        <input tyle="text" name="link" value="http://www.">
+        <input type="text" name="link" value="http://www.">
 
         <input type="submit" value="OK">
     </form>

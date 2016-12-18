@@ -1,0 +1,44 @@
+{
+  "questions": [
+    {
+      "key": 1,
+      "title": "Czy Twoje ilustracje na stronie są opatrzone wypełnionymi atrybutami alt ?",
+      "options": [
+        {"answer": "Powinieneś zaopatrzyć każdy obrazek w swój unikatowy atrybut alt. Dzięki temu Twoja witryna będzie lepiej czytana przez roboty indeksujące strony internetowe.", "option": 0},
+        {"answer": "Bardzo dobrze. Upewnij się jednak czy wszystkie obrazki są opatrzone tym atrybutem. W tym celu wykorzystaj nasze bezpłatne narzędzie.", "option": 1}
+      ]
+    },
+    {
+      "key": 2,
+      "title": "Czy na Twojej stronie znajdują się nagłówhi h1, h2, h3 ?",
+      "options": [
+        {"answer": "Powinieneś dodać odpowiednio 1 nagłówek h1 na każdej z podstron, oraz conajmniej 1 nagłówek h2, oraz h3.", "option": 0},
+        {"answer": "Bardzo dobrze. Żeby być pewnym, że nie pominąłeś żadnej z podstron skorzystaj z naszych narzędzi.", "option": 1}
+      ]
+    },
+    {
+      "key": 3,
+      "title": "Czy wszystkie podstrony posiadają unikalny tytuł ?",
+      "options": [
+        {"answer": "Ustaw unikalny tytuł na każdej ze swoich podstron. Pamiętaj aby tytuł miał więcej niż 55 i mniej niż 60 znaków.", "option": 0},
+        {"answer": "Świetnie! Sprawdź jednak czy Twój tytuł ma odpowiednią ilość znaków używając naszych narzędzi.", "option": 1}
+      ]
+    },
+    {
+      "key": 4,
+      "title": "Czy każda z podstron zawiera opis ?",
+      "options": [
+        {"answer": "Opis na każdej z podstron jest bardzo ważny. Zapewnia to lepsze indeksowanie strony.", "option": 0},
+        {"answer": "Super! Sprawdź czy oipisy na Twoich podstronach mają od 150 do 160 znaków.", "option": 1}
+      ]
+    },
+    {
+      "key": 5,
+      "title": "Czy wszyskie media na stronie są ładowane w ostatniej kolejności ?",
+      "options": [
+        {"answer": "Pamiętaj, że nie każdy użytkownik posiada szybkie łącze internetowe. Odwiedzający Twoją stronę mogą szybko się zniecierpliwić jej ładowaniem, i zacząć szukać alternatywy u konkurencji.",  "option": 0},
+        {"answer": "Świetnie! Upewnij się, że Twoja strona nie zawiera niepotrzebnych elementów.",  "option": 1}
+      ]
+    }
+  ]
+}
