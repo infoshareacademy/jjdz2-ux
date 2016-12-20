@@ -14,7 +14,20 @@ import java.util.regex.Pattern;
  */
 public class ParseCssFromHtmlUrl{
 
-    public List<String> CssFromUrl(String domainUrl){
+    public List<String> GetTotalCssListFromUrl(String domainUrl){
+        List<String> totalList = new ArrayList<>();
+
+        totalList.addAll(FindCssFromUrl(domainUrl));
+
+        List<String> linkList = FindCssLinkInHTML(domainUrl);
+        List<String> cssFromExternalCSSLink = GetCssListFromLink(linkList);
+
+        totalList.addAll(cssFromExternalCSSLink);
+
+        return totalList;
+    }
+
+    private List<String> FindCssFromUrl(String domainUrl){
         Document doc = ReadDocument(domainUrl);
         String docString =doc.toString();
         CssListFromHtml csslistFromHtml = new CssListFromHtml();
@@ -28,8 +41,15 @@ public class ParseCssFromHtmlUrl{
         return newList;
     }
 
-    //link uzyskany z ponizszej metody jest argumentem powyzszej metody
-    public List<String> CssLinkFromHTML(String domainUrl){
+    private List<String> GetCssListFromLink(List<String> linkList){
+        List<String> listFromLink = new ArrayList<>();
+        for (String s: linkList) {
+            listFromLink.addAll(FindCssFromUrl(s));
+        }
+        return listFromLink;
+    }
+
+    private List<String> FindCssLinkInHTML(String domainUrl){
         Document doc = ReadDocument(domainUrl);
         String docString =doc.toString();
 
@@ -55,8 +75,6 @@ public class ParseCssFromHtmlUrl{
 
         return cssList;
     }
-
-
 
     private Document ReadDocument(String domainUrl){
         Document doc = null;
