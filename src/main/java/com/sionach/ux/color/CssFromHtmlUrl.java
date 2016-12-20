@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 /**
  * Created by allic on 20/12/2016.
  */
-public class ParseCssFromHtmlUrl{
+public class CssFromHtmlUrl {
 
     public List<String> GetTotalCssListFromUrl(String domainUrl){
         List<String> totalList = new ArrayList<>();
