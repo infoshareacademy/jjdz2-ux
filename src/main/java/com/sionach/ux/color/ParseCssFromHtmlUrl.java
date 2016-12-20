@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public class ParseCssFromHtmlUrl{
 
-    public List<String> CssFromHTMLHead(String domainUrl){
+    public List<String> CssFromUrl(String domainUrl){
         Document doc = ReadDocument(domainUrl);
         String docString =doc.toString();
         CssListFromHtml csslistFromHtml = new CssListFromHtml();
