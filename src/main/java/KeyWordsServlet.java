@@ -20,7 +20,7 @@ public class KeyWordsServlet extends HttpServlet {
 
         String link = req.getParameter("domainurl");
 
-        req.setAttribute("keyWords", keyWords.extractKeyWords(link));
+        req.setAttribute("keyWords", keyWords.keyWordsListLinks(keyWords.extractKeyWords(link)));
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/keywords.jsp");
 
