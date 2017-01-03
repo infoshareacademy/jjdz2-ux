@@ -12,12 +12,14 @@ public class RoutingServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/routing.jsp");
-        dispatcher.forward(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String link = req.getParameter("domainurl");
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("/routing.jsp");
         dispatcher.forward(req, resp);
     }
