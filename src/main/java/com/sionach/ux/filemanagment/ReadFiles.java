@@ -16,9 +16,8 @@ import java.util.Map;
 @Stateless
 public class ReadFiles {
 
-    private String defaultPatch = "target/classes/";
-
     private static final Logger LOGGER = LogManager.getLogger(ReadFiles.class);
+    private String defaultPatch = "target/classes/";
 
     public List<String> readFileToList(String filename) {
 
@@ -49,23 +48,6 @@ public class ReadFiles {
         String fileString = String.join(" ", fileList);
         LOGGER.debug("Return file as String");
         return fileString;
-    }
-
-    public Map<String, List<String>> readFileToMapWith2Values(String filename){
-
-        List<String> fileList;
-        fileList = readFileToList(filename);
-        Map<String, List<String>> fileMap = new HashMap<>();
-        List<String> temp = new ArrayList<>();
-        int counter = 0;
-        while(fileList.size() > counter){
-            temp.clear();
-            temp.add(fileList.get(counter + 1));
-            temp.add(fileList.get(counter + 2));
-            fileMap.put(fileList.get(counter), temp);
-            counter = counter + 3;
-        }
-        return fileMap;
     }
 
     public void setDefaultPatch(String defaultPatch) {
