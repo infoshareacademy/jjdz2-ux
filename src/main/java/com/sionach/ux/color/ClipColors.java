@@ -8,13 +8,10 @@ import java.util.stream.Collectors;
 
 @Stateless
 public class ClipColors {
-    private Set<String> distinctHex = new HashSet<>();
 
-    public Set<String> getDistinctHex() {
-        return distinctHex;
-    }
+    public Set<String> ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
 
-    public void ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
+        DistHex distHex = new DistHex();
 
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
         CssListFromHtml cssFromHtml = new CssListFromHtml();
@@ -52,7 +49,7 @@ public class ClipColors {
         for (String item : distinctColorsNames) {
             try {
                 convertColorToHex.nameToHex(item);
-                this.distinctHex.add(convertColorToHex.getColorHex());
+                distHex.getDistinctHex().add(convertColorToHex.getColorHex());
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
@@ -61,11 +58,13 @@ public class ClipColors {
         for (String item : distinctColorsHexRgbRgba) {
             try {
                 convertColorToHex.checkColorFormatAndConvert(item);
-                this.distinctHex.add(convertColorToHex.getColorHex());
+                distHex.getDistinctHex().add(convertColorToHex.getColorHex());
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
         }
+
+        return distHex.getDistinctHex();
 
     }
 

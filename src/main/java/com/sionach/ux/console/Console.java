@@ -71,7 +71,7 @@ public class Console {
                         ClipColors clipColors = new ClipColors();
                         clipColors.ClipColorsFromData(htmlInString,cssFile);
                         System.out.println("Użyte kolory na stronie to:\n");
-                        System.out.println(clipColors.getDistinctHex());
+                        System.out.println(clipColors);
                         break;
                     case 3:
                         String baseUrl;
