@@ -4,7 +4,7 @@
 
 <main class="container">
 
-    <header><h1>Wypełnij formularz</h1></header>
+    <h1>Wypełnij formularz</h1>
 
     <div class="col-lg-6 col-lg-offset-3">
 
