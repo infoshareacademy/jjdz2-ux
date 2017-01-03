@@ -22,7 +22,7 @@ public class MatchAnswers {
             answers.add(item.getTitle());
             for (Answer answer : item.getAnswers()) {
                 if (parameters.get(String.valueOf(item.getKey()))[0].equals(String.valueOf(answer.getOption()))) {
-                    answers.add(answer.getAnswer());
+                    answers.add(String.valueOf(answer.getOption()) + answer.getAnswer());
                 }
             }
         }
