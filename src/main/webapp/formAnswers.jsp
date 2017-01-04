@@ -11,7 +11,7 @@
             <c:forEach items="${answers}" var="answer">
                 <c:choose>
                     <c:when test="${answer.contains(\"?\")}">
-                        <h2>${answer}</h2>
+                        <h2>${answer.substring(1)}</h2>
                     </c:when>
                     <c:otherwise>
                         <c:choose>
