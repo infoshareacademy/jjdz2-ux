@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 <form id="main-form" action="accessibility" method="post" class="form-inline">
-                    <input class=""type="text" name="domainurl" placeholder="Podaj adres witryny"><button type="submit" class="btn btn-warning">Testuj</button>
+                    <input type="text" name="domainurl" placeholder="Podaj adres witryny"><button type="submit" class="btn btn-warning">Testuj</button>
                 </form>
             </div>
         </div>
