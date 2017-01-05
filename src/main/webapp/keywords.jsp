@@ -8,10 +8,14 @@
 
     <article class="test-results">
         <c:if test="${badconnect != null}">
-            <div class="alert alert-danger" role="alert">${badconnect}</div>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            ${badconnect}</div>
         </c:if>
         <c:if test="${badform != null}">
-            <div class="alert alert-danger" role="alert">${badform}</div>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            ${badform}</div>
         </c:if>
         <header><h1>Wyniki testu słów kluczowych dla<br>${domainurl}</h1></header>
         <a href="#" class="exact-form-show">Sprawdź inną stronę</a>
