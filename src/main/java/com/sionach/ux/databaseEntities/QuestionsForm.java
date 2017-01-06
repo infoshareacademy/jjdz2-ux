@@ -7,15 +7,15 @@ import java.io.Serializable;
  * Created by allic on 11/12/2016.
  */
 @Entity
-@Table(name="questions_form")
-public class QuestionsForm implements Serializable{
-    @Column(name="question_id")
+@Table(name = "questions_form")
+public class QuestionsForm implements Serializable {
+    @Column(name = "question_id")
     private int question_id;
-//    @Column(name="user_id")
+    //    @Column(name="user_id")
 //    private int user_id;
-    @Column(name="answer")
+    @Column(name = "answer")
     private int answer;
-    @Column(name="id")
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -46,5 +46,14 @@ public class QuestionsForm implements Serializable{
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "ID : " + id + " - " +
+                        "Question ID: " + question_id +
+                        " - " +
+                        "Answer ID: " + answer;
     }
 }
