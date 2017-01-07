@@ -7,6 +7,16 @@
 <main class="container">
 
     <article class="test-results">
+        <c:if test="${badconnect != null}">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            ${badconnect}</div>
+        </c:if>
+        <c:if test="${badform != null}">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            ${badform}</div>
+        </c:if>
         <header><h1>Wyniki testu słów kluczowych dla<br>${domainurl}</h1></header>
         <a href="#" class="exact-form-show">Sprawdź inną stronę</a>
 
@@ -16,11 +26,12 @@
         </form>
 
         <h2>Lista słów kluczowych na Twojej stronie:</h2>
-        <p>Aby dodać słowo do ulubionych kliknijserduszko ook słowa kluczowego</p>
+        <p>Aby dodać słowo do ulubionych kliknij serduszko obok słowa kluczowego</p>
+        <p>Aby sprawdzić wyniki wyszukiwania dla danej frazy kliknij w nią</p>
         <div class="recommendation-box">
             <ul class="keywords-list">
                 <c:forEach items="${keyWords}" var="keyword">
-                    <li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>${keyword}</li>
+                    <li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a href="https://google.pl/#q=${keyword.keywordUrl}" target="_blank">${keyword.keyword}</a></li>
                 </c:forEach>
             </ul>
         </div>

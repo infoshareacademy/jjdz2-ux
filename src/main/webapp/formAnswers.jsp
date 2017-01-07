@@ -14,9 +14,21 @@
                         <h2>${answer}</h2>
                     </c:when>
                     <c:otherwise>
-                        <div class="recommendation-box">
-                                ${answer}
-                        </div>
+                        <c:choose>
+                            <c:when test="${answer.contains(\"0\")}">
+                                <div class="recommendation-box">
+                                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                        ${answer.substring(1)}
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="recommendation-box">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                        ${answer.substring(1)}
+                                </div>
+                            </c:otherwise>
+
+                        </c:choose>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>

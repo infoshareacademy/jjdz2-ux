@@ -7,6 +7,8 @@ import org.jsoup.select.Elements;
 
 import javax.ejb.Stateless;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -37,6 +39,15 @@ public class KeyWords {
         return keyWords.stream()
                 .flatMap(Collection::stream)
                 .collect(Collectors.toSet());
+    }
+
+    public List<KeyWordsLinks> keyWordsListLinks(Set<String> keywordsList) throws UnsupportedEncodingException {
+        List<KeyWordsLinks> keyWordsLinksList = new ArrayList<>();
+        for(String item:keywordsList){
+            keyWordsLinksList.add(new KeyWordsLinks(item, URLEncoder.encode(item, "UTF-8")));
+        }
+
+        return keyWordsLinksList;
     }
 
     private List<String> keywordsAnchor() {

@@ -74,17 +74,17 @@ public class Console {
                         System.out.println(clipColors);
                         break;
                     case 3:
-                        String baseUrl;
-                        if(tempChoice == 1){
-                            baseUrl = "wmh.pl";
-                        } else {
-                            baseUrl = "infoshareacademy.com";
-                        }
-                        LinkManagement links = new LinkManagement(htmlInString, baseUrl);
-                        System.out.println("Linki wewnętrzne:");
-                        System.out.println(links.getInnerLinks());
-                        System.out.println("Linki zewnętrzne:");
-                        System.out.println(links.getOuterLinks());
+//                        String baseUrl;
+//                        if(tempChoice == 1){
+//                            baseUrl = "wmh.pl";
+//                        } else {
+//                            baseUrl = "infoshareacademy.com";
+//                        }
+//                        LinkManagement links = new LinkManagement(htmlInString, baseUrl);
+//                        System.out.println("Linki wewnętrzne:");
+//                        System.out.println(links.getInnerLinks());
+//                        System.out.println("Linki zewnętrzne:");
+//                        System.out.println(links.getOuterLinks());
                         break;
                     case 4:
                         AccessibilityClip accessibilityClip = new AccessibilityClip();
