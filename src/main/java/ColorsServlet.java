@@ -46,7 +46,7 @@ public class ColorsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String urlPattern = req.getParameter("setHTMLpathColors");
+        String urlPattern = req.getParameter("domainurl");
 
         Set<String> distinctHex = clipColors.ClipColorsFromData(urlPattern);
         LOGGER.info("przekazujemy Color Servelt {}",clipColors );
