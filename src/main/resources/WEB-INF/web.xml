@@ -4,6 +4,10 @@
 
     <display-name>Facebook Login Application</display-name>
 
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>com.sionach.ux.synchronization.ContextListener</listener-class>
+    </listener>
 
     <servlet>
 
@@ -11,7 +15,7 @@
 
     <servlet-class>FacebookLogin</servlet-class>
 
-</servlet>
+    </servlet>
 
 
     <servlet-mapping>
