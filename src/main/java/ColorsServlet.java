@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Set;
 /**
  * Created by allic on 02/11/2016.
@@ -46,17 +49,37 @@ public class ColorsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String urlPattern = req.getParameter("domainurl");
+        String domainUrl = req.getParameter("domainurl");
 
-        Set<String> distinctHex = clipColors.ClipColorsFromData(urlPattern);
-        LOGGER.info("przekazujemy Color Servelt {}",clipColors );
 
-        colorsDAO.save(distinctHex);
-        colorsDAO.readColors();
+        try {
+            URL url = new URL(domainUrl);
+            URLConnection conn = url.openConnection();
+            conn.connect();
 
+            Set<String> distinctHex = clipColors.ClipColorsFromData(domainUrl);
+            LOGGER.info("przekazujemy Color Servelt {}",clipColors );
+
+            colorsDAO.save(distinctHex);
+            colorsDAO.readColors();
+            req.setAttribute("listOfColors", distinctHex);
+
+            req.setAttribute("domainurl", domainUrl.replaceAll("http://", "").replaceAll("https://", ""));
+
+
+
+        }catch (MalformedURLException e){
+            //nieprawidlowy format
+            String badForm = "Nieprawidłowy format adresu url Twojej witryny";
+            req.setAttribute("badform", badForm);
+        }catch (IOException e){
+            //nie mozna nawiazac polaczenia
+            String badConnect = "Niemożna nawiązać połączenia z Twoją witryną";
+            req.setAttribute("badconnect", badConnect);
+        }
         //przekazanie do formColors.jsp
-        req.setAttribute("listOfColors", distinctHex);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/formColors.jsp");
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/colors.jsp");
         dispatcher.forward(req, resp);
     }
 
