@@ -1,26 +1,33 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>KeyWords</title>
-</head>
-<body>
-<div>
-    <form method="post" action="keywords">
-        Wybierz stronę
-        <input tyle="text" name="link" value="http://www.">
-
-        <input type="submit" value="OK">
-    </form>
-</div>
+<jsp:include page="header.jsp" />
 
 
 
+<main class="container">
 
-<H2>Lista słów kluczowych na stronie</H2>
-<div>
-    <p>${keyWords}</p>
-</div>
+    <article class="test-results">
+        <header><h1>Wyniki testu słów kluczowych dla<br>${domainurl}</h1></header>
+        <a href="#" class="exact-form-show">Sprawdź inną stronę</a>
+
+        <form action="keywords" method="post" class="form-inline exact-form">
+            <input type="text" placeholder="Url domeny" name="domainurl">
+            <button type="submit" class="btn btn-warning">Testuj</button>
+        </form>
+
+        <h2>Lista słów kluczowych na Twojej stronie:</h2>
+        <p>Aby dodać słowo do ulubionych kliknijserduszko ook słowa kluczowego</p>
+        <div class="recommendation-box">
+            <ul class="keywords-list">
+                <c:forEach items="${keyWords}" var="keyword">
+                    <li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>${keyword}</li>
+                </c:forEach>
+            </ul>
+        </div>
 
 
-</body>
-</html>
+    </article>
+
+</main>
+
+<jsp:include page="footer.jsp" />
