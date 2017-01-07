@@ -17,6 +17,7 @@ public class ConvertColorToHex {
         this.colorHex = "#000000";
     }
 
+
     public String checkColorFormatAndConvert(String stringColor) {
         LOGGER.debug("Checking color format");
         if (stringColor.matches("(?i)#[0-9a-f]{2,6}")) {
