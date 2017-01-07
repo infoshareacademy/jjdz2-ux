@@ -1,5 +1,6 @@
 package com.sionach.ux.color;
 
+import com.sionach.ux.accessibility.ParseHtmlUrl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -49,6 +50,25 @@ public class CssFromHtmlUrl {
         return listFromLink;
     }
 
+//    private List<String> FindCssLinkInHTML(String domainUrl){
+//        List<String> cssList = new ArrayList<>();
+//        ParseHtmlUrl htmlDoc = new ParseHtmlUrl();
+//        cssList = htmlDoc.atributesValueFromHtmlTag(domainUrl,"link","href");
+//
+//        List<String> newList = new ArrayList<>();
+//        String patternHead = "(?i).*\\.css$";
+//        Pattern p1 = Pattern.compile(patternHead);
+//        for (String s : cssList){
+//            Matcher m1 = p1.matcher(s);
+//            while (m1.find()){
+//                newList.add(m1.group());
+//            }
+//        }
+//
+//        return newList;
+//    }
+
+
     private List<String> FindCssLinkInHTML(String domainUrl){
         Document doc = ReadDocument(domainUrl);
         String docString =doc.toString();
@@ -66,7 +86,7 @@ public class CssFromHtmlUrl {
 
         List<String> cssList = new ArrayList<>();
 
-        String patternCSS = "(?i)[a-zA-Z0-9]\\.css";
+        String patternCSS = "(?i)[0-9 a-z]{0,100}\\.css";
         Pattern p = Pattern.compile(patternCSS);
         Matcher m = p.matcher(headString);
         while (m.find()) {
