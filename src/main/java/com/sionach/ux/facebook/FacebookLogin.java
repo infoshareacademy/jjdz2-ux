@@ -4,12 +4,9 @@ package com.sionach.ux.facebook;
  * Created by ablazejewska on 10.12.16.
  */
 import com.github.scribejava.apis.FacebookApi;
-
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.Token;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import com.github.scribejava.core.oauth.OAuthService;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +31,7 @@ public class FacebookLogin extends HttpServlet {
         OAuth20Service service = new ServiceBuilder()
                 .apiKey("339512966407211")
                 .apiSecret("f3f144e2ef310fbbf507f8ed8dac0e7c")
-                .callback("http://localhost:8080/sionach-ux/callback")
+                .callback("http://localhost:8080/sionach-ux")
                 .build(FacebookApi.instance());
 
         String authorizationUrl=service.getAuthorizationUrl();
