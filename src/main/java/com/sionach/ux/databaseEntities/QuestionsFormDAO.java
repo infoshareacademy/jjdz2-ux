@@ -17,18 +17,14 @@ public class QuestionsFormDAO {
 
     public void saveForm(List<String> formQuestionsAndAnswers) {
 
-        for (String item : formQuestionsAndAnswers) {
+        for(int i=0; i<formQuestionsAndAnswers.size(); i++){
             QuestionsForm questionsForm = new QuestionsForm();
-            if (item.contains("?")) {
-                LOGGER.debug("PYTANIE###    " + item.substring(0, 1));
-                questionsForm.setQuestion_id(Integer.parseInt(item.substring(0, 1)));
-            } else {
-                LOGGER.debug("ODPOWIEDŹ#    " + item.substring(0, 1));
-                questionsForm.setAnswer(Integer.parseInt(item.substring(0, 1)));
-            }
+            questionsForm.setQuestion_id(Integer.parseInt(formQuestionsAndAnswers.get(i).substring(0, 1)));
+            questionsForm.setAnswer(Integer.parseInt(formQuestionsAndAnswers.get(i+1).substring(0, 1)));
+            i++;
             entityManager.persist(questionsForm);
+            LOGGER.info("Zapis do bazy danych");
         }
-        LOGGER.info("Zapis do bazy danych");
     }
 
     public void readForm() {
