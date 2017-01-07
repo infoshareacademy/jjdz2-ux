@@ -60,4 +60,9 @@ public class ParseHtmlUrl {
 
         return doc.toString();
     }
+
+    public String CheckProtocolInUrl(String domainUrl){
+        String domain = domainUrl;
+        return domain;
+    }
 }
