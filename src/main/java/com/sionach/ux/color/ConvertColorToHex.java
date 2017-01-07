@@ -17,6 +17,7 @@ public class ConvertColorToHex {
         this.colorHex = "#000000";
     }
 
+
     public String checkColorFormatAndConvert(String stringColor) {
         LOGGER.debug("Checking color format");
         if (stringColor.matches("(?i)#[0-9a-f]{2,6}")) {
@@ -97,7 +98,7 @@ public class ConvertColorToHex {
         LOGGER.debug("Starts color name to hex conversion");
         CreateNamesHexListFromFile createNamesHexListFromFile = new CreateNamesHexListFromFile();
         java.util.List<NamesHexTable> namesHexTableList;
-        namesHexTableList = createNamesHexListFromFile.fileToStringList();
+        namesHexTableList = createNamesHexListFromFile.createListOfColorsNames();
 
         String hex = "brak szukanego koloru";
         for (NamesHexTable aNamesHexTableList : namesHexTableList) {
