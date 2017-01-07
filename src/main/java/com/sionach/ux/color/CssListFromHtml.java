@@ -3,12 +3,13 @@ package com.sionach.ux.color;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+@Stateless
 public class CssListFromHtml {
 
     private static final Logger LOGGER = LogManager.getLogger("CssListFromHtml.class");
@@ -22,7 +23,6 @@ public class CssListFromHtml {
         Pattern p = Pattern.compile(patternStyle);
         Matcher m = p.matcher(htmlCode);
         while (m.find()) {
-            //codeList.add(m.group());
             codeInlineList.add(m.group().replaceAll("style\\=\"", "").replaceAll("\"", ""));
             LOGGER.info("CSS found");
         }
@@ -40,7 +40,6 @@ public class CssListFromHtml {
         Pattern p = Pattern.compile(patternStyle);
         Matcher m = p.matcher(htmlCode);
         while (m.find()) {
-            //codeList.add(m.group());
             codeHeadList.add(m.group().replaceAll("<style[^>]*>", "").replaceAll("</style>", ""));
             LOGGER.info("CSS found");
         }

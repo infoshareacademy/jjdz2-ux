@@ -8,21 +8,18 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by allic on 14/10/2016.
- */
 public class AltAndTitleInImage {
     public List<String> ImageAltTitle(String htmlCode) {
         Document doc = Jsoup.parse(htmlCode);
         Elements elements = doc.select("img");
-//        System.out.println(elements.toString());
+
         List<String> altTitleList = new ArrayList<>();
 
         List<String> imagesWithNoAltOrNoTitle = new ArrayList<>();
         imagesWithNoAltOrNoTitle.add("Lista obrazków które nie posiadają znacznika title lub alt:\n");
 
         for (Element item : elements) {
-//            System.out.println(item.toString());
+
             if (item.attr("alt").isEmpty()) {
                 imagesWithNoAltOrNoTitle.add(item.attr("src"));
             } else {

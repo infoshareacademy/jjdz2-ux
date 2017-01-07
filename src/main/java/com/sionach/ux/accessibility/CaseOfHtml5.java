@@ -27,6 +27,8 @@ public class CaseOfHtml5 {
         return html5List;
     }
 
+
+
     private void AttributesFromHtml5(String htmlCode, List<String> html5List) {
         Document doc = Jsoup.parse(htmlCode);
         Elements section = doc.select("section");

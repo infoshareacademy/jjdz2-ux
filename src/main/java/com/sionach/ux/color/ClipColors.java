@@ -1,67 +1,36 @@
 package com.sionach.ux.color;
 
-import com.sionach.ux.filemanagment.ReadFiles;
-import java.util.*;
-import java.util.stream.Collectors;
+import javax.ejb.Stateless;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+@Stateless
 public class ClipColors {
-    
-    public void ClipColorsFromData(String htmlInString, ReadFiles cssFile) {
+
+    public Set<String> ClipColorsFromData(String url) {
+
+        DistHex distHex = new DistHex();
+
+        CssFromHtmlUrl cssFromHtmlUrl = new CssFromHtmlUrl();
+        List<String> totalCssList = cssFromHtmlUrl.GetTotalCssListFromUrl(url);
+
+        List<String> colorsList = ExtractColorsFromData.extractHexRgbRgbaColors(totalCssList);
+        colorsList.addAll(ExtractColorsFromData.extractNamesColors(totalCssList));
 
         ConvertColorToHex convertColorToHex = new ConvertColorToHex();
-        CssListFromHtml cssFromHtml = new CssListFromHtml();
-        ExtractColorsFromData colors = new ExtractColorsFromData();
-        List<String> cssFromHtmlHead = cssFromHtml.codeHeadList(htmlInString);
-        List<String> cssFromHtmlInHtmlTags = cssFromHtml.codeInlineList(htmlInString);
-
-        List<String> colorsHexRgbRgbaFromCss = ExtractColorsFromData.extractHexRgbRgbaColors(cssFile.readFileToList());
-        List<String> colorsHexRgbRgbaFromHtmlHead = ExtractColorsFromData.extractHexRgbRgbaColors(cssFromHtmlHead);
-        List<String> colorsHexRgbRgbaFromHtmlInHtmlTags = ExtractColorsFromData.extractHexRgbRgbaColors(cssFromHtmlInHtmlTags);
-        List<String> colorNamesFromCss = ExtractColorsFromData.extractNamesColors(cssFile.readFileToList());
-        List<String> colorNamesFromHtmlHead = ExtractColorsFromData.extractNamesColors(cssFromHtmlHead);
-        List<String> colorNamesFromHtmlInHtmlTags = ExtractColorsFromData.extractNamesColors(cssFromHtmlInHtmlTags);
-
-        List<List<String>> colorsHexRgbRgbaOnPageWithDuplicates = Arrays.asList(colorsHexRgbRgbaFromCss,
-                colorsHexRgbRgbaFromHtmlHead,
-                colorsHexRgbRgbaFromHtmlInHtmlTags);
-
-        List<List<String>> colorsNamesOnPageWithDuplicates = Arrays.asList(colorNamesFromCss,
-                colorNamesFromHtmlHead,
-                colorNamesFromHtmlInHtmlTags);
-
-        Set<String> distinctColorsHexRgbRgba;
-        Set<String> distinctColorsNames;
-
-        Set<String> distinctHex = new HashSet<>();
-
-        distinctColorsHexRgbRgba = colorsHexRgbRgbaOnPageWithDuplicates.stream()
-                .flatMap(Collection::stream)
-                .collect(Collectors.toSet());
-
-        distinctColorsNames = colorsNamesOnPageWithDuplicates.stream()
-                .flatMap(Collection::stream)
-                .collect(Collectors.toSet());
-
-        for (String item : distinctColorsNames) {
-            try {
-                convertColorToHex.nameToHex(item);
-                distinctHex.add(convertColorToHex.getColorHex());
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }
+        List<String> colorHex = new ArrayList<>();
+        for (String s : colorsList) {
+            colorHex.add(convertColorToHex.checkColorFormatAndConvert(s));
         }
 
-        for (String item : distinctColorsHexRgbRgba) {
-            try {
-                convertColorToHex.checkColorFormatAndConvert(item);
-                distinctHex.add(convertColorToHex.getColorHex());
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }
-        }
+        Set<String> distinctColorsHex = new HashSet<>(colorHex);
 
-        System.out.println("Użyte kolory na stronie to:\n");
-        distinctHex.forEach(System.out::println);
+        distHex.setDistinctHex(distinctColorsHex);
+
+        return distHex.getDistinctHex();
 
     }
+
 }

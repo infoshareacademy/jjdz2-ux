@@ -3,8 +3,10 @@ package com.sionach.ux.color;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.ejb.Stateless;
 import java.awt.*;
 
+@Stateless
 public class ConvertColorToHex {
     private String colorHex;  // format #rrggbb
 
@@ -15,7 +17,7 @@ public class ConvertColorToHex {
         this.colorHex = "#000000";
     }
 
-    public void checkColorFormatAndConvert(String stringColor) {
+    public String checkColorFormatAndConvert(String stringColor) {
         LOGGER.debug("Checking color format");
         if (stringColor.matches("(?i)#[0-9a-f]{2,6}")) {
             LOGGER.info("Color is some HEX");
@@ -55,6 +57,7 @@ public class ConvertColorToHex {
             LOGGER.info("It might be color name");
             nameToHex(stringColor);
         }
+        return stringColor;
     }
 
     public void rgbToHex(int r, int g, int b) {
@@ -92,11 +95,10 @@ public class ConvertColorToHex {
 
     public void nameToHex(String name) {
         LOGGER.debug("Starts color name to hex conversion");
-        CreateNamesHexListFromFileTableNamesHex createNamesHexListFromFileTableNamesHex = new CreateNamesHexListFromFileTableNamesHex();
+        CreateNamesHexListFromFile createNamesHexListFromFile = new CreateNamesHexListFromFile();
         java.util.List<NamesHexTable> namesHexTableList;
-        namesHexTableList = createNamesHexListFromFileTableNamesHex.FileTolist();
+        namesHexTableList = createNamesHexListFromFile.fileToStringList();
 
-        //porównuje name z pierwszym polem namesHexTableList, jeśli równość zachodzi, przypisuje zmiennej hex drugie pole
         String hex = "brak szukanego koloru";
         for (NamesHexTable aNamesHexTableList : namesHexTableList) {
             if (aNamesHexTableList.getColorName().equals(name)) {
