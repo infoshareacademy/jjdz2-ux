@@ -7,15 +7,8 @@
 <body>
 
 <div>
-    <%--action "color" do servlet colors, "keywords" do keywords srvlet--%>
-    <%--action to sciezka na jaka ma byc wyslane zadanie http--%>
-    <form method="post" action="colors">
-        Choose page:
-        <select name="choose">
-            <option value="infoshareacademy">infoshareacademy</option>
-            <option value="wmh">wmh</option>
-        </select>
-        <input type="submit" value="OK">
+    <form method="post" action="setHTMLpath">
+        Enter a path to your HTML file: <input type="text" name="HTMLpathColors">
     </form>
 </div>
 
