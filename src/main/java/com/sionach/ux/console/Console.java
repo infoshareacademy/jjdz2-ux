@@ -69,7 +69,7 @@ public class Console {
 //                        break;
                     case 2:
                         ClipColors clipColors = new ClipColors();
-                        clipColors.ClipColorsFromData(htmlInString,cssFile);
+//                        clipColors.ClipColorsFromData(htmlInString,cssFile);
                         System.out.println("Użyte kolory na stronie to:\n");
                         System.out.println(clipColors);
                         break;
