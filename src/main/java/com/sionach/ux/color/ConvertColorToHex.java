@@ -97,7 +97,7 @@ public class ConvertColorToHex {
         LOGGER.debug("Starts color name to hex conversion");
         CreateNamesHexListFromFile createNamesHexListFromFile = new CreateNamesHexListFromFile();
         java.util.List<NamesHexTable> namesHexTableList;
-        namesHexTableList = createNamesHexListFromFile.fileToStringList();
+        namesHexTableList = createNamesHexListFromFile.createListOfColorsNames();
 
         String hex = "brak szukanego koloru";
         for (NamesHexTable aNamesHexTableList : namesHexTableList) {
