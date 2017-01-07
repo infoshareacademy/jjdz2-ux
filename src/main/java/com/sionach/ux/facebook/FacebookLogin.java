@@ -29,8 +29,8 @@ public class FacebookLogin extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         OAuth20Service service = new ServiceBuilder()
-                .apiKey("339512169740624")
-                .apiSecret("e720048a5e62f58b44bf6b36971fbcfb")
+                .apiKey("339512966407211")
+                .apiSecret("f3f144e2ef310fbbf507f8ed8dac0e7c")
                 .callback("http://localhost:8080/sionach-ux/callback")
                 .build(FacebookApi.instance());
 
