@@ -53,7 +53,7 @@ public class CssFromHtmlUrl {
     private List<String> GetCssListFromLink(List<String> linkList) {
         List<String> listFromLink = new ArrayList<>();
         try {
-            for (String s : linkList) {
+            for (String s : linkList) {//TODO
                 listFromLink.addAll(FindCssFromUrl(s));
             }
         } catch (Exception e) {
@@ -151,7 +151,7 @@ public class CssFromHtmlUrl {
                 Matcher m2 = p2.matcher(s);
                 Matcher m3 = p3.matcher(s);
                 if (m2.find()) {
-                    newList.add(m1.group());
+                    newList.add(m1.group());//TODO
                     LOGGER.info("Css link found" + newList.toString());
                 }else if(m3.find()){
 
@@ -161,6 +161,7 @@ public class CssFromHtmlUrl {
 
             }
         }
+        System.out.println("Lista linkw do External Css: " + newList.toString());
         return newList;
     }
 
