@@ -11,11 +11,11 @@
             <c:forEach items="${answers}" var="answer">
                 <c:choose>
                     <c:when test="${answer.contains(\"?\")}">
-                        <h2>${answer}</h2>
+                        <h2>${answer.substring(1)}</h2>
                     </c:when>
                     <c:otherwise>
                         <c:choose>
-                            <c:when test="${answer.contains(\"0\")}">
+                            <c:when test="${answer.substring(0, 1).contains(\"0\")}">
                                 <div class="recommendation-box">
                                     <span class="glyphicon glyphicon-exclamation-sign"></span>
                                         ${answer.substring(1)}
@@ -27,7 +27,6 @@
                                         ${answer.substring(1)}
                                 </div>
                             </c:otherwise>
-
                         </c:choose>
                     </c:otherwise>
                 </c:choose>

@@ -1,3 +1,4 @@
+import com.sionach.ux.databaseEntities.QuestionsFormDAO;
 import com.sionach.ux.form.MatchAnswers;
 
 import javax.ejb.EJB;
@@ -16,12 +17,17 @@ public class FormAnswersServlet extends HttpServlet {
 
     @EJB
     MatchAnswers matchAnswers;
+    @EJB
+    QuestionsFormDAO questionsFormDAO;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Map<String, String[]> parameterMap = req.getParameterMap();
         List<String> answers = matchAnswers.getAnswers(parameterMap);
+
+        questionsFormDAO.saveForm(answers);
+        questionsFormDAO.readForm();
 
         req.setAttribute("answers", answers);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/formAnswers.jsp");
