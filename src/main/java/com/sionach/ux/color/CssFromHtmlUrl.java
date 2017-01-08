@@ -101,31 +101,59 @@ public class CssFromHtmlUrl {
 //        return cssList;
 //    }
 
-        private List<String> FindCssLinkInHTML(String domainUrl){
-            List<String> cssList = new ArrayList<>();
-            ParseHtmlUrl htmlDoc = new ParseHtmlUrl();
-            cssList = htmlDoc.atributesValueFromHtmlTag(domainUrl, "link", "href");
+//        private List<String> FindCssLinkInHTML(String domainUrl){
+//            List<String> cssList = new ArrayList<>();
+//            ParseHtmlUrl htmlDoc = new ParseHtmlUrl();
+//            cssList = htmlDoc.atributesValueFromHtmlTag(domainUrl, "link", "href");
+//
+//            List<String> newList = new ArrayList<>();
+//            String patternHead = "http:(?i).*\\.css$";
+//            Pattern p1 = Pattern.compile(patternHead);
+//            Pattern p2 = Pattern.compile(domainUrl);
+//            Pattern p3 = Pattern.compile("^//.*");
+//            for (String s : cssList) {
+//                Matcher m1 = p1.matcher(s);
+//                if (m1.find()) {
+//                    Matcher m2 = p2.matcher(s);
+//                    Matcher m3 = p3.matcher(s);
+//                    if (m2.find() || m3.find()) {
+//                        newList.add(m1.group());
+//                    } else {
+//                        newList.add(domainUrl + m1.group());
+//                    }
+//
+//                }
+//            }
+//            return newList;
+//        }
 
-            List<String> newList = new ArrayList<>();
-            String patternHead = "http:(?i).*\\.css$";
-            Pattern p1 = Pattern.compile(patternHead);
-            Pattern p2 = Pattern.compile(domainUrl);
-            Pattern p3 = Pattern.compile("^//.*");
-            for (String s : cssList) {
-                Matcher m1 = p1.matcher(s);
-                if (m1.find()) {
-                    Matcher m2 = p2.matcher(s);
-                    Matcher m3 = p3.matcher(s);
-                    if (m2.find() || m3.find()) {
-                        newList.add(m1.group());
-                    } else {
-                        newList.add(domainUrl + m1.group());
-                    }
+    private List<String> FindCssLinkInHTML(String domainUrl){
+        List<String> cssList = new ArrayList<>();
+        ParseHtmlUrl htmlDoc = new ParseHtmlUrl();
+        cssList = htmlDoc.atributesValueFromHtmlTag(domainUrl, "link", "href");
 
+        List<String> newList = new ArrayList<>();
+        String patternHead = "http:(?i).*\\.css$";
+        Pattern p1 = Pattern.compile(patternHead);
+        Pattern p2 = Pattern.compile(domainUrl);
+        Pattern p3 = Pattern.compile("^//.*");
+        for (String s : cssList) {
+            Matcher m1 = p1.matcher(s);
+            if (m1.find()) {
+                Matcher m2 = p2.matcher(s);
+                Matcher m3 = p3.matcher(s);
+                if (m2.find()) {
+                    newList.add(m1.group());
+                }else if(m3.find()){
+
+                } else {
+                    newList.add(domainUrl + m1.group());
                 }
+
             }
-            return newList;
         }
+        return newList;
+    }
 
     private Document ReadDocument(String domainUrl) {
         Document doc = null;
