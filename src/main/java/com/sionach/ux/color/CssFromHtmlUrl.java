@@ -141,7 +141,7 @@ public class CssFromHtmlUrl {
         cssList = htmlDoc.atributesValueFromHtmlTag(domainUrl, "link", "href");
 
         List<String> newList = new ArrayList<>();
-        String patternHead = "http:(?i).*\\.css$";
+        String patternHead = "(?i).*\\.css$";
         Pattern p1 = Pattern.compile(patternHead);
         Pattern p2 = Pattern.compile(domainUrl);
         Pattern p3 = Pattern.compile("^//.*");
