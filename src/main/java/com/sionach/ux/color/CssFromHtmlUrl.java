@@ -151,18 +151,21 @@ public class CssFromHtmlUrl {
                 Matcher m2 = p2.matcher(s);
                 Matcher m3 = p3.matcher(s);
                 if (m2.find()) {
-                    newList.add(m1.group());//TODO
+                    newList.add(m2.group());//T
                     LOGGER.info("Css link found" + newList.toString());
+                    LOGGER.info("m2" );
                 }else if(m3.find()){
-
+                    newList.add(m3.group());
+                    LOGGER.info("m3");
                 } else {
                     newList.add(domainUrl + m1.group());
+                    LOGGER.info("m1");
                 }
 
             }
         }
         System.out.println("Lista linkw do External Css: " + newList.toString());
-        return newList;
+        return newList; //TODO wszystkie elementy sa jako jeden
     }
 
     private Document ReadDocument(String domainUrl) {
