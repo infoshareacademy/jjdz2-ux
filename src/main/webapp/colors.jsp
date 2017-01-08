@@ -3,6 +3,7 @@
 <jsp:include page="header.jsp" />
 
 <main class="container">
+    <div class="col-lg-6 col-lg-offset-3">
 
     <article class="test-results">
         <c:if test="${badconnect != null}">
@@ -26,15 +27,29 @@
 
 
         <h2>Lista kolorów</h2>
-        <div class="recommendation-box">
-            <ul>
-                <c:forEach items="${listOfColors}" var="colors">
-                    <li>${colors}</li>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Kolor</th>
+                    <th>#HEX</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <c:forEach items="${listOfColors}" var="color">
+                    <tr>
+                        <td bgcolor="${color}"></td>
+                        <td>${color}</td>
+                    </tr>
                 </c:forEach>
-            </ul>
-        </div>
+                </tbody>
+
+            </table>
+
 
     </article>
+    </div>
 
 </main>
 
