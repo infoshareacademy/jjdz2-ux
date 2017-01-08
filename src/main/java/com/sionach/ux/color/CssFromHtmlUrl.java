@@ -1,6 +1,8 @@
 package com.sionach.ux.color;
 
 import com.sionach.ux.accessibility.ParseHtmlUrl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -15,6 +17,8 @@ import java.util.regex.Pattern;
  */
 public class CssFromHtmlUrl {
 
+    private static final Logger LOGGER = LogManager.getLogger("CssFromHtmlUrl.java");
+
     public List<String> GetTotalCssListFromUrl(String domainUrl) {
         List<String> totalList = new ArrayList<>();
 
@@ -24,13 +28,16 @@ public class CssFromHtmlUrl {
         List<String> cssFromExternalCSSLink = GetCssListFromLink(linkList);
 
         totalList.addAll(cssFromExternalCSSLink);
+        System.out.println("Lista css z url: " + totalList.toString());
 
         return totalList;
     }
 
     private List<String> FindCssFromUrl(String domainUrl) {
         Document doc = ReadDocument(domainUrl);
+        LOGGER.info("This document has been read :" + domainUrl);
         String docString = doc.toString();
+        LOGGER.info("Document read to String");
         CssListFromHtml csslistFromHtml = new CssListFromHtml();
 
         List<String> listHead = csslistFromHtml.codeHeadList(docString);
@@ -38,6 +45,7 @@ public class CssFromHtmlUrl {
 
         List<String> newList = new ArrayList<>(listHead);
         newList.addAll(listInline);
+        LOGGER.info("CssList z html url: " + newList.toString());
 
         return newList;
     }
@@ -48,10 +56,10 @@ public class CssFromHtmlUrl {
             for (String s : linkList) {
                 listFromLink.addAll(FindCssFromUrl(s));
             }
-
         } catch (Exception e) {
             System.out.println("Some invalid link found");
         }
+        LOGGER.info("Css list from external link: " + listFromLink.toString());
         return listFromLink;
     }
 
@@ -144,6 +152,7 @@ public class CssFromHtmlUrl {
                 Matcher m3 = p3.matcher(s);
                 if (m2.find()) {
                     newList.add(m1.group());
+                    LOGGER.info("Css link found" + newList.toString());
                 }else if(m3.find()){
 
                 } else {
@@ -159,6 +168,7 @@ public class CssFromHtmlUrl {
         Document doc = null;
         try {
             doc = Jsoup.connect(domainUrl).get();
+            LOGGER.info("Document read");
         } catch (IOException e) {
             e.printStackTrace();
         }
