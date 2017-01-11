@@ -1,11 +1,8 @@
-package com.sionach.ux.facebook;
-
 /**
  * Created by ablazejewska on 10.12.16.
  */
 import com.github.scribejava.apis.FacebookApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
-import com.github.scribejava.core.model.Token;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 import javax.servlet.ServletException;
@@ -18,15 +15,11 @@ import java.io.IOException;
 /**
  * Created by keehoo on 27.11.16.
  */
-@WebServlet(urlPatterns = "/facebook")
+@WebServlet(urlPatterns = "/facebooklogin")
 public class FacebookLogin extends HttpServlet {
 
-    private static final String NETWORK_NAME = "Facebook";
-    public static final String PROTECTED_RESOURCE_URL = "https://graph.facebook.com/me";
-    public static final Token EMPTY_TOKEN = null;
-
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         OAuth20Service service = new ServiceBuilder()
                 .apiKey("339512966407211")
