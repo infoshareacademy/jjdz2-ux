@@ -33,6 +33,7 @@ public class FacebookLogin extends HttpServlet {
                 .build(FacebookApi.instance());
 
         sessionData.setOAuthService(service);
+        sessionData.setLogged(true);
         resp.sendRedirect(service.getAuthorizationUrl());
 
     }
