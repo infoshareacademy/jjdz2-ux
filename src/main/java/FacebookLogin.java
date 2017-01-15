@@ -4,7 +4,9 @@
 import com.github.scribejava.apis.FacebookApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import com.sionach.ux.facebook.SessionData;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,9 @@ import java.io.IOException;
  */
 @WebServlet(urlPatterns = "/facebooklogin")
 public class FacebookLogin extends HttpServlet {
+
+    @Inject
+    SessionData sessionData;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
