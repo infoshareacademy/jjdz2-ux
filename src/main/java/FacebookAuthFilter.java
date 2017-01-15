@@ -27,7 +27,7 @@ public class FacebookAuthFilter implements Filter {
             //   -> referrerURL
             HttpServletRequest request = (HttpServletRequest) servletRequest;
             ((HttpServletResponse) servletResponse).sendRedirect(
-                    "/login.jsp?referrer=" + request.getRequestURI()
+                    "/facebooklogin" + request.getRequestURI()
             );
 
             return;
