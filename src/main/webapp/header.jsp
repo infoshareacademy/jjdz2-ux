@@ -17,15 +17,15 @@
 <header class="top container">
     <nav class="top-nav row">
         <ul class="top-nav col-lg-3 col-lg-offset-9 col-xs-12 row">
-            <c:if test="${!sessionData.isLogged}">
+            <c:if test="${!sessionData.logged}">
             <li class="col-lg-6 col-xs-6">
                 <a type="submit" href="facebooklogin" >Logowanie</a>
             </li>
             </c:if>
-            <c:if test="${sessionData.isLogged}">
+            <c:if test="${sessionData.logged}">
                 <li class="col-lg-6 col-xs-6">
                 <%--${sessionData.username} --%>
-                    <a type="submit" href="/logout">logout</a>
+                    <a type="submit" href="logout">logout</a>
                 </li>
             </c:if>
         <%-- bylo href login.jsp--%>

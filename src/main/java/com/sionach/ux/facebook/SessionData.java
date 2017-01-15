@@ -56,18 +56,18 @@ public class SessionData implements Serializable {
         this.oAuthService = oAuthService;
     }
 
-    public void login(String username, String password) {
-
-        if ("kuba".equals(username) && "secret".equals(password)) {
-            System.out.println("User [" + username + "] logged in");
-            this.isLogged = true;
-            this.username = username;
-            this.loginTime = LocalDate.now();
-        }
-
-        System.out.println("Login failed: " + username);
-
-    }
+//    public void login(String username, String password) {
+//
+//        if ("kuba".equals(username) && "secret".equals(password)) {
+//            System.out.println("User [" + username + "] logged in");
+//            this.isLogged = true;
+//            this.username = username;
+//            this.loginTime = LocalDate.now();
+//        }
+//
+//        System.out.println("Login failed: " + username);
+//
+//    }
 
     public void logout() {
         this.isLogged = false;

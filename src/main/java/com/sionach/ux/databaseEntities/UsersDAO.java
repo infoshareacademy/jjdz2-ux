@@ -20,11 +20,18 @@ public class UsersDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(UsersDAO.class);
 
-    public void save(){
+    public void save(String name, String id){
+        Users users = new Users();
+        users.setFirstname(name);
+        users.setfBid(id);
+        users.setRole(1);
+        entityManager.persist(users);
 
     }
 
     public void readUsers(){
-
+        List<String> userName = entityManager.createQuery("SELECT d.firstname FROM Users d", String.class).getResultList();
+        System.out.println(userName);
+        LOGGER.info("Odczyt z bazy wykonany dla imienia");
     }
 }

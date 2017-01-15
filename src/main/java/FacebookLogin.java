@@ -7,6 +7,7 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 import com.sionach.ux.facebook.SessionData;
 
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,11 +30,11 @@ public class FacebookLogin extends HttpServlet {
         OAuth20Service service = new ServiceBuilder()
                 .apiKey("339512966407211")
                 .apiSecret("f3f144e2ef310fbbf507f8ed8dac0e7c")
-                .callback("http://localhost:8080/sionach-ux")
+                .callback("http://localhost:8080/sionach-ux/fbcallback")
                 .build(FacebookApi.instance());
 
         sessionData.setOAuthService(service);
-        sessionData.setLogged(true);
+//        sessionData.setLogged(true);
         resp.sendRedirect(service.getAuthorizationUrl());
 
     }
