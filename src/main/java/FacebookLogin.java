@@ -32,10 +32,8 @@ public class FacebookLogin extends HttpServlet {
                 .callback("http://localhost:8080/sionach-ux")
                 .build(FacebookApi.instance());
 
-        String authorizationUrl=service.getAuthorizationUrl();
-        System.out.println("Authorization URL : "+authorizationUrl);
-
-        resp.sendRedirect(authorizationUrl);
+        sessionData.setOAuthService(service);
+        resp.sendRedirect(service.getAuthorizationUrl());
 
     }
 }

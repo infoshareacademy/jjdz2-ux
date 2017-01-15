@@ -10,7 +10,7 @@ import java.io.IOException;
  * Created by allic on 15/01/2017.
  */
 
-@WebFilter(urlPatterns = { "/history", "/authentication" })
+@WebFilter(urlPatterns = {"/authentication" })
 public class FacebookAuthFilter implements Filter {
 
     @Inject
