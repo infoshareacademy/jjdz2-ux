@@ -13,10 +13,10 @@ public class Users implements Serializable{
     private String firstname;
     @Column(name="lastname")
     private String lastname;
-    @Column(name="email")
-    private String email;
     @Column(name="role")
     private int role;
+    @Column(name="facebookId")
+    private String fBid;
 
     public String getFirstname() {
         return firstname;
@@ -34,14 +34,6 @@ public class Users implements Serializable{
         this.lastname = lastname;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public int getRole() {
         return role;
     }
@@ -56,5 +48,13 @@ public class Users implements Serializable{
     private Long id;
     public Long getId() {
         return id;
+    }
+
+    public String getfBid() {
+        return fBid;
+    }
+
+    public void setfBid(String fBid) {
+        this.fBid = fBid;
     }
 }

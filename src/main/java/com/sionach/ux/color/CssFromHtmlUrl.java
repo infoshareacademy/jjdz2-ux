@@ -1,6 +1,8 @@
 package com.sionach.ux.color;
 
 import com.sionach.ux.accessibility.ParseHtmlUrl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -15,6 +17,8 @@ import java.util.regex.Pattern;
  */
 public class CssFromHtmlUrl {
 
+    private static final Logger LOGGER = LogManager.getLogger("CssFromHtmlUrl.java");
+
     public List<String> GetTotalCssListFromUrl(String domainUrl) {
         List<String> totalList = new ArrayList<>();
 
@@ -24,13 +28,16 @@ public class CssFromHtmlUrl {
         List<String> cssFromExternalCSSLink = GetCssListFromLink(linkList);
 
         totalList.addAll(cssFromExternalCSSLink);
+        System.out.println("Lista css z url: " + totalList.toString());
 
         return totalList;
     }
 
     private List<String> FindCssFromUrl(String domainUrl) {
         Document doc = ReadDocument(domainUrl);
+        LOGGER.info("This document has been read :" + domainUrl);
         String docString = doc.toString();
+        LOGGER.info("Document read to String");
         CssListFromHtml csslistFromHtml = new CssListFromHtml();
 
         List<String> listHead = csslistFromHtml.codeHeadList(docString);
@@ -38,6 +45,7 @@ public class CssFromHtmlUrl {
 
         List<String> newList = new ArrayList<>(listHead);
         newList.addAll(listInline);
+        LOGGER.info("CssList z html url: " + newList.toString());
 
         return newList;
     }
@@ -45,13 +53,13 @@ public class CssFromHtmlUrl {
     private List<String> GetCssListFromLink(List<String> linkList) {
         List<String> listFromLink = new ArrayList<>();
         try {
-            for (String s : linkList) {
+            for (String s : linkList) {//TODO
                 listFromLink.addAll(FindCssFromUrl(s));
             }
-
         } catch (Exception e) {
             System.out.println("Some invalid link found");
         }
+        LOGGER.info("Css list from external link: " + listFromLink.toString());
         return listFromLink;
     }
 
@@ -101,36 +109,70 @@ public class CssFromHtmlUrl {
 //        return cssList;
 //    }
 
-        private List<String> FindCssLinkInHTML(String domainUrl){
-            List<String> cssList = new ArrayList<>();
-            ParseHtmlUrl htmlDoc = new ParseHtmlUrl();
-            cssList = htmlDoc.atributesValueFromHtmlTag(domainUrl, "link", "href");
+//        private List<String> FindCssLinkInHTML(String domainUrl){
+//            List<String> cssList = new ArrayList<>();
+//            ParseHtmlUrl htmlDoc = new ParseHtmlUrl();
+//            cssList = htmlDoc.atributesValueFromHtmlTag(domainUrl, "link", "href");
+//
+//            List<String> newList = new ArrayList<>();
+//            String patternHead = "http:(?i).*\\.css$";
+//            Pattern p1 = Pattern.compile(patternHead);
+//            Pattern p2 = Pattern.compile(domainUrl);
+//            Pattern p3 = Pattern.compile("^//.*");
+//            for (String s : cssList) {
+//                Matcher m1 = p1.matcher(s);
+//                if (m1.find()) {
+//                    Matcher m2 = p2.matcher(s);
+//                    Matcher m3 = p3.matcher(s);
+//                    if (m2.find() || m3.find()) {
+//                        newList.add(m1.group());
+//                    } else {
+//                        newList.add(domainUrl + m1.group());
+//                    }
+//
+//                }
+//            }
+//            return newList;
+//        }
 
-            List<String> newList = new ArrayList<>();
-            String patternHead = "http:(?i).*\\.css$";
-            Pattern p1 = Pattern.compile(patternHead);
-            Pattern p2 = Pattern.compile(domainUrl);
-            Pattern p3 = Pattern.compile("^//.*");
-            for (String s : cssList) {
-                Matcher m1 = p1.matcher(s);
-                if (m1.find()) {
-                    Matcher m2 = p2.matcher(s);
-                    Matcher m3 = p3.matcher(s);
-                    if (m2.find() || m3.find()) {
-                        newList.add(m1.group());
-                    } else {
-                        newList.add(domainUrl + m1.group());
-                    }
+    private List<String> FindCssLinkInHTML(String domainUrl){
+        List<String> cssList = new ArrayList<>();
+        ParseHtmlUrl htmlDoc = new ParseHtmlUrl();
+        cssList = htmlDoc.atributesValueFromHtmlTag(domainUrl, "link", "href");
 
+        List<String> newList = new ArrayList<>();
+        String patternHead = "(?i).*\\.css$";
+        Pattern p1 = Pattern.compile(patternHead);
+        Pattern p2 = Pattern.compile(domainUrl);
+        Pattern p3 = Pattern.compile("^//.*");
+        for (String s : cssList) {
+            Matcher m1 = p1.matcher(s);
+            if (m1.find()) {
+                Matcher m2 = p2.matcher(s);
+                Matcher m3 = p3.matcher(s);
+                if (m2.find()) {
+                    newList.add(m2.group());//T
+                    LOGGER.info("Css link found" + newList.toString());
+                    LOGGER.info("m2" );
+                }else if(m3.find()){
+                    newList.add(m3.group());
+                    LOGGER.info("m3");
+                } else {
+                    newList.add(domainUrl + m1.group());
+                    LOGGER.info("m1");
                 }
+
             }
-            return newList;
         }
+        System.out.println("Lista linkw do External Css: " + newList.toString());
+        return newList; //TODO wszystkie elementy sa jako jeden
+    }
 
     private Document ReadDocument(String domainUrl) {
         Document doc = null;
         try {
             doc = Jsoup.connect(domainUrl).get();
+            LOGGER.info("Document read");
         } catch (IOException e) {
             e.printStackTrace();
         }
