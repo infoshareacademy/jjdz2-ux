@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
@@ -16,10 +17,18 @@
 <header class="top container">
     <nav class="top-nav row">
         <ul class="top-nav col-lg-3 col-lg-offset-9 col-xs-12 row">
+            <c:if test="${!sessionData.isLogged}">
             <li class="col-lg-6 col-xs-6">
                 <a type="submit" href="facebooklogin" >Logowanie</a>
             </li>
-            <%-- bylo href login.jsp--%>
+            </c:if>
+            <c:if test="${sessionData.isLogged}">
+                <li class="col-lg-6 col-xs-6">
+                <%--${sessionData.username} --%>
+                    <a type="submit" href="/logout">logout</a>
+                </li>
+            </c:if>
+        <%-- bylo href login.jsp--%>
         </ul>
     </nav>
     <div class="row primary-menu">
