@@ -1,10 +1,8 @@
 package com.sionach.ux.accessibility;
 
-import com.sionach.ux.filemanagment.ReadFiles;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,18 +35,4 @@ public class ParseHtmlString {
         }
 
     }
-
-
-
-//    public static void main(String[] args) {
-//        ReadFiles file = new ReadFiles("wmh/index.html");
-//        String htmlCode = file.readFileToString();
-//
-//        ParseHtmlString html = new ParseHtmlString();
-//        List<String> list = html.atributesValueFromHtmlTag(htmlCode, "a", "href");
-//        for(String item:list){
-//            System.out.println(item);
-//        }
-//    }
-
 }
