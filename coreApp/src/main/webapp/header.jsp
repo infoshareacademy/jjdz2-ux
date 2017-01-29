@@ -31,6 +31,8 @@
         <%-- bylo href login.jsp--%>
         </ul>
     </nav>
+    <h1>${sessionData.userId}</h1>
+
     <div class="row primary-menu">
         <a href="/sionach-ux/" class="logo col-lg-5"><img src="images/logo.png" alt="Sionach" title="Sionach"></a>
         <nav class="primary-nav col-lg-7 navbar navbar-default">

@@ -32,4 +32,9 @@ public class UsersDAO {
         System.out.println(userName);
         LOGGER.info("Odczyt z bazy wykonany dla imienia");
     }
+
+    public int getUserId(String fbid){
+        int userId = entityManager.createNativeQuery("SELECT id FROM Users WHERE facebookId = '"+fbid+"'", Integer.class).getFirstResult();
+        return userId;
+    }
 }

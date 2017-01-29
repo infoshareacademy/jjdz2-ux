@@ -16,6 +16,7 @@ public class SessionData implements Serializable {
     private OAuth20Service oAuthService;
     private Locale locale;
     private String userFbId;
+    private int userId;
 
     public String getUsername() {
         return username;
@@ -82,5 +83,13 @@ public class SessionData implements Serializable {
 
     public void setUserFbId(String userFbId) {
         this.userFbId = userFbId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
