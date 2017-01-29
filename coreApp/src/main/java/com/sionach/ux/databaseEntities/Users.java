@@ -57,4 +57,5 @@ public class Users implements Serializable{
     public void setfBid(String fBid) {
         this.fBid = fBid;
     }
+
 }

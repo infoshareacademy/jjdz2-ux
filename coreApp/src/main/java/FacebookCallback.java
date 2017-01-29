@@ -48,6 +48,7 @@ public class FacebookCallback extends HttpServlet {
         usersDAO.save(name, id);
         usersDAO.readUsers();
         sessionData.setLogged(true);
+        sessionData.setUserFbId(id);
 
 //        System.out.println(String.format("name = %s, email = %s", name, email));
         System.out.println(oAuthResp.getBody());
