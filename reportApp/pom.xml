@@ -63,6 +63,9 @@
                             <!--</command>-->
                         <!--</commands>-->
                     <!--</beforeDeployment>-->
+                    <java-opts>
+                        <java-opt>-Djboss.socket.binding.port-offset=1</java-opt>
+                    </java-opts>
                 </configuration>
             </plugin>
         </plugins>
