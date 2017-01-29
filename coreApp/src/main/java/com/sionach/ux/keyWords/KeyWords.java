@@ -6,14 +6,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import javax.ejb.Stateless;
+import javax.ws.rs.PathParam;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -34,7 +31,8 @@ public class KeyWords {
                 attributesKeywords(),
                 boldedKeywords(),
                 headlineKeywords(),
-                MetadataKeywords());
+                metadataKeywords());
+
 
         return keyWords.stream()
                 .flatMap(Collection::stream)
@@ -43,7 +41,7 @@ public class KeyWords {
 
     public List<KeyWordsLinks> keyWordsListLinks(Set<String> keywordsList) throws UnsupportedEncodingException {
         List<KeyWordsLinks> keyWordsLinksList = new ArrayList<>();
-        for(String item:keywordsList){
+        for (String item : keywordsList) {
             keyWordsLinksList.add(new KeyWordsLinks(item, URLEncoder.encode(item, "UTF-8")));
         }
 
@@ -112,27 +110,23 @@ public class KeyWords {
         return headlineKeywordsList;
     }
 
-    private List<String> MetadataKeywords() {
-        Elements elements = doc.select("meta");
+    private List<String> metadataKeywords() {
         List<String> metaList = new ArrayList<>();
 
-        for (Element item : elements) {
-            if (item.attr("charset").length() > 0) {
-                metaList.add(item.attr("charset"));
+
+        Element element = doc.select("meta[name=keywords]").first();
+        if (element != null) {
+            String[] keywords = element.attr("content").
+                    split(",");
+            for (String item : keywords) {
+                if (item.length() > 0) {
+                    metaList.add(item);
+                }
             }
-            if (item.attr("content").length() > 0) {
-                metaList.add(item.attr("content"));
-            }
-            if (item.attr("http-equiv").length() > 0) {
-                metaList.add(item.attr("http-equiv"));
-            }
-            if (item.attr("name").length() > 0) {
-                metaList.add(item.attr("name"));
-            }
-            if (item.attr("scheme").length() > 0) {
-                metaList.add(item.attr("scheme"));
-            }
+        } else {
+            metaList = Collections.EMPTY_LIST;
         }
         return metaList;
     }
+    //TODO trim dla keywords ze spacją
 }
