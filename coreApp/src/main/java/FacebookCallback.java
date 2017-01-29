@@ -2,7 +2,6 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import com.sionach.ux.databaseEntities.Users;
 import com.sionach.ux.databaseEntities.UsersDAO;
 import com.sionach.ux.facebook.SessionData;
 

@@ -28,7 +28,7 @@
     </properties>
 
     <build>
-        <finalName>sionach-ux</finalName>
+        <finalName>sionach-ux-report</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
