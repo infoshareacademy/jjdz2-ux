@@ -25,7 +25,7 @@
             <c:if test="${sessionData.logged}">
                 <li class="col-lg-6 col-xs-6">
                         <%--${sessionData.username} --%>
-                    <a type="submit" href="logout">Logout</a>
+                    <a type="submit" href="facebooklogout">Logout</a>
                 </li>
                 <li class="col-lg-6 col-xs-6">
                     <a href="/sionach-ux/colorReport">Color Report</a>
