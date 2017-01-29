@@ -24,9 +24,6 @@
             </c:if>
             <c:if test="${sessionData.logged}">
                 <li class="col-lg-6 col-xs-6">
-                <%--${sessionData.username} --%>
-                    <a type="submit" href="facebooklogout">logout</a>
-
                         <%--${sessionData.username} --%>
                     <a type="submit" href="logout">Logout</a>
                 </li>
