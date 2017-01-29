@@ -25,7 +25,7 @@
             <c:if test="${sessionData.logged}">
                 <li class="col-lg-6 col-xs-6">
                 <%--${sessionData.username} --%>
-                    <a type="submit" href="logout">logout</a>
+                    <a type="submit" href="facebooklogout">logout</a>
                 </li>
             </c:if>
         <%-- bylo href login.jsp--%>
