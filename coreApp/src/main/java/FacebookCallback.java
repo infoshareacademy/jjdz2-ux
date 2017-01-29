@@ -48,8 +48,20 @@ public class FacebookCallback extends HttpServlet {
         usersDAO.save(name, id);
         usersDAO.readUsers();
         sessionData.setLogged(true);
+//        String email;
+//
+        try{
+//            email = profile.getString("email");
+//            System.out.println("my email: " + email.toString());
+            if(id.equals("1168375893217282")){
+            sessionData.setLevel("ADMIN");
+        }
+        }catch(NullPointerException e) {
+            System.err.println("Errorek");
+        }
 
-//        System.out.println(String.format("name = %s, email = %s", name, email));
+
+
         System.out.println(oAuthResp.getBody());
         resp.sendRedirect("/sionach-ux");
     }
