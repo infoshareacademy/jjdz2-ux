@@ -58,4 +58,14 @@ public class Users implements Serializable{
         this.fBid = fBid;
     }
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", role=" + role +
+                ", fBid='" + fBid + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
