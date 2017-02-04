@@ -38,7 +38,7 @@
         <div class="recommendation-box">
             <ul class="keywords-list">
                 <c:forEach items="${keyWords}" var="keyword">
-                    <li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a
+                    <li><span class="glyphicon glyphicon-heart" aria-hidden="true" data-user="${sessionData.userId}"></span><a
                             href="https://google.pl/#q=${keyword.keywordUrl}" target="_blank">${keyword.keyword}</a>
                     </li>
                 </c:forEach>

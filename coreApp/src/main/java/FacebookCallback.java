@@ -2,6 +2,7 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import com.sionach.ux.databaseEntities.Users;
 import com.sionach.ux.databaseEntities.UsersDAO;
 import com.sionach.ux.facebook.SessionData;
 
@@ -40,14 +41,20 @@ public class FacebookCallback extends HttpServlet {
         oAuthService.signRequest(oAuthService.getAccessToken(code), oAuthRequest);
         Response oAuthResp = oAuthRequest.send();
 
-
         JsonReader reader = Json.createReader(new StringReader(oAuthResp.getBody()));
         JsonObject profile = reader.readObject();
         String name = profile.getString("name");
         String id = profile.getString("id");
-        usersDAO.save(name, id);
-        usersDAO.readUsers();
+
+        Users user = usersDAO.readUserOrSave(name, id);
+
+
+        //Users user = usersDAO.save(name, id);
+//        usersDAO.readUsers(id);
         sessionData.setLogged(true);
+        sessionData.setUserFbId(id);
+        sessionData.setUserId(user.getId().intValue());
+
 
 //        System.out.println(String.format("name = %s, email = %s", name, email));
         System.out.println(oAuthResp.getBody());

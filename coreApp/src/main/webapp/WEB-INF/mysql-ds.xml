@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ In this example project, we're not using a managed data source to make sure
+ the example runs out of the box.
+
+ In a production environment, we obviously wouldn't use an unmanaged data
+ source that connects to a single-connection embedded H2 database
+ -->
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
+    <datasource jndi-name="java:jboss/datasources/MySQLDS"
+                pool-name="msqlds" enabled="true"
+                use-java-context="true">
+        <connection-url>jdbc:mysql://mysqldb:3306/test??useUnicode=yes&amp;characterE
+            ncoding=UTF-8</connection-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <driver>sionach-ux.war_com.mysql.jdbc.Driver_5_1</driver>
+        <security>
+            <user-name>root</user-name>
+            <password>root</password>
+        </security>
+    </datasource>
+</datasources>

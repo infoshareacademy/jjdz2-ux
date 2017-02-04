@@ -57,4 +57,15 @@ public class Users implements Serializable{
     public void setfBid(String fBid) {
         this.fBid = fBid;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", role=" + role +
+                ", fBid='" + fBid + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
