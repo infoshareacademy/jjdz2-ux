@@ -12,10 +12,10 @@ public class DomainsDAO {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void save(String domainUrl){
+    public void save(String domainUrl, int userId){
         Domains domains = new Domains();
         domains.setDomain_url(domainUrl);
-
+        domains.setUser_id(userId);
         entityManager.persist(domains);
     }
 }

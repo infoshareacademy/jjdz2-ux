@@ -1,7 +1,10 @@
+import com.sionach.ux.databaseEntities.DomainsDAO;
+import com.sionach.ux.facebook.SessionData;
 import com.sionach.ux.keyWords.KeyWords;
 import org.jsoup.HttpStatusException;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +22,12 @@ public class KeyWordsServlet extends HttpServlet {
     @EJB
     KeyWords keyWords;
 
+    @EJB
+    DomainsDAO domainsDAO;
+
+    @Inject
+    SessionData sessionData;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -28,7 +37,7 @@ public class KeyWordsServlet extends HttpServlet {
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
             conn.connect();
-
+            domainsDAO.save(link, sessionData.getUserId());
             req.setAttribute("domainurl", link);
             req.setAttribute("keyWords", keyWords.keyWordsListLinks(keyWords.extractKeyWords(link)));
         } catch (HttpStatusException e) {
