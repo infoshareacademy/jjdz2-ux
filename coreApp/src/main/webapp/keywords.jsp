@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="header.jsp" />
-
+<jsp:include page="header.jsp"/>
 
 
 <main class="container">
@@ -9,13 +8,21 @@
     <article class="test-results">
         <c:if test="${badconnect != null}">
             <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            ${badconnect}</div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                    ${badconnect}</div>
+        </c:if>
+        <c:if test="${refusedConnection != null}">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                    ${refusedConnection}</div>
         </c:if>
         <c:if test="${badform != null}">
             <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            ${badform}</div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                    ${badform}</div>
         </c:if>
         <header><h1>Wyniki testu słów kluczowych dla<br>${domainurl}</h1></header>
         <a href="#" class="exact-form-show">Sprawdź inną stronę</a>
@@ -31,14 +38,13 @@
         <div class="recommendation-box">
             <ul class="keywords-list">
                 <c:forEach items="${keyWords}" var="keyword">
-                    <li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a href="https://google.pl/#q=${keyword.keywordUrl}" target="_blank">${keyword.keyword}</a></li>
+                    <li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a
+                            href="https://google.pl/#q=${keyword.keywordUrl}" target="_blank">${keyword.keyword}</a>
+                    </li>
                 </c:forEach>
             </ul>
         </div>
-
-
     </article>
-
 </main>
 
-<jsp:include page="footer.jsp" />
+<jsp:include page="footer.jsp"/>
