@@ -29,7 +29,7 @@ public class UsersDAO {
         return users;
     }
 
-    public Users readUser(String name, String id){
+    public Users readUserOrSave(String name, String id){
         System.out.println("facebookid= "+id);
         try{
             Users user = entityManager.createQuery("SELECT d FROM Users d WHERE d.fBid = '"+id+"'", Users.class).getSingleResult();
