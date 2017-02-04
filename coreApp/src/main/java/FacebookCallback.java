@@ -46,7 +46,10 @@ public class FacebookCallback extends HttpServlet {
         String name = profile.getString("name");
         String id = profile.getString("id");
 
-        Users user = usersDAO.save(name, id);
+        Users user = usersDAO.readUser(name, id);
+
+
+        //Users user = usersDAO.save(name, id);
 //        usersDAO.readUsers(id);
         sessionData.setLogged(true);
         sessionData.setUserFbId(id);
