@@ -5,6 +5,9 @@
 
 <main class="container">
     <div class="col-lg-6 col-lg-offset-3">
+        <c:if test="${colors.isEmpty()}">
+            <h2>Brak kolorów w bazie danych</h2>
+        </c:if>
         <table class="table">
             <thead>
             <tr>

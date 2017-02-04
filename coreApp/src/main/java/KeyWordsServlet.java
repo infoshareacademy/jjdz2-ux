@@ -1,4 +1,5 @@
 import com.sionach.ux.keyWords.KeyWords;
+import org.jsoup.HttpStatusException;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -30,19 +31,20 @@ public class KeyWordsServlet extends HttpServlet {
 
             req.setAttribute("domainurl", link);
             req.setAttribute("keyWords", keyWords.keyWordsListLinks(keyWords.extractKeyWords(link)));
-
-
-        }catch (MalformedURLException e){
+        } catch (HttpStatusException e) {
+            e.printStackTrace();
+            String refusedConnection = "Strona odmówiła komunikacji";
+            req.setAttribute("refusedConnection", refusedConnection);
+        } catch (MalformedURLException e) {
             //nieprawidlowy format
             String badForm = "Nieprawidłowy format adresu url Twojej witryny";
             req.setAttribute("badform", badForm);
-        }catch (IOException e){
+            //strona odmówiła połączenia
+        } catch (IOException e) {
             //nie mozna nawiazac polaczenia
             String badConnect = "Niemożna nawiązać połączenia z Twoją witryną";
             req.setAttribute("badconnect", badConnect);
         }
-
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("/keywords.jsp");
 
         dispatcher.forward(req, resp);
