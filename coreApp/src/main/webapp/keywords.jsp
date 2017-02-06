@@ -34,7 +34,7 @@
 
         <h2>Lista słów kluczowych na Twojej stronie:</h2>
         <p>Aby dodać słowo do ulubionych kliknij serduszko obok słowa kluczowego</p>
-        <p>Aby sprawdzić wyniki wyszukiwania dla danej frazy kliknij w nią</p>
+        <p>Aby sprawdzić wyniki wyszukiwania dla danej frazy kliknij ikonkę linku wychodzącego</p>
         <div class="recommendation-box">
             <ul class="keywords-list">
                 <c:forEach items="${keyWords}" var="keyword">

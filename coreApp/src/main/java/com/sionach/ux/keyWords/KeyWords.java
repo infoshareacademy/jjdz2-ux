@@ -1,11 +1,14 @@
 package com.sionach.ux.keyWords;
 
+import com.sionach.ux.databaseEntities.DomainsKeywordsDAO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -17,22 +20,29 @@ public class KeyWords {
 
     private Document doc;
 
-    public List<KeywordsToView> keywordsPrintOnWebsite(Set<String> uniqKeywordsFromUrl) throws UnsupportedEncodingException {
+    @Inject
+    DomainsKeywordsDAO domainsKeywordsDAO;
+
+    public List<KeywordsToView> keywordsPrintOnWebsite(Set<String> uniqKeywordsFromUrl, int domainId) throws UnsupportedEncodingException {
         List<KeywordsToView> keywordsObjectsList = new ArrayList<>();
 
         for(String item:uniqKeywordsFromUrl){
             KeywordsToView keywordsToAdd = new KeywordsToView();
             keywordsToAdd.setKeyword(item);
             keywordsToAdd.setGoogleLinkToKeyword(URLEncoder.encode(item, "UTF-8").toString());
-            keywordsToAdd.setGlyphicon(checkKeywordsInDatabase(item));
+            keywordsToAdd.setGlyphicon(checkKeywordsInDatabase(item, domainId));
             keywordsObjectsList.add(keywordsToAdd);
         }
 
         return keywordsObjectsList;
     }
 
-    public String checkKeywordsInDatabase(String keyword){
-        return "glyphicon-heart";
+    public String checkKeywordsInDatabase(String keyword, int domainId){
+        if(domainsKeywordsDAO.isKeywordInDatabase(keyword, domainId)){
+            return "glyphicon-ok";
+        }else{
+            return "glyphicon-heart";
+        }
     }
 
     public Set<String> extractKeyWords(String link) throws IOException {

@@ -34,5 +34,20 @@ public class DomainsKeywordsDAO {
         }
     }
 
+    public boolean isKeywordInDatabase(String keyword, int domainId){
+        try{
+            DomainsKeywords domainsKeywords = entityManager.createQuery("SELECT d FROM DomainsKeywords d WHERE d.domain_id = "+domainId+" AND d.keywords = '"+keyword+"'", DomainsKeywords.class).getSingleResult();
+            Long keywordsId = domainsKeywords.getId();
+            if(keywordsId>0){
+                return true;
+            }else{
+                return false;
+            }
+
+        }catch (NoResultException e){
+            return false;
+        }
+    }
+
 
 }
