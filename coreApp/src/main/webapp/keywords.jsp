@@ -24,7 +24,7 @@
                         aria-hidden="true">&times;</span></button>
                     ${badform}</div>
         </c:if>
-        <header><h1>Wyniki testu słów kluczowych dla<br>${domainurl}</h1></header>
+        <header><h1>Wyniki testu słów kluczowych dla<br><span class="url">${domainurl}</span></h1></header>
         <a href="#" class="exact-form-show">Sprawdź inną stronę</a>
 
         <form action="keywords" method="post" class="form-inline exact-form">
@@ -34,12 +34,12 @@
 
         <h2>Lista słów kluczowych na Twojej stronie:</h2>
         <p>Aby dodać słowo do ulubionych kliknij serduszko obok słowa kluczowego</p>
-        <p>Aby sprawdzić wyniki wyszukiwania dla danej frazy kliknij w nią</p>
+        <p>Aby sprawdzić wyniki wyszukiwania dla danej frazy kliknij ikonkę linku wychodzącego</p>
         <div class="recommendation-box">
             <ul class="keywords-list">
                 <c:forEach items="${keyWords}" var="keyword">
-                    <li><span class="glyphicon glyphicon-heart" aria-hidden="true" data-user="${sessionData.userId}"></span><a
-                            href="https://google.pl/#q=${keyword.keywordUrl}" target="_blank">${keyword.keyword}</a>
+                    <li><span class="glyphicon ${keyword.glyphicon} likeit" aria-hidden="true" data-user="${sessionData.userId}" data-keyword="${keyword.keyword}"></span><a
+                            href="https://google.pl/#q=${keyword.googleLinkToKeyword}" target="_blank"><span class="glyphicon glyphicon-new-window likeit" aria-hidden="true"></span></a>${keyword.keyword}
                     </li>
                 </c:forEach>
             </ul>
