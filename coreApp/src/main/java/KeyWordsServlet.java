@@ -37,9 +37,9 @@ public class KeyWordsServlet extends HttpServlet {
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
             conn.connect();
-            domainsDAO.save(link, sessionData.getUserId());
+            domainsDAO.saveNewDomain(link, sessionData.getUserId());
             req.setAttribute("domainurl", link);
-            req.setAttribute("keyWords", keyWords.keyWordsListLinks(keyWords.extractKeyWords(link)));
+            req.setAttribute("keyWords", keyWords.keywordsPrintOnWebsite(keyWords.extractKeyWords(link)));
         } catch (HttpStatusException e) {
             e.printStackTrace();
             String refusedConnection = "Strona odmówiła komunikacji";

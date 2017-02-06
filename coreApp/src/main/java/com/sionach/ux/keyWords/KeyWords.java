@@ -17,6 +17,24 @@ public class KeyWords {
 
     private Document doc;
 
+    public List<KeywordsToView> keywordsPrintOnWebsite(Set<String> uniqKeywordsFromUrl) throws UnsupportedEncodingException {
+        List<KeywordsToView> keywordsObjectsList = new ArrayList<>();
+
+        for(String item:uniqKeywordsFromUrl){
+            KeywordsToView keywordsToAdd = new KeywordsToView();
+            keywordsToAdd.setKeyword(item);
+            keywordsToAdd.setGoogleLinkToKeyword(URLEncoder.encode(item, "UTF-8").toString());
+            keywordsToAdd.setGlyphicon(checkKeywordsInDatabase(item));
+            keywordsObjectsList.add(keywordsToAdd);
+        }
+
+        return keywordsObjectsList;
+    }
+
+    public String checkKeywordsInDatabase(String keyword){
+        return "glyphicon-heart";
+    }
+
     public Set<String> extractKeyWords(String link) throws IOException {
         Set<String> result = new HashSet<>();
 
