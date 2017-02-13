@@ -2,5 +2,4 @@ uruchemienie docker z utworzeniem bazy dany danych test
 docker run --name mysqldb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=test -d mysql
 
 uruchemieni wildfly z polaczeniem do bazy i z deployem warki mac os
-
 docker run -it --link mysqldb:mysqldb  -p 8080:8080 -v /Users/drzalek/IdeaProjects/jjdz2-ux/coreApp/target/sionach-ux.war:/opt/jboss/wildfly/standalone/deployments/sionach-ux.war jboss/wildfly

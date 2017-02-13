@@ -4,6 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * Created by drzalek on 06.02.2017.
@@ -26,6 +27,13 @@ public class FavKeywordsDAO {
             FavKeywords favKeywords = entityManager.createQuery("SELECT f FROM FavKeywords f WHERE f.domain_id = :domain AND f.keywords = :keywords", FavKeywords.class).setParameter("domain", favDomainId).setParameter("keywords", keyword).getSingleResult();
         }catch (NoResultException e){
             saveFavKeyword(keyword,favDomainId);
+        }
+    }
+
+    public void saveFavKeywordsList(String keywords, int favDomain){
+        String[] keywordsList = keywords.split(",");
+        for(String item:keywordsList){
+            saveNewFavKeyword(item.trim(), favDomain);
         }
     }
 }
