@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/domainkeywords")
-public class DomainKeywordsFav extends HttpServlet{
+public class DomainFavServlet extends HttpServlet{
 
     @EJB
     FavDomainsDAO favDomainsDAO;

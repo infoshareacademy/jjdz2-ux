@@ -23,7 +23,7 @@ $(document).ready(function(){
         var span = $(this);
         console.log("domena: "+url+" | user: "+userid+" | keyword: "+keyword);
         $.post("/sionach-ux/favkeywords",{url:url,userid:userid,keyword:keyword}, function(data){
-            console.log(data);
+            //console.log(data);
             if(data<0){
                 span.removeClass('glyphicon-ok').addClass('glyphicon-heart');
             }else if(data > 0){
@@ -31,5 +31,18 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('form#domainslistform').on('submit', function(){
+        var domainId = $('select#keywordslist option:selected').val();
+
+        var form = $(this);
+        $.post("/sionach-ux/favkeywordsdomain", form.serialize(), function(data){
+            if(data){
+                $('div.recommendation-box').remove();
+                $('<div class="recommendation-box">'+data+'</div>').insertAfter(form)
+            }
+        });
+        return false;
+    })
 
 });

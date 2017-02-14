@@ -4,6 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,6 +35,15 @@ public class FavKeywordsDAO {
         String[] keywordsList = keywords.split(",");
         for(String item:keywordsList){
             saveNewFavKeyword(item.trim(), favDomain);
+        }
+    }
+
+    public List<FavKeywords> keywordsListByDomainId(int domainId){
+        try{
+            List<FavKeywords> favKeywords = entityManager.createQuery("SELECT f FROM FavKeywords f WHERE f.domain_id = :domainId", FavKeywords.class).setParameter("domainId", domainId).getResultList();
+            return favKeywords;
+        }catch (NoResultException e){
+            return Collections.emptyList();
         }
     }
 }

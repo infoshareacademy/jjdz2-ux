@@ -24,8 +24,20 @@
 
             <button type="submit" class="btn btn-warning">Dodaj</button>
         </form>
+        <c:if test="${!empty domainsList}">
         <h2>Sprawdź słowka kluczowe dla swoich domen</h2>
-
+        <form method="post" action="" id="domainslistform">
+            <div class="form-group">
+                <label for="keywordslist">Wybierz stronę dla której chcesz sprawdzić słowa kluczowe</label>
+            <select id="keywordslist" name="keywordslist">
+                <c:forEach items="${domainsList}" var="domains">
+                    <option value="${domains.id}">${domains.domain_url}</option>
+                </c:forEach>
+            </select>
+            </div>
+            <button type="submit" class="btn btn-warning">Sprawdź</button>
+        </form>
+        </c:if>
     </article>
 </main>
 
