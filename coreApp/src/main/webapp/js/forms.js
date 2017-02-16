@@ -16,6 +16,7 @@ $(document).ready(function(){
         $(this).removeClass('glyphicon-heart').addClass('glyphicon-ok');
     });
 
+
     $('span.likeit').on('click', function () {
         var url = $('span.url').text();
         var userid = $(this).attr("data-user");
@@ -23,13 +24,89 @@ $(document).ready(function(){
         var span = $(this);
         console.log("domena: "+url+" | user: "+userid+" | keyword: "+keyword);
         $.post("/sionach-ux/favkeywords",{url:url,userid:userid,keyword:keyword}, function(data){
-            console.log(data);
+            //console.log(data);
             if(data<0){
                 span.removeClass('glyphicon-ok').addClass('glyphicon-heart');
             }else if(data > 0){
                 span.removeClass('glyphicon-heart').addClass('glyphicon-ok');
             }
         });
+    });
+
+    $('form#domainslistform').on('submit', function(){
+        var domainId = $('select#keywordslist option:selected').val();
+
+        var form = $(this);
+        $.post("/sionach-ux/favkeywordsdomain", form.serialize(), function(data){
+            if(data){
+                var keywordsArray = data.split(",");
+                var keywordsList = "";
+
+                keywordsArray.forEach(function (entry) {
+                        keywordsList += '<li><span class="glyphicon glyphicon-remove removekey" aria-hidden="true" data-keyword="'+entry.trim()+'"></span>'+entry.trim()+'</li>';
+                })
+                $('div.recommendation-box').remove();
+                $('<div class="recommendation-box"><ul class="keywords-list">'+keywordsList+'</ul></div>').insertAfter(form);
+
+                $('span.removekey').on('click', function(){
+
+                    var elList = $(this).parent();
+                    var keywordremove = $(this).attr('data-keyword');
+                    var domainid = $('select#keywordslist option:selected').val();
+                    console.log(keywordremove);
+                    console.log(domainid);
+                    $.post("/sionach-ux/favkeywordsdomain",{'keywordremove':keywordremove, 'selectdomain':domainid}, function(data){
+                        if(data==1) {
+                            elList.remove();
+                        }
+                        else if(data==-1){
+                            var alertMsg = '<div class="alert alert-danger alert-dismissible" role="alert">'+
+                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                                '<spanaria-hidden="true">&times;</span>Nie udało się odnaleźć słowa kluczowego</button></div>';
+                            $('div.recommendation-box').append(alertMsg);
+                        }else{
+                            var alertMsg = '<div class="alert alert-danger alert-dismissible" role="alert">'+
+                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                                '<spanaria-hidden="true">&times;</span>Wybrane słowo kluczowe nie istnieje w bazie danych</button></div>';
+                            $('div.recommendation-box').append(alertMsg);
+                        }
+                    });
+
+                });
+
+
+
+            }
+
+
+
+        });
+        return false;
+    });
+
+    $('span.removekey').on('click', function(){
+        console.log("kkkk");
+        var elList = $(this).parent();
+        var keywordremove = $(this).attr('data-keyword');
+        var domainid = $('select#keywordslist option:selected').val();
+
+        $.post("/sionach-ux/favkeywordsdomain",{'keywordremove':keywordremove, 'selectdomain':domainid}, function(data){
+            if(data==1) {
+                elList.remove();
+            }
+            else if(data==-1){
+                var alertMsg = '<div class="alert alert-danger alert-dismissible" role="alert">'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<spanaria-hidden="true">&times;</span>Nie udało się odnaleźć słowa kluczowego</button></div>';
+                $('div.recommendation-box').append(alertMsg);
+            }else{
+                var alertMsg = '<div class="alert alert-danger alert-dismissible" role="alert">'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<spanaria-hidden="true">&times;</span>Wybrane słowo kluczowe nie istnieje w bazie danych</button></div>';
+                $('div.recommendation-box').append(alertMsg);
+            }
+        });
+
     });
 
 });

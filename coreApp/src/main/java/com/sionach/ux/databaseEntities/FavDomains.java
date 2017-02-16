@@ -9,20 +9,12 @@ import java.io.Serializable;
 @Entity
 @Table(name="fav_domains")
 public class FavDomains implements Serializable {
-    @Column(name="primary_key")
-    private int primary_key;
     @Column(name="user_id")
     private int user_id;
-    @Column(name="domain_id")
+    @Column(name="domain_url")
     private String domain_url;
 
-    public int getPrimary_key() {
-        return primary_key;
-    }
 
-    public void setPrimary_key(int primary_key) {
-        this.primary_key = primary_key;
-    }
 
     public int getUser_id() {
         return user_id;
