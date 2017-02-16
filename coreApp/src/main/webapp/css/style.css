@@ -264,3 +264,7 @@ form.exact-form{
     margin-right: 20px;
     cursor: pointer;
 }
+
+#domainslistform{
+    margin-bottom: 20px;
+}

@@ -29,7 +29,9 @@
         <form method="post" action="" id="domainslistform">
             <div class="form-group">
                 <label for="keywordslist">Wybierz stronę dla której chcesz sprawdzić słowa kluczowe</label>
-            <select id="keywordslist" name="keywordslist">
+            </div>
+            <div class="form-group">
+            <select id="keywordslist" name="selectdomain">
                 <c:forEach items="${domainsList}" var="domains">
                     <option value="${domains.id}">${domains.domain_url}</option>
                 </c:forEach>

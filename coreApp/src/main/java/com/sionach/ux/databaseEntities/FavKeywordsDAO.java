@@ -46,4 +46,22 @@ public class FavKeywordsDAO {
             return Collections.emptyList();
         }
     }
+
+    public String ramoveKeyword(String keyword, int domainId){
+        System.out.println("do usuniecia: "+keyword+" z domeny: "+domainId);
+        try{
+            FavKeywords favKeywords = entityManager.createQuery("SELECT f FROM FavKeywords f WHERE f.keywords = :keyword AND f.domain_id = :domainid", FavKeywords.class).setParameter("keyword", keyword).setParameter("domainid", domainId).getSingleResult();
+            Long keywordId = favKeywords.getId();
+
+            if(keywordId > 0){
+                entityManager.createQuery("DELETE FROM FavKeywords f WHERE f.keywords = :keyword AND f.domain_id = :domainid").setParameter("keyword", keyword).setParameter("domainid", domainId).executeUpdate();
+                return "1";
+            }
+            return "-1";
+        }catch (NoResultException e){
+
+            return "0";
+        }
+
+    }
 }

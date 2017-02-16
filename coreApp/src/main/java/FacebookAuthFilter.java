@@ -10,7 +10,7 @@ import java.io.IOException;
  * Created by allic on 15/01/2017.
  */
 
-@WebFilter(urlPatterns = {"/accessibility" ,"/colors" ,"/keywords", "/routing", "/"})
+@WebFilter(urlPatterns = {"/domainkeywords", "/accessibility", "/colors", "/keywords", "/routing", "/"})
 public class FacebookAuthFilter implements Filter {
 
     @Inject
