@@ -22,13 +22,12 @@ public class RestColors {
         return colorReport.getColorsWithCounter();
     }
 
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
-    public List<Color> saveColors(){
-        return colorReport.getColorsWithCounter();
-    }
-
+//    @POST
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Path("/")
+//    public List<Color> saveColors(){
+//        return colorReport.getColorsWithCounter();
+//    }
 
 }
