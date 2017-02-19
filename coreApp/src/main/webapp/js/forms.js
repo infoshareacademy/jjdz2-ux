@@ -59,17 +59,7 @@ $(document).ready(function(){
                         if(data==1) {
                             elList.remove();
                         }
-                        else if(data==-1){
-                            var alertMsg = '<div class="alert alert-danger alert-dismissible" role="alert">'+
-                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-                                '<spanaria-hidden="true">&times;</span>Nie udało się odnaleźć słowa kluczowego</button></div>';
-                            $('div.recommendation-box').append(alertMsg);
-                        }else{
-                            var alertMsg = '<div class="alert alert-danger alert-dismissible" role="alert">'+
-                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-                                '<spanaria-hidden="true">&times;</span>Wybrane słowo kluczowe nie istnieje w bazie danych</button></div>';
-                            $('div.recommendation-box').append(alertMsg);
-                        }
+
                     });
 
                 });
