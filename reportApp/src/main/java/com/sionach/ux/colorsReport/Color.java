@@ -1,4 +1,4 @@
-package com.sionach.ux.reports;
+package com.sionach.ux.colorsReport;
 
 public class Color {
 

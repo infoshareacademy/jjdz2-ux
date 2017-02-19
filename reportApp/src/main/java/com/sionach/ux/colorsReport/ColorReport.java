@@ -1,4 +1,4 @@
-package com.sionach.ux.reports;
+package com.sionach.ux.colorsReport;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,7 +15,7 @@ public class ColorReport {
     public List<Color> getColorsWithCounter() {
 
         List<Color> colors = entityManager.createQuery(
-                "SELECT NEW com.sionach.ux.reports.Color(c.colors, count(c) as count)" +
+                "SELECT NEW Color(c.colors, count(c) as count)" +
                         " FROM Colors c GROUP BY c.colors").getResultList();
 
         return colors.stream().
