@@ -17,6 +17,7 @@ public class SessionData implements Serializable {
     private Locale locale;
     private String userFbId;
     private int userId;
+    private String token;
 
     public String getUsername() {
         return username;
@@ -91,5 +92,13 @@ public class SessionData implements Serializable {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
