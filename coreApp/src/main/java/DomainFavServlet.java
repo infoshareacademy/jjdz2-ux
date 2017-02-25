@@ -44,16 +44,19 @@ public class DomainFavServlet extends HttpServlet{
 
             req.getSession().invalidate();
             resp.sendRedirect("http://disney.com");
+        }else{
+            int userId = sessionData.getUserId();
+            int domainId = favDomainsDAO.favDomainInByUserIdAndUrl(userId, domainUrl);
+            System.out.println("domena: "+domainId);
+            favKeywordsDAO.saveFavKeywordsList(keywords, domainId);
+            req.setAttribute("domainsList", favDomainsDAO.favDomainsByUserId(userId));
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/favkeywords.jsp");
+            dispatcher.forward(req, resp);
         }
 
-        int userId = sessionData.getUserId();
-        int domainId = favDomainsDAO.favDomainInByUserIdAndUrl(userId, domainUrl);
-        System.out.println("domena: "+domainId);
-        favKeywordsDAO.saveFavKeywordsList(keywords, domainId);
 
-        req.setAttribute("domainsList", favDomainsDAO.favDomainsByUserId(userId));
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/favkeywords.jsp");
-        dispatcher.forward(req, resp);
+
+
 
     }
 }

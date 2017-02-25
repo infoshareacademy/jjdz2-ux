@@ -30,21 +30,23 @@ public class KeywordsDomainFavServlet extends HttpServlet {
         String res = "";
         String token = req.getParameter("token");
         String tokenToCompare = sessionData.getToken();
-        if(!token.equals(tokenToCompare)){
+        if(token == null || !token.equals(tokenToCompare)){
 
             req.getSession().invalidate();
             resp.sendRedirect("http://disney.com");
+        }else{
+            if(keywordToRemove!=null){
+                System.out.println("domena: "+domainId);
+                System.out.println("keyword: "+keywordToRemove);
+                res = favKeywordsDAO.ramoveKeyword(keywordToRemove, domainId);
+            }else if (domainId > 0){
+                res = favKeywordsDAO.keywordsListByDomainId(domainId).stream()
+                        .map(FavKeywords::getKeywords)
+                        .collect(Collectors.joining(", "));
+            }
         }
 
-        if(keywordToRemove!=null){
-            System.out.println("domena: "+domainId);
-            System.out.println("keyword: "+keywordToRemove);
-             res = favKeywordsDAO.ramoveKeyword(keywordToRemove, domainId);
-        }else if (domainId > 0){
-             res = favKeywordsDAO.keywordsListByDomainId(domainId).stream()
-                    .map(FavKeywords::getKeywords)
-                    .collect(Collectors.joining(", "));
-        }
+
 
 
 
