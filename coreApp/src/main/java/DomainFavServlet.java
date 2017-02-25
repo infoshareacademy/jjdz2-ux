@@ -37,6 +37,15 @@ public class DomainFavServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String domainUrl = req.getParameter("favdomain");
         String keywords = req.getParameter("favkeywords");
+
+        String token = req.getParameter("token");
+        String tokenToCompare = sessionData.getToken();
+        if(!token.equals(tokenToCompare)){
+
+            req.getSession().invalidate();
+            resp.sendRedirect("http://disney.com");
+        }
+
         int userId = sessionData.getUserId();
         int domainId = favDomainsDAO.favDomainInByUserIdAndUrl(userId, domainUrl);
         System.out.println("domena: "+domainId);

@@ -13,6 +13,7 @@
 
         <form method="post" action="domainkeywords">
             <div class="form-group">
+                <input type="hidden" name="token" value="${sessionData.token}">
                 <label for="favdomain">Adres URL strony internetowej</label>
                 <input type="text" class="form-control" name="favdomain" id="favdomain" placeholder="Adres URL">
             </div>
@@ -27,6 +28,7 @@
         <c:if test="${!empty domainsList}">
         <h2>Sprawdź słowka kluczowe dla swoich domen</h2>
         <form method="post" action="" id="domainslistform">
+            <input type="hidden" name="token" value="${sessionData.token}">
             <div class="form-group">
                 <label for="keywordslist">Wybierz stronę dla której chcesz sprawdzić słowa kluczowe</label>
             </div>

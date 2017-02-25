@@ -21,9 +21,10 @@ $(document).ready(function(){
         var url = $('span.url').text();
         var userid = $(this).attr("data-user");
         var keyword = $(this).attr("data-keyword")
+        var token = $(this).attr("data-token");
         var span = $(this);
-        console.log("domena: "+url+" | user: "+userid+" | keyword: "+keyword);
-        $.post("/sionach-ux/favkeywords",{url:url,userid:userid,keyword:keyword}, function(data){
+
+        $.post("/sionach-ux/favkeywords",{url:url,userid:userid,keyword:keyword, token:token}, function(data){
             //console.log(data);
             if(data<0){
                 span.removeClass('glyphicon-ok').addClass('glyphicon-heart');
@@ -53,9 +54,11 @@ $(document).ready(function(){
                     var elList = $(this).parent();
                     var keywordremove = $(this).attr('data-keyword');
                     var domainid = $('select#keywordslist option:selected').val();
+                    var token = $('#domainslistform input[name="token"]').val();
+                    console.log(token);
                     console.log(keywordremove);
                     console.log(domainid);
-                    $.post("/sionach-ux/favkeywordsdomain",{'keywordremove':keywordremove, 'selectdomain':domainid}, function(data){
+                    $.post("/sionach-ux/favkeywordsdomain",{'keywordremove':keywordremove, 'selectdomain':domainid, 'token':token}, function(data){
                         if(data==1) {
                             elList.remove();
                         }
@@ -75,12 +78,13 @@ $(document).ready(function(){
     });
 
     $('span.removekey').on('click', function(){
-        console.log("kkkk");
+
         var elList = $(this).parent();
         var keywordremove = $(this).attr('data-keyword');
         var domainid = $('select#keywordslist option:selected').val();
-
-        $.post("/sionach-ux/favkeywordsdomain",{'keywordremove':keywordremove, 'selectdomain':domainid}, function(data){
+        var token = $('#domainslistform input[name="token"]').val();
+        console.log(token);
+        $.post("/sionach-ux/favkeywordsdomain",{'keywordremove':keywordremove, 'selectdomain':domainid, 'token':token}, function(data){
             if(data==1) {
                 elList.remove();
             }

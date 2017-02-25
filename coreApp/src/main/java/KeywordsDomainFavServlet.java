@@ -1,5 +1,6 @@
 import com.sionach.ux.databaseEntities.FavKeywords;
 import com.sionach.ux.databaseEntities.FavKeywordsDAO;
+import com.sionach.ux.facebook.SessionData;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -19,11 +20,22 @@ public class KeywordsDomainFavServlet extends HttpServlet {
     @Inject
     FavKeywordsDAO favKeywordsDAO;
 
+    @Inject
+    SessionData sessionData;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int domainId = parseInt(req.getParameter("selectdomain"));
         String keywordToRemove = req.getParameter("keywordremove");
         String res = "";
+        String token = req.getParameter("token");
+        String tokenToCompare = sessionData.getToken();
+        if(!token.equals(tokenToCompare)){
+
+            req.getSession().invalidate();
+            resp.sendRedirect("http://disney.com");
+        }
+
         if(keywordToRemove!=null){
             System.out.println("domena: "+domainId);
             System.out.println("keyword: "+keywordToRemove);

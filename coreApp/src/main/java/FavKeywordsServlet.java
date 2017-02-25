@@ -1,8 +1,10 @@
 
 import com.sionach.ux.databaseEntities.DomainsDAO;
 import com.sionach.ux.databaseEntities.DomainsKeywordsDAO;
+import com.sionach.ux.facebook.SessionData;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,12 +26,22 @@ public class FavKeywordsServlet extends HttpServlet{
     @EJB
     DomainsDAO domainsDAO;
 
+    @Inject
+    SessionData sessionData;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int userid = parseInt(req.getParameter("userid"));
         String keyword = req.getParameter("keyword");
         String url = req.getParameter("url");
+        String token = req.getParameter("token");
+        String tokenToCompare = sessionData.getToken();
+        if(!token.equals(tokenToCompare)){
+
+            req.getSession().invalidate();
+            resp.sendRedirect("http://disney.com");
+        }
 
         int domainId = domainsDAO.domainIdByUrlAndUserId(url, userid).intValue();
 
