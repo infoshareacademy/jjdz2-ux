@@ -20,8 +20,8 @@ public class Users implements Serializable{
     private String fBid;
 
 
-    @OneToMany
-    List<Activity> activities;
+//    @OneToMany
+//    List<Activity> activities;
 
     public String getFirstname() {
         return firstname;

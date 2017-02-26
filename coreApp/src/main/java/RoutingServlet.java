@@ -1,3 +1,4 @@
+import com.sionach.ux.apiConsumer.RoutingApiConsumer;
 import com.sionach.ux.routing.LinkManagement;
 
 import javax.ejb.EJB;
@@ -15,6 +16,8 @@ public class RoutingServlet extends HttpServlet{
 
     @EJB
     LinkManagement linkManagement;
+    @EJB
+    RoutingApiConsumer api;
 
 
     @Override
@@ -29,6 +32,8 @@ public class RoutingServlet extends HttpServlet{
 
         List<String> innerLinks = linkManagement.getInnerLinks(linkManagement.parseLinksFromHtml(linkManagement.getPageAsDocument(link)), link);
         List<String> outerLinks = linkManagement.getOuterLinks(linkManagement.parseLinksFromHtml(linkManagement.getPageAsDocument(link)), link);
+
+        api.sendLinksToDB(link, innerLinks.size(), outerLinks.size());
 
         req.setAttribute("innerLinks", innerLinks);
         req.setAttribute("outerLinks", outerLinks);

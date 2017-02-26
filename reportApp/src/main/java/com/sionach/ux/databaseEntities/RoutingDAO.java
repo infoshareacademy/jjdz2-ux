@@ -9,28 +9,21 @@ import javax.persistence.PersistenceContext;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by ablazejewska on 18.12.16.
- */
 @Stateless
 public class RoutingDAO {
     @PersistenceContext
     EntityManager entityManager;
 
-    private static final Logger LOGGER = LogManager.getLogger(RoutingDAO.class);
-
-    public void save(int domainId, String link, int type){
+    public void save(String url, int innerLinks, int outerLinks){
         Routing routing = new Routing();
-        routing.setDomain_id(domainId);
-        routing.setLink(link);
-        routing.setType(type);
+        routing.setLink(url);
+        routing.setInnerlinks(innerLinks);
+        routing.setOuterLinks(outerLinks);
         entityManager.persist(routing);
-
     }
 
-    public void readSomething(){
-//        List<String> userId = entityManager.createQuery("SELECT d.facebookId FROM Activity d", String.class).getResultList();
-//        System.out.println(userId);
-//        LOGGER.info("Odczyt z bazy wykonany dla fb id");
+    public List<Routing> read(){
+        List<Routing> links = entityManager.createQuery("SELECT d FROM Routing d").getResultList();
+        return links;
     }
 }

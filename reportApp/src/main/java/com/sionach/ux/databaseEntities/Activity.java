@@ -10,9 +10,9 @@ import java.util.Date;
 @Entity
 @Table(name="Activity")
 public class Activity implements Serializable{
-    @ManyToOne
-    @Column(name="userId")
-    private String userId;
+//    @ManyToOne
+//    @Column(name="userId")
+//    private String userId;
 
     @Column(name="dateOfLogin")
     private Date dateOfLogin;

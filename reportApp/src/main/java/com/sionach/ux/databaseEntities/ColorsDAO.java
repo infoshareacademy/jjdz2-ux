@@ -4,7 +4,6 @@ package com.sionach.ux.databaseEntities;
  * Created by ablazejewska on 18.12.16.
  */
 
-import com.sionach.ux.color.DistHex;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

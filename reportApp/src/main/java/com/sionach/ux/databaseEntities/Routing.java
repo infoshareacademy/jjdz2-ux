@@ -3,26 +3,15 @@ package com.sionach.ux.databaseEntities;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by allic on 11/12/2016.
- */
 @Entity
 @Table(name="routing")
 public class Routing implements Serializable{
-    @Column(name="domain_id")
-    private int domain_id;
     @Column(name = "link")
     private String link;
-    @Column(name = "type")
-    private int type;
-
-    public int getDomain_id() {
-        return domain_id;
-    }
-
-    public void setDomain_id(int domain_id) {
-        this.domain_id = domain_id;
-    }
+    @Column(name = "innerLinks")
+    private int innerlinks;
+    @Column(name = "outerLinks")
+    private int outerLinks;
 
     public String getLink() {
         return link;
@@ -32,12 +21,20 @@ public class Routing implements Serializable{
         this.link = link;
     }
 
-    public int getType() {
-        return type;
+    public int getInnerlinks() {
+        return innerlinks;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setInnerlinks(int innerlinks) {
+        this.innerlinks = innerlinks;
+    }
+
+    public int getOuterLinks() {
+        return outerLinks;
+    }
+
+    public void setOuterLinks(int outerLinks) {
+        this.outerLinks = outerLinks;
     }
 
     @Column(name="id")
