@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.StringReader;
+import java.security.SecureRandom;
 
 /**
  * Created by ablazejewska on 15.01.17.
@@ -47,13 +48,17 @@ public class FacebookCallback extends HttpServlet {
         String id = profile.getString("id");
 
         Users user = usersDAO.readUserOrSave(name, id);
-
+        SecureRandom random = new SecureRandom();
+        byte bytes[] = new byte[20];
+        random.nextBytes(bytes);
+        String token = bytes.toString();
 
         //Users user = usersDAO.save(name, id);
 //        usersDAO.readUsers(id);
         sessionData.setLogged(true);
         sessionData.setUserFbId(id);
         sessionData.setUserId(user.getId().intValue());
+        sessionData.setToken(token);
 
 
 //        System.out.println(String.format("name = %s, email = %s", name, email));

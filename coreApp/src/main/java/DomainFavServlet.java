@@ -37,14 +37,26 @@ public class DomainFavServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String domainUrl = req.getParameter("favdomain");
         String keywords = req.getParameter("favkeywords");
-        int userId = sessionData.getUserId();
-        int domainId = favDomainsDAO.favDomainInByUserIdAndUrl(userId, domainUrl);
-        System.out.println("domena: "+domainId);
-        favKeywordsDAO.saveFavKeywordsList(keywords, domainId);
 
-        req.setAttribute("domainsList", favDomainsDAO.favDomainsByUserId(userId));
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/favkeywords.jsp");
-        dispatcher.forward(req, resp);
+        String token = req.getParameter("token");
+        String tokenToCompare = sessionData.getToken();
+        if(!token.equals(tokenToCompare)){
+
+            req.getSession().invalidate();
+            resp.sendRedirect("http://disney.com");
+        }else{
+            int userId = sessionData.getUserId();
+            int domainId = favDomainsDAO.favDomainInByUserIdAndUrl(userId, domainUrl);
+            System.out.println("domena: "+domainId);
+            favKeywordsDAO.saveFavKeywordsList(keywords, domainId);
+            req.setAttribute("domainsList", favDomainsDAO.favDomainsByUserId(userId));
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/favkeywords.jsp");
+            dispatcher.forward(req, resp);
+        }
+
+
+
+
 
     }
 }
