@@ -1,4 +1,4 @@
-import com.sionach.ux.reports.ColorReport;
+import com.sionach.ux.colorsReport.ColorReport;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
