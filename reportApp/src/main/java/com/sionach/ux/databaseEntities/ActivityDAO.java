@@ -6,7 +6,8 @@ import org.apache.logging.log4j.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -19,16 +20,18 @@ public class ActivityDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(ActivityDAO.class);
 
-    public void save(String fbId, Date dateOfLogin){
+    public void save(String fbId, Long dateOfLogin){
         Activity activity = new Activity();
+        activity.setUserId(fbId);
         activity.setDateOfLogin(dateOfLogin);
         entityManager.persist(activity);
 
     }
 
-    public void readUserId(){
-        List<String> userId = entityManager.createQuery("SELECT d.dateOfLogin FROM Activity d", String.class).getResultList();
-        System.out.println(userId);
+    public List<Long> readUserId(){
+        List<Long> userId = entityManager.createQuery("SELECT d.dateOfLogin FROM Activity d", Long.class).getResultList();
         LOGGER.info("Odczyt z bazy wykonany dla fb id");
+        return userId;
+
     }
 }

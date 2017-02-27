@@ -8,14 +8,14 @@ import java.util.Date;
  * Created by allic on 11/12/2016.
  */
 @Entity
-@Table(name="Activity")
+@Table(name="activity")
 public class Activity implements Serializable{
-    @ManyToOne
+
     @Column(name="userId")
     private String userId;
 
     @Column(name="dateOfLogin")
-    private Date dateOfLogin;
+    private Long dateOfLogin;
 
     @Column(name="id")
     @Id
@@ -26,13 +26,20 @@ public class Activity implements Serializable{
     }
 
 
-    public Date getDateOfLogin() {
+    public Long getDateOfLogin() {
         return dateOfLogin;
     }
 
-    public void setDateOfLogin(Date dateOfLogin) {
+    public void setDateOfLogin(Long dateOfLogin) {
         this.dateOfLogin = dateOfLogin;
     }
 
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }
