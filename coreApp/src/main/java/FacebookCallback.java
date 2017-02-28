@@ -2,6 +2,7 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import com.sionach.ux.apiConsumer.ActivityApiConsumer;
 import com.sionach.ux.databaseEntities.Users;
 import com.sionach.ux.databaseEntities.UsersDAO;
 import com.sionach.ux.facebook.SessionData;
@@ -22,6 +23,7 @@ import java.security.SecureRandom;
 /**
  * Created by ablazejewska on 15.01.17.
  */
+
 @WebServlet(urlPatterns = "/fbcallback")
 public class FacebookCallback extends HttpServlet {
 
@@ -30,6 +32,9 @@ public class FacebookCallback extends HttpServlet {
 
     @Inject
     UsersDAO usersDAO;
+
+    @Inject
+    ActivityApiConsumer activityApiConsumer;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -61,9 +66,12 @@ public class FacebookCallback extends HttpServlet {
         sessionData.setToken(token);
 
 
+        activityApiConsumer.sendActivityToDB(id, System.currentTimeMillis()/1000);
+        System.out.println("wyslanie do rapoertu: " + id + " data: " + System.currentTimeMillis()/1000);
+
 //        System.out.println(String.format("name = %s, email = %s", name, email));
         System.out.println(oAuthResp.getBody());
-        resp.sendRedirect("/sionach-ux");
+        //resp.sendRedirect("/sionach-ux");
     }
 }
 
