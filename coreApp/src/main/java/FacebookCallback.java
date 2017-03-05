@@ -2,6 +2,7 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import com.sionach.ux.apiConsumer.ActivityApiConsumer;
 import com.sionach.ux.databaseEntities.Users;
 import com.sionach.ux.databaseEntities.UsersDAO;
 import com.sionach.ux.facebook.SessionData;
@@ -30,6 +31,9 @@ public class FacebookCallback extends HttpServlet {
 
     @Inject
     UsersDAO usersDAO;
+
+    @Inject
+    ActivityApiConsumer activityApiConsumer;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -60,6 +64,7 @@ public class FacebookCallback extends HttpServlet {
         sessionData.setUserId(user.getId().intValue());
         sessionData.setToken(token);
 
+        activityApiConsumer.sendActivityToDB(name);
 
 //        System.out.println(String.format("name = %s, email = %s", name, email));
         System.out.println(oAuthResp.getBody());
