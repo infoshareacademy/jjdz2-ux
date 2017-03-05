@@ -27,9 +27,9 @@
                         <%--${sessionData.username} --%>
                     <a type="submit" href="facebooklogout">Logout</a>
                 </li>
-                <li class="col-lg-6 col-xs-6">
-                    <a href="/sionach-ux/colorReport">Color Report</a>
-                </li>
+                <%--<li class="col-lg-6 col-xs-6">--%>
+                    <%--<a href="/sionach-ux/colorReport">Color Report</a>--%>
+                <%--</li>--%>
             </c:if>
             <%-- bylo href login.jsp--%>
         </ul>

@@ -23,7 +23,7 @@ public class RoutingApi {
     public void addLinksToDB(@HeaderParam("url") String url,
                              @HeaderParam("innerLinks") int innerLinks,
                              @HeaderParam("outerLinks") int outerLinks){
-        routingDAO.save(url, innerLinks, outerLinks);
+        routingDAO.saveOnlyNew(url, innerLinks, outerLinks);
     }
 
     @GET

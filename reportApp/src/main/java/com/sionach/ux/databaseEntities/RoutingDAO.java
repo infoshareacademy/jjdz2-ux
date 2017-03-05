@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,18 @@ public class RoutingDAO {
         routing.setInnerlinks(innerLinks);
         routing.setOuterLinks(outerLinks);
         entityManager.persist(routing);
+    }
+
+    public void saveOnlyNew(String url, int innerLinks, int outerLinks){
+        try {
+            Routing routing = entityManager.createQuery("SELECT r FROM Routing r WHERE r.link =:url", Routing.class).setParameter("url", url).getSingleResult();
+            routing.setOuterLinks(outerLinks);
+            routing.setInnerlinks(innerLinks);
+            routing.setLink(url);
+            entityManager.persist(routing);
+        }catch(NoResultException e){
+            save(url, innerLinks, outerLinks);
+        }
     }
 
     public List<Routing> read(){
